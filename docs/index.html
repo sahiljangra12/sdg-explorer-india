@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>SDG Explorer India</title>
+<meta name="description" content="India's progress on the 17 Sustainable Development Goals from official sources: UN SDG database, MoSPI, NITI Aayog and NFHS district fact sheets.">
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
+<style>
+:root{--bg:#f6f6f4;--panel:#ffffff;--surface:#fcfcfb;--ink:#141413;--ink2:#52514e;--ink3:#77766f;--line:#e6e5e1;--accent:#1c5cab;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--s7:#6250d6;--s8:#e34948}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.5}
+a{color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 16px 48px}
+.kicker{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase}
+h1{margin:6px 0 6px;font-size:30px;line-height:1.2}
+p.sub{color:var(--ink2);margin:0 0 20px;max-width:800px;font-size:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.kpi b{display:block;font-size:24px;margin-bottom:2px;font-variant-numeric:tabular-nums}.kpi span{color:var(--ink2);font-size:13px}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:0 0 18px;position:sticky;top:0;background:var(--bg);z-index:5;padding-top:6px}
+nav.tabs button{font:inherit;font-size:14.5px;border:0;background:none;color:var(--ink2);padding:8px 12px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+nav.tabs button.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+section.tab{display:none}section.tab.on{display:block}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px 12px;margin-bottom:18px}
+.panel h2{margin:0 0 4px;font-size:19px}.panel h3{font-size:15px;margin:14px 0 4px}
+p.how{margin:0 0 12px;color:var(--ink2);font-size:14px;max-width:820px}
+.controls{display:flex;gap:12px 16px;align-items:flex-end;flex-wrap:wrap;margin:0 0 10px}
+.controls label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--ink2);font-weight:600;max-width:100%;min-width:0}
+@media (max-width:640px){.controls label{width:100%}.controls select{width:100%}}
+select{font:inherit;font-size:14px;color:var(--ink);background:var(--panel);border:1px solid #cfcdc7;border-radius:8px;padding:6px 10px;max-width:100%}
+select.wide{width:min(720px,100%)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+.chip{font:inherit;font-size:13px;border:1px solid #cfcdc7;background:var(--panel);color:var(--ink2);border-radius:999px;padding:3px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip.on{color:var(--ink);border-color:var(--ink)}.chip .dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid #cfcdc7}
+.chip:disabled{opacity:.45;cursor:not-allowed}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;font-weight:600;margin-right:6px;vertical-align:1px}
+.pill.v{background:#e3f2ea;color:#1b6e3a}.pill.c{background:#fdf0dc;color:#8a5a00}.pill.m{background:#f0efec;color:#52514e}
+.note{background:#f3f7fc;border-left:3px solid var(--accent);padding:9px 13px;border-radius:6px;font-size:13.5px;margin:6px 0 12px;color:var(--ink2)}
+.warn{background:#fdf6ea;border-left-color:#c98500}
+.meta{display:grid;grid-template-columns:170px 1fr;gap:4px 14px;font-size:13.5px;margin:6px 0 10px}
+.meta dt{color:var(--ink2)}.meta dd{margin:0;overflow-wrap:anywhere}
+@media (max-width:640px){.meta{grid-template-columns:1fr}.meta dt{margin-top:6px}}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:6px 0 10px;max-height:420px;overflow-y:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{position:sticky;top:0;background:#f4f4f1;font-weight:600;color:var(--ink2);white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{font:inherit;font-size:13.5px;border:1px solid #cfcdc7;background:var(--panel);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{border-color:var(--ink)}
+.cap{font-size:12.5px;color:var(--ink2);margin:2px 0 10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.chart{width:100%;min-height:200px}
+details{margin:6px 0 10px;font-size:13.5px}summary{cursor:pointer;color:var(--accent);font-weight:600}
+footer{color:var(--ink2);font-size:13px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
+.loading{color:var(--ink3);font-size:14px;padding:20px 0}
+.empty{color:var(--ink2);font-size:14px;padding:12px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Official data · India · all 17 goals</div>
+  <h1>SDG Explorer India</h1>
+  <p class="sub">India's progress on the UN Sustainable Development Goals, built only from official sources: the UN Global SDG Indicators Database, MoSPI's National Indicator Framework report, NITI Aayog's SDG India Index and the National Family Health Survey district fact sheets. Every value is shown as published. Missing values stay missing; nothing is filled in.</p>
+  <div class="kpis" id="kpis"></div>
+
+  <nav class="tabs" id="tabs">
+    <button data-tab="explorer" class="on">Indicators</button>
+    <button data-tab="states">States &amp; UTs</button>
+    <button data-tab="districts">Districts</button>
+    <button data-tab="missing">Missing data</button>
+    <button data-tab="overview">Goal overview</button>
+    <button data-tab="sources">Sources &amp; downloads</button>
+  </nav>
+
+  <!-- ------------------------------------------------ national indicators -->
+  <section class="tab on" id="tab-explorer">
+    <div class="panel">
+      <h2>National indicators</h2>
+      <p class="how">Pick a goal, then a data series. One SDG indicator can have several series (for example by measure or age group). Breakdowns such as sex, age or urban/rural are kept exactly as published; choose up to 8 to compare.</p>
+      <div class="controls">
+        <label>Goal <select id="ex-goal"></select></label>
+        <label>Source <select id="ex-src"><option value="">All sources</option><option value="UN_SDG_API">UN SDG database</option><option value="MOSPI_NIF_2025">MoSPI NIF report 2025</option></select></label>
+      </div>
+      <div class="controls"><label style="flex:1">Series <select id="ex-series" class="wide"></select></label></div>
+      <div id="ex-chips-label" class="cap"></div>
+      <div class="chips" id="ex-chips"></div>
+      <div id="ex-chart" class="chart"></div>
+      <div id="ex-cap" class="cap"></div>
+      <div id="ex-meta"></div>
+      <h3>Values as published</h3>
+      <div class="tablewrap" id="ex-table"></div>
+      <button class="btn" id="ex-dl">Download this series (CSV)</button>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ states -->
+  <section class="tab" id="tab-states">
+    <div class="panel">
+      <h2>NITI Aayog SDG India Index 2023-24 <span class="pill c">Composite index</span></h2>
+      <p class="how">NITI Aayog scores each State and Union Territory from 0 to 100 by combining many indicators, normalised and weighted. It is a composite score, not a measured value, so it is kept apart from the indicator data. Scores were read from the report's page images (pages 67–68) and checked against figures stated in the report.</p>
+      <div class="grid2">
+        <div><div id="st-map" class="chart" style="height:560px"></div><div class="cap">Map boundaries: DataMeet India community (CC BY 4.0), simplified; illustrative only, not an authoritative depiction of India's borders.</div></div>
+        <div><div id="st-rank" class="chart" style="height:740px"></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>India's index scores by edition <span class="pill c">Composite index</span></h2>
+      <p class="how">India's composite score and its score on each goal in the four editions of the index. Index editions are publication rounds, not observation years, and NITI Aayog changed the indicator set between editions, so differences are not pure trends.</p>
+      <div id="st-nat" class="chart" style="height:280px"></div>
+      <div class="tablewrap" id="st-goals" style="max-height:none"></div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ districts -->
+  <section class="tab" id="tab-districts">
+    <div class="panel">
+      <h2>Districts <span class="pill v">NFHS-5 and NFHS-4</span></h2>
+      <p class="how">National Family Health Survey district fact sheets (Ministry of Health and Family Welfare / IIPS) for 34 indicators with a clear SDG counterpart: NFHS-5 (2019-21) and NFHS-4 (2015-16). District estimates come from a sample survey and have sampling error. Values in brackets in the fact sheets are based on 25–49 cases; "na" and "*" mean no estimate was published. Districts formed after 2015-16 have no NFHS-4 value. No State totals are calculated from district values.</p>
+      <div class="controls">
+        <label style="flex:1">Indicator <select id="di-ind" class="wide"></select></label>
+        <label>State / UT <select id="di-state"></select></label>
+      </div>
+      <div id="di-rel" class="cap"></div>
+      <div id="di-chart" class="chart"></div>
+      <div id="di-cap" class="cap"></div>
+      <div id="di-extra"></div>
+      <button class="btn" id="di-dl">Download this indicator for all districts (CSV)</button>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ missing -->
+  <section class="tab" id="tab-missing">
+    <div class="panel">
+      <h2>What data exists, and what is missing</h2>
+      <p class="how">For each goal: how many of the UN's global data series have any value for India, which do not, and which tables in MoSPI's report could not be read without guessing.</p>
+      <div class="controls"><label>Goal <select id="mi-goal"></select></label></div>
+      <div class="kpis" id="mi-kpis"></div>
+      <h3>Years with data, by series</h3>
+      <div id="mi-grid" class="chart"></div>
+      <div class="cap">A filled cell means at least one published value for that series and year. Empty cells have no published value.</div>
+      <details id="mi-un"></details>
+      <details id="mi-mospi"></details>
+      <details id="mi-nfhs"></details>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ overview -->
+  <section class="tab" id="tab-overview">
+    <div class="panel">
+      <h2>Data series with values for India, by goal</h2>
+      <p class="how">National series with at least one published number, from the UN database and from MoSPI's report. The two sources are kept separate because definitions and revisions can differ.</p>
+      <div id="ov-bars" class="chart" style="height:560px"></div>
+    </div>
+    <div class="panel">
+      <h2>How many series have data in each year</h2>
+      <p class="how">Darker cells mean more series with a published value that year. Most SDG monitoring starts around 2000; values from earlier years are kept where publishers include them.</p>
+      <div id="ov-heat" class="chart" style="height:520px"></div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------ sources -->
+  <section class="tab" id="tab-sources">
+    <div class="panel">
+      <h2>Sources</h2>
+      <div class="tablewrap" id="so-table" style="max-height:none"></div>
+      <h3>Download the data</h3>
+      <p class="how">The full processed tables are in the GitHub repository. Each value keeps its source URL, raw file and SHA-256 checksum.</p>
+      <div id="so-dl" class="chips"></div>
+      <h3>Validation</h3>
+      <div id="so-val"></div>
+      <h3>Data rules</h3>
+      <ul class="how" style="padding-left:20px">
+        <li>Nothing is invented, imputed or interpolated. Missing years stay missing.</li>
+        <li>Values are kept as published. Values published as text (such as <code>&lt;0.1</code>) stay text.</li>
+        <li>Composite index scores (NITI Aayog) never mix with raw indicator data.</li>
+        <li>Observation years are kept separate from publication dates.</li>
+        <li>UN and MoSPI series for the same indicator stay separate.</li>
+      </ul>
+      <p class="how">Full methods: <a id="so-methods" href="#">METHODS.md</a> · coverage report: <a id="so-cov" href="#">COVERAGE.md</a> · code: <a id="so-repo" href="#">GitHub repository</a></p>
+    </div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+const SERIES_COLORS = ["#2a78d6","#eb6834","#1baf7a","#eda100","#e87ba4","#008300","#6250d6","#e34948"];
+const BLUES = [[0,"#cde2fb"],[0.17,"#9ec5f4"],[0.33,"#6da7ec"],[0.5,"#3987e5"],[0.67,"#256abf"],[0.83,"#184f95"],[1,"#0d366b"]];
+const GOAL_NAMES = {};
+const SRC_NAME = {UN_SDG_API:"UN SDG database", MOSPI_NIF_2025:"MoSPI NIF report 2025", NFHS5_DISTRICTS:"NFHS district fact sheets", NITI_SDGII_2023_24:"NITI Aayog SDG India Index"};
+const LAYOUT = {paper_bgcolor:"#ffffff", plot_bgcolor:"#ffffff", font:{family:"-apple-system,Segoe UI,Helvetica,Arial,sans-serif", size:12.5, color:"#141413"},
+  margin:{l:56,r:16,t:16,b:44}, hoverlabel:{font:{size:12.5}, bgcolor:"#ffffff", bordercolor:"#cfcdc7"},
+  xaxis:{gridcolor:"#efeeea", linecolor:"#cfcdc7", tickcolor:"#cfcdc7", zeroline:false},
+  yaxis:{gridcolor:"#efeeea", linecolor:"#cfcdc7", tickcolor:"#cfcdc7", zeroline:false}};
+const CFG = {displayModeBar:false, responsive:true};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = v => v == null ? "" : Math.abs(v) >= 1000 ? v.toLocaleString("en-IN", {maximumFractionDigits: 2}) : String(+v.toFixed(4));
+const lay = extra => {
+  const out = JSON.parse(JSON.stringify(LAYOUT));
+  for (const [k, v] of Object.entries(extra || {})) out[k] = (typeof v === "object" && !Array.isArray(v) && out[k]) ? Object.assign(out[k], v) : v;
+  return out;
+};
+function table(cols, rows, opts = {}) {
+  if (!rows.length) return `<div class="empty">${esc(opts.empty || "Nothing to show.")}</div>`;
+  const head = cols.map(c => `<th class="${c.num ? "num" : ""}">${esc(c.label)}</th>`).join("");
+  const body = rows.map(r => "<tr>" + cols.map((c, i) => `<td class="${c.num ? "num" : ""}">${c.html ? r[i] : esc(r[i])}</td>`).join("") + "</tr>").join("");
+  return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+}
+function downloadCSV(name, header, rows) {
+  const q = v => { const s = v == null ? "" : String(v); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+  const text = [header, ...rows].map(r => r.map(q).join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type: "text/csv"}));
+  a.download = name; document.body.appendChild(a); a.click(); a.remove();
+}
+function draw(id, traces, layout) { const el = $(id); Plotly.purge(el); el.innerHTML = ""; return Plotly.newPlot(el, traces, layout, CFG); }
+function message(id, html) { const el = $(id); Plotly.purge(el); el.innerHTML = html; }
+const cache = {};
+async function getJSON(name) {
+  if (!cache[name]) cache[name] = fetch("data/" + name).then(r => { if (!r.ok) throw new Error(name + ": HTTP " + r.status); return r.json(); });
+  return cache[name];
+}
+
+// ------------------------------------------------------------------ tabs
+const drawn = {};
+function showTab(name) {
+  document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
+  document.querySelectorAll("section.tab").forEach(s => s.classList.toggle("on", s.id === "tab-" + name));
+  if (!drawn[name]) { drawn[name] = true; ({explorer: initExplorer, states: initStates, districts: initDistricts, missing: initMissing, overview: initOverview, sources: initSources})[name](); }
+  else document.querySelectorAll("#tab-" + name + " .js-plotly-plot").forEach(p => Plotly.Plots.resize(p));
+  if (location.hash.slice(1) !== name) history.replaceState(null, "", "#" + name);
+}
+$("tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) showTab(b.dataset.tab); });
+const TABS = ["explorer", "states", "districts", "missing", "overview", "sources"];
+window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (S && TABS.includes(h)) showTab(h); });
+
+let S; // summary
+async function main() {
+  S = await getJSON("summary.json");
+  S.goals.forEach(g => GOAL_NAMES[g.goal] = g.name);
+  const t = S.totals, d = S.source_status.NFHS5_DISTRICTS || {};
+  const kp = [[t.observations, "observations from official sources"], [t.indicators, "SDG indicators with data"], [t.series, "data series"],
+    [(d.districts || 704), "districts (NFHS)"], [`${t.earliest_year}–${t.latest_year}`, "years covered"]];
+  $("kpis").innerHTML = kp.map(([v, l]) => `<div class="kpi"><b>${typeof v === "number" ? v.toLocaleString("en-IN") : esc(v)}</b><span>${esc(l)}</span></div>`).join("");
+  $("foot").innerHTML = `Data built ${esc((S.built || "").slice(0, 10))}. Sources: UN Statistics Division; Ministry of Statistics and Programme Implementation; NITI Aayog; Ministry of Health and Family Welfare / IIPS. ` +
+    `Map boundaries: DataMeet (CC BY 4.0). The data remain subject to each publisher's terms of use. <a href="${S.repo}">Code and data on GitHub</a>.`;
+  const goalOpts = S.goals.map(g => `<option value="${g.goal}">SDG ${g.goal}: ${esc(g.name)}</option>`).join("");
+  $("ex-goal").innerHTML = goalOpts; $("mi-goal").innerHTML = goalOpts;
+  const start = location.hash.slice(1);
+  showTab(TABS.includes(start) ? start : "explorer");
+}
+
+// ------------------------------------------------------------------ indicator explorer
+const EX = {goal: null, series: null, picked: new Map()};
+async function initExplorer() {
+  $("ex-goal").onchange = loadGoal; $("ex-src").onchange = fillSeries; $("ex-series").onchange = pickSeries;
+  $("ex-dl").onclick = () => {
+    const s = EX.series; if (!s) return;
+    const rows = []; s.groups.forEach(g => g.pts.forEach(p => rows.push([s.code, s.source, s.indicators.join(" "), g.label, p[0], p[1], p[3], p[4], s.unit, p[5], p[6]])));
+    downloadCSV(`sdg_india_${s.code}.csv`, ["series_code","source","indicator","breakdown","year","time_period","value_as_published","status","unit","lower_bound","upper_bound"], rows);
+  };
+  await loadGoal();
+}
+async function loadGoal() {
+  const g = +$("ex-goal").value; message("ex-chart", '<div class="loading">Loading…</div>');
+  EX.goal = await getJSON(`goal_${String(g).padStart(2, "0")}.json`);
+  fillSeries();
+}
+function fillSeries() {
+  const src = $("ex-src").value;
+  const list = EX.goal.series.filter(s => !src || s.source === src);
+  $("ex-series").innerHTML = list.map(s => {
+    const label = `${s.indicators.join(", ")} · ${s.desc}${s.source === "MOSPI_NIF_2025" ? " (MoSPI)" : ""}${s.n ? "" : " — no values"}`;
+    return `<option value="${esc(s.source + "|" + s.code)}">${esc(label)}</option>`;
+  }).join("");
+  if (!list.length) { EX.series = null; message("ex-chart", '<div class="empty">No series for this goal and source.</div>'); $("ex-meta").innerHTML = ""; $("ex-table").innerHTML = ""; $("ex-chips").innerHTML = ""; $("ex-cap").textContent = ""; return; }
+  pickSeries();
+}
+function pickSeries() {
+  const [src, code] = $("ex-series").value.split("|");
+  EX.series = EX.goal.series.find(s => s.source === src && s.code === code);
+  EX.picked = new Map();
+  const groups = EX.series.groups;
+  const start = groups.filter(g => g.headline).slice(0, 8);
+  (start.length ? start : groups.slice(0, 1)).forEach((g, i) => EX.picked.set(g.label, i));
+  drawChips(); drawSeries();
+}
+function drawChips() {
+  const s = EX.series, full = EX.picked.size >= 8;
+  $("ex-chips-label").textContent = s.groups.length > 1 ? `Breakdowns (${s.groups.length}; ${EX.picked.size} shown)` : "";
+  $("ex-chips").innerHTML = s.groups.length > 1 ? s.groups.map((g, i) => {
+    const on = EX.picked.has(g.label), col = on ? SERIES_COLORS[EX.picked.get(g.label)] : "transparent";
+    return `<button class="chip ${on ? "on" : ""}" data-i="${i}" ${!on && full ? "disabled" : ""}><span class="dot" style="background:${col}"></span>${esc(g.label)}</button>`;
+  }).join("") : "";
+  $("ex-chips").querySelectorAll("button").forEach(b => b.onclick = () => {
+    const g = s.groups[+b.dataset.i];
+    if (EX.picked.has(g.label)) { if (EX.picked.size > 1) EX.picked.delete(g.label); }
+    else { const used = new Set(EX.picked.values()); let slot = 0; while (used.has(slot)) slot++; if (slot < 8) EX.picked.set(g.label, slot); }
+    drawChips(); drawSeries();
+  });
+}
+function lineXY(pts) {
+  // a line joins consecutive years only; a gap in the published years breaks the line
+  const xs = [], ys = [], txt = [], up = [], down = [];
+  let prev = null;
+  pts.filter(p => p[4] === "numeric").forEach(p => {
+    if (prev != null && p[0] - prev > 1) { xs.push(null); ys.push(null); txt.push(null); up.push(null); down.push(null); }
+    xs.push(p[0]); ys.push(p[2]); txt.push(p[1]); prev = p[0];
+    up.push(p[6] != null ? p[6] - p[2] : null); down.push(p[5] != null ? p[2] - p[5] : null);
+  });
+  return [xs, ys, txt, up, down];
+}
+function drawSeries() {
+  const s = EX.series, traces = [];
+  const shown = s.groups.filter(g => EX.picked.has(g.label));
+  shown.forEach(g => {
+    const col = SERIES_COLORS[EX.picked.get(g.label)];
+    const [xs, ys, txt, up, down] = lineXY(g.pts);
+    const hasCI = up.some(v => v != null) || down.some(v => v != null);
+    traces.push({x: xs, y: ys, text: txt, type: "scatter", mode: "lines+markers", name: g.label, connectgaps: false,
+      line: {color: col, width: 2}, marker: {color: col, size: 8, line: {color: "#ffffff", width: 2}},
+      hovertemplate: `%{text}: <b>%{y}</b> ${esc(s.unit)}<extra>${esc(g.label)}</extra>`,
+      error_y: hasCI ? {type: "data", symmetric: false, array: up, arrayminus: down, color: col, thickness: 1, width: 3} : undefined});
+  });
+  const nNum = shown.reduce((a, g) => a + g.pts.filter(p => p[4] === "numeric").length, 0);
+  if (!nNum) { message("ex-chart", '<div class="empty">No numeric values for the selected breakdowns. See the table: the publisher marks them as not available or publishes them as text.</div>'); }
+  else {
+    draw("ex-chart", traces, lay({height: 400, showlegend: shown.length > 1, legend: {orientation: "h", y: -0.18},
+      xaxis: {title: {text: "Observation year", font: {size: 12, color: "#52514e"}}, tickformat: "d"},
+      yaxis: {title: {text: s.unit || "", font: {size: 12, color: "#52514e"}}, rangemode: "tozero"}, hovermode: "closest"}));
+  }
+  const nNA = shown.reduce((a, g) => a + g.pts.filter(p => p[4] === "not_available").length, 0);
+  const nTxt = shown.reduce((a, g) => a + g.pts.filter(p => p[4] === "text").length, 0);
+  $("ex-cap").textContent = `${nNum} published values shown. Lines join consecutive years only; a break means no value was published for the years in between.` +
+    (nNA ? ` ${nNA} entries are marked "not available" by the publisher.` : "") + (nTxt ? ` ${nTxt} values are published as text and are listed in the table, not plotted.` : "") +
+    (s.groups.some(g => g.pts.some(p => p[5] != null)) ? " Vertical bars show published lower and upper bounds." : "");
+  const isM = s.source === "MOSPI_NIF_2025";
+  const rows = [
+    ["Source", `${isM ? '<span class="pill v">Verified</span>' : '<span class="pill v">Official API</span>'}${esc(SRC_NAME[s.source] || s.source)}`],
+    ["Series code", esc(s.code)],
+    ["SDG indicator", esc(s.indicators.join(", ")) + (s.indicator_description ? " — " + esc(s.indicator_description) : "") + (isM ? " <span class='cap'>(MoSPI national NIF code; not the same as the UN global indicator)</span>" : "")],
+  ];
+  if (s.target_description) rows.push(["Target", esc(s.target_description)]);
+  if (s.unit) rows.push(["Unit", esc(s.unit) + (s.unit_multiplier && s.unit_multiplier !== "0" ? ` (multiplier ${esc(s.unit_multiplier)})` : "")]);
+  rows.push(["Years with values", s.n ? `${s.first}–${s.last} (${s.n} values${s.na ? `, ${s.na} not available` : ""})` : "None"]);
+  if (s.original_source.length) rows.push(["Original data source", esc(s.original_source.join("; "))]);
+  if (s.nature.length) rows.push(["Nature of data", esc(s.nature.join(", "))]);
+  if (s.release.length) rows.push(["Release", esc(s.release.join(", "))]);
+  if (s.tier) rows.push(["Tier", esc(s.tier)]);
+  rows.push(["Links", s.urls.map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">${isM ? "Report page" : "API request"}${s.urls.length > 1 ? " " + (i + 1) : ""}</a>`).join(" · ") +
+    (s.metadata_url ? ` · <a href="${esc(s.metadata_url)}" target="_blank" rel="noopener">UN metadata</a>` : "")]);
+  let html = `<dl class="meta">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+  if (s.footnotes.length) html += `<details><summary>Footnotes (${s.footnotes.length})</summary><ul>${s.footnotes.map(f => `<li>${esc(f)}</li>`).join("")}</ul></details>`;
+  $("ex-meta").innerHTML = html;
+  const trows = [];
+  shown.forEach(g => g.pts.forEach(p => trows.push([p[1], g.label, p[3], p[4] === "numeric" ? "" : p[4] === "text" ? "published as text" : "not available"])));
+  trows.sort((a, b) => String(a[0]).localeCompare(String(b[0])) || a[1].localeCompare(b[1]));
+  $("ex-table").innerHTML = table([{label: "Period"}, {label: "Breakdown"}, {label: "Value as published", num: true}, {label: "Note"}], trows);
+}
+
+// ------------------------------------------------------------------ states (composite index)
+async function initStates() {
+  const geo = await getJSON("india_states.geojson");
+  const sc = S.scores.filter(r => r.goal === 0 && r.geo_level !== "national" && r.edition === "2023-24");
+  draw("st-map", [{type: "choropleth", geojson: geo, featureidkey: "properties.geo_id", locations: sc.map(r => r.geo_id),
+    z: sc.map(r => r.score), text: sc.map(r => r.geography), colorscale: BLUES, zmin: 50, zmax: 80,
+    marker: {line: {color: "#ffffff", width: 0.6}}, colorbar: {title: {text: "Score", side: "top"}, thickness: 10, len: 0.6, outlinewidth: 0},
+    hovertemplate: "%{text}: <b>%{z}</b><extra></extra>"}],
+    lay({height: 560, margin: {l: 0, r: 0, t: 0, b: 0}, geo: {fitbounds: "locations", visible: false, projection: {type: "mercator"}, bgcolor: "#ffffff"}}));
+  const ranked = [...sc].sort((a, b) => a.score - b.score || b.geography.localeCompare(a.geography));
+  draw("st-rank", [{type: "bar", orientation: "h", y: ranked.map(r => r.geography), x: ranked.map(r => r.score),
+    marker: {color: ranked.map(r => r.geo_level === "state" ? "#2a78d6" : "#86b6ef")}, text: ranked.map(r => r.score), textposition: "outside",
+    cliponaxis: false, hovertemplate: "%{y}: <b>%{x}</b><extra></extra>"}],
+    lay({height: 740, margin: {l: 170, r: 30, t: 8, b: 36}, bargap: 0.25, xaxis: {range: [0, 100], title: {text: "Composite score (0–100)", font: {size: 12, color: "#52514e"}}},
+      yaxis: {tickfont: {size: 11.5}, gridcolor: "rgba(0,0,0,0)", automargin: true}}));
+  $("st-rank").insertAdjacentHTML("afterend", '<div class="cap">Dark bars: States. Light bars: Union Territories.</div>');
+  const nat = S.scores.filter(r => r.geo_id === "IN" && r.goal === 0).sort((a, b) => a.edition.localeCompare(b.edition));
+  draw("st-nat", [{type: "bar", x: nat.map(r => r.edition), y: nat.map(r => r.score), marker: {color: "#2a78d6"}, text: nat.map(r => r.score),
+    textposition: "outside", cliponaxis: false, hovertemplate: "%{x}: <b>%{y}</b><extra></extra>"}],
+    lay({height: 280, margin: {l: 50, r: 16, t: 16, b: 40}, bargap: 0.55, yaxis: {range: [0, 100], title: {text: "India composite score", font: {size: 12, color: "#52514e"}}},
+      xaxis: {type: "category", title: {text: "Index edition", font: {size: 12, color: "#52514e"}}}}));
+  const eds = [...new Set(S.scores.filter(r => r.geo_id === "IN").map(r => r.edition))].sort();
+  const rows = [];
+  for (let g = 1; g <= 17; g++) {
+    const vals = eds.map(e => { const r = S.scores.find(x => x.geo_id === "IN" && x.goal === g && x.edition === e); return r ? r.score : "—"; });
+    rows.push([`SDG ${g}: ${GOAL_NAMES[g]}`, ...vals]);
+  }
+  $("st-goals").innerHTML = table([{label: "Goal"}, ...eds.map(e => ({label: e, num: true}))], rows) ;
+  $("st-goals").insertAdjacentHTML("afterend", '<div class="cap">"—" means the report gives no score for India on that goal in that edition.</div>');
+}
+
+// ------------------------------------------------------------------ districts
+const DI = {};
+async function initDistricts() {
+  message("di-chart", '<div class="loading">Loading districts…</div>');
+  const D = await getJSON("districts.json"); DI.D = D;
+  $("di-ind").innerHTML = D.series.map((s, i) => `<option value="${i}">SDG ${s.goal} · ${esc(s.label)}</option>`).join("");
+  const stunted = D.series.findIndex(s => s.code === "NFHS_D073"); if (stunted >= 0) $("di-ind").value = stunted;
+  $("di-state").innerHTML = '<option value="">All India</option>' + Object.entries(D.states).map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join("");
+  $("di-ind").onchange = drawDistricts; $("di-state").onchange = drawDistricts;
+  $("di-dl").onclick = () => {
+    const s = D.series[+$("di-ind").value];
+    const rows = D.districts.map(([id, name, st], i) => [s.code, s.label, D.states[st], name, id, s.r5[i] ?? "", s.v5[i] ?? "", s.r4[i] ?? "", s.v4[i] ?? ""]);
+    downloadCSV(`nfhs_districts_${s.code}.csv`, ["series_code","indicator","state","district","geo_id","nfhs5_2019_21_as_published","nfhs5_value","nfhs4_2015_16_as_published","nfhs4_value"], rows);
+  };
+  drawDistricts();
+}
+function drawDistricts() {
+  const D = DI.D, s = D.series[+$("di-ind").value], st = $("di-state").value;
+  $("di-rel").innerHTML = `${esc(s.nfhs)} · ${esc(s.relation)} · Unit: ${esc(s.unit)}`;
+  $("di-extra").innerHTML = "";
+  const idx = D.districts.map((d, i) => i).filter(i => !st || D.districts[i][2] === st);
+  const bracket = r => r && /^\(.*\)$/.test(r);
+  if (!st) {
+    const vals = idx.filter(i => s.v5[i] != null);
+    const missing = idx.filter(i => s.v5[i] == null && s.r5[i] != null).length;
+    draw("di-chart", [{type: "histogram", x: vals.map(i => s.v5[i]), nbinsx: 40, marker: {color: "#2a78d6", line: {color: "#ffffff", width: 1}},
+      hovertemplate: "%{x}: <b>%{y}</b> districts<extra></extra>"}],
+      lay({height: 340, bargap: 0.04, xaxis: {title: {text: `NFHS-5 value (${s.unit})`, font: {size: 12, color: "#52514e"}}},
+        yaxis: {title: {text: "Number of districts", font: {size: 12, color: "#52514e"}}}}));
+    $("di-cap").textContent = `${vals.length} districts with an NFHS-5 estimate; ${missing} published as "na" or "*" (no estimate).` +
+      ` ${vals.filter(i => bracket(s.r5[i])).length} estimates are based on 25–49 cases (shown in brackets in the fact sheets).`;
+    const sorted = [...vals].sort((a, b) => s.v5[a] - s.v5[b]);
+    const rowOf = i => [D.districts[i][1], D.states[D.districts[i][2]], s.r5[i]];
+    const cols = [{label: "District"}, {label: "State / UT"}, {label: "NFHS-5", num: true}];
+    $("di-extra").innerHTML = `<div class="grid2"><div><h3>Lowest 15 districts</h3><div class="tablewrap">${table(cols, sorted.slice(0, 15).map(rowOf))}</div></div>` +
+      `<div><h3>Highest 15 districts</h3><div class="tablewrap">${table(cols, sorted.slice(-15).reverse().map(rowOf))}</div></div></div>`;
+    return;
+  }
+  const order = [...idx].sort((a, b) => (s.v5[a] ?? -Infinity) - (s.v5[b] ?? -Infinity) || D.districts[b][1].localeCompare(D.districts[a][1]));
+  const names = order.map(i => D.districts[i][1]);
+  const lx = [], ly = [];
+  order.forEach(i => { if (s.v4[i] != null && s.v5[i] != null) { lx.push(s.v4[i], s.v5[i], null); ly.push(D.districts[i][1], D.districts[i][1], null); } });
+  const h = Math.max(320, 26 * order.length + 90);
+  draw("di-chart", [
+    {type: "scatter", mode: "lines", x: lx, y: ly, line: {color: "#c3c2b7", width: 3}, hoverinfo: "skip", showlegend: false},
+    {type: "scatter", mode: "markers", name: "NFHS-4 (2015-16)", x: order.map(i => s.v4[i]), y: names, text: order.map(i => s.r4[i]),
+      marker: {size: 9, color: "#ffffff", line: {color: "#2a78d6", width: 2}}, hovertemplate: "%{y}<br>NFHS-4: <b>%{text}</b><extra></extra>"},
+    {type: "scatter", mode: "markers", name: "NFHS-5 (2019-21)", x: order.map(i => s.v5[i]), y: names, text: order.map(i => s.r5[i]),
+      marker: {size: 10, color: "#2a78d6", line: {color: "#ffffff", width: 1}}, hovertemplate: "%{y}<br>NFHS-5: <b>%{text}</b><extra></extra>"}],
+    lay({height: h, margin: {l: 150, r: 16, t: 30, b: 44}, legend: {orientation: "h", y: 1.0, yanchor: "bottom", x: 0},
+      xaxis: {title: {text: `Value (${s.unit})`, font: {size: 12, color: "#52514e"}}}, yaxis: {type: "category", tickfont: {size: 11.5}, automargin: true}}));
+  const new5 = order.filter(i => s.r4[i] == null).length;
+  $("di-cap").textContent = `${D.states[st]}: ${order.length} districts, sorted by NFHS-5. Hollow = NFHS-4, filled = NFHS-5.` +
+    (new5 ? ` ${new5} districts have no NFHS-4 value (formed after 2015-16).` : "") + ` Districts with "na" or "*" have no marker for that round.`;
+  const rows = order.slice().reverse().map(i => [D.districts[i][1], s.r5[i] ?? "—", s.r4[i] ?? "—",
+    s.v5[i] != null && s.v4[i] != null ? (s.v5[i] - s.v4[i] > 0 ? "+" : "") + fmt(s.v5[i] - s.v4[i]) : ""]);
+  $("di-extra").innerHTML = `<h3>Values as published</h3><div class="tablewrap">${table([{label: "District"}, {label: "NFHS-5 (2019-21)", num: true}, {label: "NFHS-4 (2015-16)", num: true}, {label: "Change, points", num: true}], rows)}</div>` +
+    `<div class="cap">"—" = no NFHS-4 column for this district. Change is NFHS-5 minus NFHS-4, both as published; survey estimates have sampling error, so small changes may not be meaningful.</div>`;
+}
+
+// ------------------------------------------------------------------ missing data
+async function initMissing() { $("mi-goal").onchange = drawMissing; drawMissing(); }
+async function drawMissing() {
+  const g = +$("mi-goal").value, info = S.goals.find(x => x.goal === g);
+  const file = await getJSON(`goal_${String(g).padStart(2, "0")}.json`);
+  const withData = info.un_series_listed - info.un_series_no_india_data.length;
+  $("mi-kpis").innerHTML = [[`${withData} / ${info.un_series_listed}`, "UN global series with any India data"], [info.series_mospi, "MoSPI national series with values"],
+    [info.un_series_no_india_data.length, "UN series with no India data"]].map(([v, l]) => `<div class="kpi"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
+  const ser = file.series.filter(s => s.n > 0);
+  const years = [...new Set(ser.flatMap(s => s.groups.flatMap(gr => gr.pts.filter(p => p[4] === "numeric").map(p => p[0]))))].sort((a, b) => a - b);
+  if (years.length) {
+    const yIdx = new Map(years.map((y, i) => [y, i]));
+    const z = ser.map(s => { const row = years.map(() => null); s.groups.forEach(gr => gr.pts.forEach(p => { if (p[4] === "numeric") row[yIdx.get(p[0])] = 1; })); return row; });
+    const labels = ser.map(s => `${s.indicators[0] || ""} ${s.code}`.trim());
+    draw("mi-grid", [{type: "heatmap", x: years.map(String), y: labels, z, colorscale: [[0, "#2a78d6"], [1, "#2a78d6"]], showscale: false, xgap: 1, ygap: 1,
+      text: ser.map(s => years.map(() => s.desc)), hovertemplate: "%{y} · %{x}<br>%{text}<extra></extra>"}],
+      lay({height: Math.max(260, 14 * ser.length + 80), margin: {l: 170, r: 10, t: 10, b: 40}, xaxis: {type: "category", tickangle: -45, tickfont: {size: 10}},
+        yaxis: {autorange: "reversed", tickfont: {size: 9.5}, gridcolor: "rgba(0,0,0,0)"}}));
+  } else message("mi-grid", '<div class="empty">No series with values for this goal.</div>');
+  const un = info.un_series_no_india_data;
+  $("mi-un").innerHTML = `<summary>UN series with no India data for this goal (${un.length})</summary><div class="tablewrap">${table([{label: "Indicator"}, {label: "Series"}, {label: "Description"}, {label: "Tier"}], un)}</div>`;
+  const np = S.mospi_not_parsed.filter(r => r[1] === String(g));
+  $("mi-mospi").innerHTML = `<summary>MoSPI tables not turned into data for this goal (${np.length} of ${S.mospi_not_parsed.length} overall)</summary>` +
+    `<p class="cap">Their layout could not be read without guessing, or the report gives no values. The report page is shown so they can be checked by hand.</p>` +
+    `<div class="tablewrap">${table([{label: "NIF code"}, {label: "Indicator"}, {label: "Reason"}, {label: "Report page", num: true}], np.map(r => [r[0], r[2], r[3], r[4]]))}</div>`;
+  $("mi-nfhs").innerHTML = `<summary>District fact sheets: values not read or corrected (${S.nfhs_notes.length}, all goals)</summary>` +
+    `<p class="cap">Values printed split across lines out of column order were left out rather than guessed. Two official fact sheets skip a number in their indicator list; their values were matched to indicators by name instead.</p>` +
+    `<div class="tablewrap">${table([{label: "Fact sheet"}, {label: "Detail"}, {label: "Type"}], S.nfhs_notes)}</div>`;
+}
+
+// ------------------------------------------------------------------ overview
+function initOverview() {
+  const gs = [...S.goals].reverse(), y = gs.map(g => `SDG ${g.goal}: ${g.name}`);
+  draw("ov-bars", [
+    {type: "bar", orientation: "h", name: "UN SDG database", y, x: gs.map(g => g.series_un), marker: {color: "#2a78d6", line: {color: "#ffffff", width: 2}}, hovertemplate: "%{y}<br>UN series: <b>%{x}</b><extra></extra>"},
+    {type: "bar", orientation: "h", name: "MoSPI NIF report", y, x: gs.map(g => g.series_mospi), marker: {color: "#eb6834", line: {color: "#ffffff", width: 2}}, hovertemplate: "%{y}<br>MoSPI series: <b>%{x}</b><extra></extra>"}],
+    lay({barmode: "stack", height: 560, margin: {l: 290, r: 16, t: 30, b: 44}, bargap: 0.3, legend: {orientation: "h", y: 1.0, yanchor: "bottom", x: 0, traceorder: "normal"},
+      xaxis: {title: {text: "Series with at least one value", font: {size: 12, color: "#52514e"}}}, yaxis: {tickfont: {size: 11.5}, gridcolor: "rgba(0,0,0,0)", automargin: true}}));
+  const years = [...new Set(S.goals.flatMap(g => Object.keys(g.series_by_year).map(Number)))].sort((a, b) => a - b).filter(yr => yr >= 1990);
+  const z = S.goals.map(g => years.map(yr => g.series_by_year[yr] || null));
+  draw("ov-heat", [{type: "heatmap", x: years.map(String), y: S.goals.map(g => `SDG ${g.goal}`), z, colorscale: BLUES, xgap: 1, ygap: 1,
+    colorbar: {title: {text: "Series", side: "top"}, thickness: 10, outlinewidth: 0}, hovertemplate: "%{y} · %{x}: <b>%{z}</b> series with values<extra></extra>"}],
+    lay({height: 520, margin: {l: 64, r: 10, t: 10, b: 50}, xaxis: {type: "category", tickangle: -45, tickfont: {size: 10.5}}, yaxis: {autorange: "reversed", gridcolor: "rgba(0,0,0,0)"}}));
+  const early = S.totals.observations_before_2015;
+  $("ov-heat").insertAdjacentHTML("afterend", `<div class="cap">From 1990. Empty cells: no series with a published value. ${early ? early.toLocaleString("en-IN") + " national values are from before 2015." : ""}</div>`);
+}
+
+// ------------------------------------------------------------------ sources
+function initSources() {
+  const st = S.source_status;
+  const rows = S.sources.map(s => [`<b>${esc(s.name)}</b><br><span class="cap">${esc(s.publisher)}</span>`,
+    esc(s.kind === "composite_index" ? "Composite index" : s.kind === "reference" ? "Reference" : "Observations"), esc(s.geography),
+    esc((st[s.source_id] || {}).status || s.status || ""), `<a href="${esc(s.url)}" target="_blank" rel="noopener">Source</a>` + (s.documentation ? ` · <a href="${esc(s.documentation)}" target="_blank" rel="noopener">Docs</a>` : "")]);
+  $("so-table").innerHTML = table([{label: "Source", html: true}, {label: "Kind", html: true}, {label: "Geography", html: true}, {label: "Status", html: true}, {label: "Links", html: true}], rows);
+  const raw = f => `${S.repo}/raw/main/data/processed/${f}`;
+  $("so-dl").innerHTML = [["observations.csv", "All observations"], ["indicators.csv", "Indicator and series metadata"], ["coverage.csv", "Coverage by series"],
+    ["index_scores.csv", "NITI index scores"], ["geographies.csv", "Geographies"], ["sources.csv", "Source register"], ["not_parsed.csv", "Not parsed / problems"], ["manifest.json", "Build manifest"]]
+    .map(([f, l]) => `<a class="btn" href="${raw(f)}">${esc(l)} <span class="cap">(${esc(f)})</span></a>`).join("");
+  const v = S.validation || {};
+  $("so-val").innerHTML = `<p class="how">${(v.errors || []).length ? `<b>${v.errors.length} errors</b>` : "No validation errors."} ${(v.rows || 0).toLocaleString("en-IN")} records checked.</p>` +
+    ((v.warnings || []).length ? `<ul class="how" style="padding-left:20px">${v.warnings.map(w => `<li>${esc(w)}</li>`).join("")}</ul>` : "");
+  $("so-methods").href = `${S.repo}/blob/main/docs/METHODS.md`; $("so-cov").href = `${S.repo}/blob/main/docs/COVERAGE.md`; $("so-repo").href = S.repo;
+}
+
+main().catch(err => { document.querySelector(".wrap").insertAdjacentHTML("beforeend", `<div class="note warn">Could not load the data: ${esc(err.message)}. If you opened this file directly from disk, serve the folder instead (for example <code>python -m http.server</code> in <code>docs/</code>).</div>`); });
+</script>
+</body></html>

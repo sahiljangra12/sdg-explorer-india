@@ -4,6 +4,7 @@
   import <folder>       import official files downloaded elsewhere (e.g. with curl or a browser)
   build                 rebuild data/processed from data/raw, validate, and write the coverage manifest
   all [--refresh]       fetch (falling back to cached raw files if offline) and build
+  site                  write the static website data (docs/data) from data/processed
   report                print the coverage manifest
 """
 
@@ -15,7 +16,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from . import build, config, geo
+from . import build, config, geo, site
 from .http import DownloadError, write_meta
 from .sources import mospi, niti, un_sdg
 from .validate import ValidationError
@@ -68,6 +69,7 @@ def main(argv=None) -> int:
     sp = sub.add_parser("import")
     sp.add_argument("folder", type=Path)
     sub.add_parser("build")
+    sub.add_parser("site", help="write the static website data (docs/data) from data/processed")
     sub.add_parser("report")
     args = p.parse_args(argv)
 
@@ -83,6 +85,9 @@ def main(argv=None) -> int:
             return 1
         print(json.dumps({"totals": manifest["totals"], "source_status": manifest["source_status"],
                           "validation": manifest["validation"]}, indent=2, default=str))
+        print("website data:", site.build_site())
+    if args.cmd == "site":
+        print("website data:", site.build_site())
     if args.cmd == "report":
         f = config.PROCESSED / "manifest.json"
         print(f.read_text(encoding="utf-8") if f.exists() else "No build yet. Run `python -m sdg_india build`.")

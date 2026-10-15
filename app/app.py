@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from sdg_india import config, geo  # noqa: E402
 from sdg_india.io import explode_by_indicator, read_observations  # noqa: E402
+from sdg_india.labels import CODE_LABELS, NATURE, TOTALS, UNIT_LABELS, dims_label, unit_label  # noqa: E402,F401
 
 st.set_page_config(page_title="SDG Explorer India", page_icon="📊", layout="wide")
 
@@ -61,44 +62,9 @@ obs, indicators, cov, scores, sources, not_parsed, manifest, geojson = load(str(
 goal_label = lambda g: f"SDG {int(g)}: {config.GOALS[int(g)]}"  # noqa: E731
 
 
-CODE_LABELS = {"BOTHSEX": "Both sexes", "FEMALE": "Female", "MALE": "Male", "ALLAREA": "All areas", "URBAN": "Urban",
-               "RURAL": "Rural", "ALLAGE": "All ages", "_T": "Total", "TOTAL": "Total", "ALL": "All", "_O": "Other",
-               "_X": "Not applicable", "_U": "Unknown", "PRIMAR": "Primary", "LOWSEC": "Lower secondary",
-               "UPPSEC": "Upper secondary", "SECOND": "Secondary", "PREPRI": "Pre-primary", "CITY": "Cities",
-               "TSUB": "Towns and suburbs", "Q1": "Poorest 20%", "Q5": "Richest 20%"}
-TOTALS = {"BOTHSEX", "ALLAREA", "ALLAGE", "_T", "TOTAL", "ALL", "ALLDOMAINS", "DRUG_TOTAL"}
-UNIT_LABELS = {"PERCENT": "%", "NUMBER": "Number", "PER_1000_LIVE_BIRTHS": "Per 1,000 live births",
-               "PER_100000_LIVE_BIRTHS": "Per 100,000 live births", "PER_100000_POP": "Per 100,000 population",
-               "PER_1000_POP": "Per 1,000 population", "PER_1000_UNINFECTED_POP": "Per 1,000 uninfected population",
-               "CU_USD": "Current US$", "CON_USD": "Constant US$", "INDEX": "Index", "HA": "Hectares",
-               "TONNES": "Tonnes", "KG": "Kilograms", "YEARS": "Years", "RATIO": "Ratio", "SCORE": "Score"}
-
-
-NATURE = {"C": "Country data", "CA": "Country data, adjusted", "E": "Estimated", "M": "Modelled",
-          "G": "Global monitoring data", "N": "Non-relevant", "NA": "Not available"}
-
-
 def m_src_is_mospi(s: pd.DataFrame) -> bool:
     return bool(len(s)) and s["source_id"].iloc[0].startswith("MOSPI")
 
-
-def unit_label(u: str) -> str:
-    return UNIT_LABELS.get(u, u.replace("_", " ").capitalize() if u else "")
-
-
-def dims_label(d: str) -> str:
-    """Readable breakdown label, e.g. 'Female · Age 15-24 · Rural'; 'Total' when every category is a total."""
-    try:
-        x = json.loads(d) if d else {}
-    except json.JSONDecodeError:
-        return d
-    parts = []
-    for k, v in x.items():
-        if str(v).upper() in TOTALS:
-            continue
-        label = CODE_LABELS.get(v, v)
-        parts.append(label if k in ("Sex", "Location") else f"Age {label}" if k == "Age" else f"{k}: {label}")
-    return " · ".join(parts) or "Total"
 
 
 def download(df: pd.DataFrame, name: str, label: str, key: str):

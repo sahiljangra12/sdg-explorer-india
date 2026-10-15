@@ -2,6 +2,23 @@
 
 An explorer for India's progress on all 17 UN Sustainable Development Goals, built only from official sources. A reproducible Python pipeline downloads, checks and cleans the data; a Streamlit dashboard lets you explore it. Every value links back to the official file it came from, and missing data stays missing.
 
+**Live site: [sahiljangra12.github.io/sdg-explorer-india](https://sahiljangra12.github.io/sdg-explorer-india/)**. It runs in the browser; nothing to install.
+
+## The website
+
+`docs/index.html` is a static page served by GitHub Pages. It reads small JSON files in `docs/data/`, which `python -m sdg_india build` (or `python -m sdg_india site`) writes from `data/processed/`. The page computes nothing new: it shows the processed values, statuses and labels as they are, and a test checks that every national and district value on the site matches `data/processed/observations.csv`.
+
+| Tab | What it shows |
+|---|---|
+| Indicators | National series for each goal: trend chart (lines join consecutive years only), breakdowns, definition, original source, footnotes, values as published, CSV download |
+| States & UTs | NITI Aayog SDG India Index 2023-24: map and ranking of the 36 States/UTs; India's scores by edition and goal. Labelled as a composite index |
+| Districts | NFHS-5 vs NFHS-4 for 704 districts: spread across India, lowest and highest districts, every district of a State, CSV download |
+| Missing data | UN series with and without India data, a series-by-year grid, MoSPI tables not parsed, district values not read |
+| Goal overview | Series with data per goal and per year |
+| Sources & downloads | Source register, validation report, links to the full tables |
+
+To view it locally: `cd docs && python3 -m http.server 8000`, then open http://localhost:8000.
+
 ## Start on a Mac (one command)
 
 Open Terminal in this folder and run:
@@ -35,7 +52,10 @@ How the data were verified:
 - **NFHS district data.** The fact sheets were read from the PDF text layer. Each indicator was matched by its name, not only its printed number. This matters because two official sheets (Mahisagar, Wardha) skip a number in their list. Values in brackets (25–49 cases) are kept, with a note. `na` and `*` are kept as "not available". 13 values in 9 sheets, whose numbers were split across lines out of column order, were left out and listed. The result was compared with an independent digitisation of the same fact sheets (pratapvardhan/NFHS-5, CC BY 4.0): 20,409 of 20,413 shared values are identical, and the 4 differences are a column shift in that copy (Dhule), not in this one. **Pending:** the 704 PDFs came from a public GitHub mirror (SaiSiddhardhaKalla/NFHS), because the official IIPS site was not reachable from the build machine. Their file checksums still need comparing with copies downloaded directly from rchiips.org.
 - **NITI scores.** Each score was read from the report's page images (pages 67–68). They were cross-checked against figures the report states in its text (for example State range 57–79; Goal 13 rose from 54 to 67). Two independent readings agreed. The "change since 2020-21" labels were not legible enough at the report's resolution and are not included.
 
-## The dashboard
+## The Streamlit dashboard (local)
+
+The same data can also be explored in a local Streamlit app (`bash run_mac.command` opens it).
+
 
 | Tab | What it shows |
 |---|---|
@@ -57,7 +77,8 @@ python -m sdg_india build            # rebuild data/processed from data/raw, val
 python -m sdg_india all              # fetch, then build
 python -m sdg_india report           # print the coverage manifest
 streamlit run app/app.py             # open the dashboard
-python -m pytest                     # run the 65 tests
+python -m sdg_india site             # rewrite the website data in docs/data
+python -m pytest                     # run the 68 tests
 ```
 
 The pipeline:
@@ -81,13 +102,14 @@ sdg_india/                 Python package
   sources/nfhs.py          NFHS-5 district fact sheets: name-matched indicators, SDG mapping
   validate.py, build.py    validation rules, assembly, coverage report
   geo.py                   state boundaries for the map
+  site.py                  exports the processed data for the website
 app/app.py                 Streamlit dashboard
 data/raw/                  official files exactly as downloaded, with .meta.json provenance records
 data/reference/            NITI index scores (verified, with page references); verified MoSPI and NFHS extracts
 data/processed/            observations, indicators, coverage, index scores, geographies, sources, manifest
 data/geo/                  simplified State/UT boundaries (DataMeet, CC BY 4.0)
-docs/                      METHODS.md, COVERAGE.md
-tests/                     65 tests (synthetic fixtures are clearly marked and never written to data/)
+docs/                      website (index.html + data/), METHODS.md, COVERAGE.md
+tests/                     68 tests (synthetic fixtures are clearly marked and never written to data/)
 run_mac.command            one-command setup and launch
 ```
 
