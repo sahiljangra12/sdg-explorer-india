@@ -1,0 +1,9 @@
+{
+  "file": "SDG_India_Index_2023-24.pdf",
+  "url": "https://www.niti.gov.in/sites/default/files/2024-07/SDG_India_Index_2023-24.pdf",
+  "retrieved_at": "2026-10-15T10:54:10+00:00",
+  "http_status": 200,
+  "bytes": 23920880,
+  "sha256": "a8b3dab605b6dda7a82d516a41f06664125ff6f750f209def338999208c2b5ee",
+  "note": "Downloaded outside the pipeline and imported from 'niti_index_2023_24.pdf'."
+}

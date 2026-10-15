@@ -1,0 +1,12 @@
+# environments and caches
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.part
+.DS_Store
+
+# source PDFs: large, downloaded by `python -m sdg_india fetch`; verified extracts are in data/reference/
+data/raw/mospi/*.pdf
+data/raw/niti/*.pdf
+data/raw/nfhs5_districts/

@@ -1,0 +1,9 @@
+{
+  "file": "goal_list.json",
+  "url": "https://unstats.un.org/sdgapi/v1/sdg/Goal/List?includechildren=true",
+  "retrieved_at": "2026-10-15T10:54:09+00:00",
+  "http_status": 200,
+  "bytes": 11379077,
+  "sha256": "aa66ad325ce809cb8e1df3afa698579b7d9d3611000842b6bf4a45ca0a4aeda8",
+  "note": "Downloaded outside the pipeline and imported from 'un_goal_list.json' (sha256 aa66ad325ce809cb8e1df3afa698579b7d9d3611000842b6bf4a45ca0a4aeda8)."
+}

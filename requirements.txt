@@ -1,0 +1,11 @@
+# SDG Explorer India: runtime and test dependencies (Python 3.11 or newer)
+streamlit>=1.46
+pandas>=2.2
+numpy>=1.26
+plotly>=5.22
+requests>=2.32
+urllib3>=2.2
+pdfplumber>=0.11
+pyshp>=2.3
+shapely>=2.0
+pytest>=8

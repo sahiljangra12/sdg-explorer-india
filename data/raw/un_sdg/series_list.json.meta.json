@@ -1,0 +1,9 @@
+{
+  "file": "series_list.json",
+  "url": "https://unstats.un.org/sdgapi/v1/sdg/Series/List?allreleases=false",
+  "retrieved_at": "2026-10-15T10:54:10+00:00",
+  "http_status": 200,
+  "bytes": 181379,
+  "sha256": "23c67ee7621da49fad6f4c6711e4b5e9c5f96ed80f63b6113ca50b6fc74509fb",
+  "note": "Downloaded outside the pipeline and imported from 'un_series_list.json' (sha256 23c67ee7621da49fad6f4c6711e4b5e9c5f96ed80f63b6113ca50b6fc74509fb)."
+}

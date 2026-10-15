@@ -1,0 +1,197 @@
+{
+  "built_at": "2026-10-15T18:19:56+00:00",
+  "totals": {
+    "records": 58658,
+    "observations": 51700,
+    "numeric_observations": 51694,
+    "text_observations": 6,
+    "not_available_markers": 6958,
+    "goals_covered": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "indicators": 312,
+    "series": 751,
+    "geographies": 705,
+    "earliest_year": 1977,
+    "latest_year": 2026,
+    "observations_before_2015": 5285
+  },
+  "by_source": {
+    "MOSPI_NIF_2025": {
+      "records": 1886,
+      "observations": 1834,
+      "numeric_observations": 1828,
+      "text_observations": 6,
+      "not_available_markers": 52,
+      "goals_covered": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "indicators": 224,
+      "series": 224,
+      "geographies": 1,
+      "earliest_year": 2011,
+      "latest_year": 2025,
+      "observations_before_2015": 30
+    },
+    "NFHS5_DISTRICTS": {
+      "records": 43359,
+      "observations": 37397,
+      "numeric_observations": 37397,
+      "text_observations": 0,
+      "not_available_markers": 5962,
+      "goals_covered": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        16,
+        17
+      ],
+      "indicators": 24,
+      "series": 34,
+      "geographies": 704,
+      "earliest_year": 2015,
+      "latest_year": 2019,
+      "observations_before_2015": 0
+    },
+    "UN_SDG_API": {
+      "records": 13413,
+      "observations": 12469,
+      "numeric_observations": 12469,
+      "text_observations": 0,
+      "not_available_markers": 944,
+      "goals_covered": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "indicators": 212,
+      "series": 493,
+      "geographies": 1,
+      "earliest_year": 1977,
+      "latest_year": 2026,
+      "observations_before_2015": 5255
+    }
+  },
+  "index_scores": {
+    "rows": 98,
+    "editions": [
+      "2018",
+      "2019-20",
+      "2020-21",
+      "2023-24"
+    ]
+  },
+  "source_status": {
+    "UN_SDG_API": {
+      "status": "loaded",
+      "pages": 15,
+      "records_in_api": 14594,
+      "repeats_merged": 1181,
+      "unique_observations": 13413,
+      "note": "Series linked to several SDG indicators are returned once per indicator; identical copies are merged."
+    },
+    "MOSPI_NIF_2025": {
+      "status": "loaded",
+      "pdf_created": "2025-06-27",
+      "pdf_modified": "2025-06-29",
+      "indicators_in_snapshot": 277,
+      "indicators_parsed": 224,
+      "indicators_not_parsed": 53,
+      "rows": 1886,
+      "table_rows_checked": 1303,
+      "confirmed_by_word_positions": 1302,
+      "confirmed_visually": 1,
+      "dropped_unconfirmed": 0,
+      "gridline_parser": {
+        "tables_reviewed": 23,
+        "tables_used": 23,
+        "values_used": 392,
+        "rows_not_confirmed_dropped": 0,
+        "rejected": {},
+        "not_readable": {}
+      }
+    },
+    "NFHS5_DISTRICTS": {
+      "status": "loaded",
+      "fact_sheets": 704,
+      "districts": 704,
+      "states_and_uts": 34,
+      "indicators_mapped": 34,
+      "rows": 43359,
+      "sheets_with_source_numbering_errors_corrected_by_name": 2,
+      "problem_count": 11
+    },
+    "NITI_SDGII_2023_24": {
+      "status": "loaded",
+      "rows": 98,
+      "verified_rows": 98,
+      "pdf_available": true
+    }
+  },
+  "validation": {
+    "rows": 58658,
+    "errors": [],
+    "warnings": [
+      "6958 records are the publisher's own 'not available' markers (e.g. 'NaN = Not Available'). They are kept for the missing-data analysis and are not counted as observations.",
+      "6 values are published as text and kept as text, not converted (most common: {'(-)73.8': 1, 'Yes': 1, '6678/1243': 1, '3976/1212': 1, '2937.20/15697.94': 1}).",
+      "116 percentage values fall outside 0-100 (series: ['BN_CAB_XOKA_GD_ZS', 'EN_HAZ_TRTDISR', 'EN_LKRV_PWAC', 'EN_LKRV_SWAC', 'EN_RSRV_MNWAC', 'EN_RVR_MNRVFLC', 'EN_RVR_MXRVFLC', 'EN_WBE_MANGC']); check the series definitions."
+    ]
+  },
+  "software": {
+    "python": "3.13.16",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "pdfplumber": "0.11.10",
+    "streamlit": "1.66.0",
+    "plotly": "7.1.0"
+  }
+}

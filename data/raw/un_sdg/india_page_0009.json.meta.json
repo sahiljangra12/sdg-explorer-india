@@ -1,0 +1,9 @@
+{
+  "file": "india_page_0009.json",
+  "url": "https://unstats.un.org/sdgapi/v1/sdg/Indicator/Data?areaCode=356&pageSize=1000&page=9",
+  "retrieved_at": "2026-10-15T10:54:10+00:00",
+  "http_status": 200,
+  "bytes": 1452036,
+  "sha256": "834343155dedaf596752e4567d57f7170acd6d7a4ce9dab4d10304763e9ab17b",
+  "note": "Downloaded outside the pipeline and imported from 'un_india_page_09.json' (sha256 834343155dedaf596752e4567d57f7170acd6d7a4ce9dab4d10304763e9ab17b)."
+}

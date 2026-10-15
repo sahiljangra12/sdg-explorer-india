@@ -1,0 +1,13 @@
+# Exact versions the bundled data and tests were verified with (Python 3.13)
+numpy==2.5.4
+pandas==3.0.6
+pdfminer.six==20260107
+pdfplumber==0.11.10
+plotly==7.1.0
+pyarrow==26.0.0
+pyshp==3.1.6
+pytest==9.1.1
+requests==2.34.2
+shapely==2.2.0
+streamlit==1.66.0
+urllib3==2.8.0

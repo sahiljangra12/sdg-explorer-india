@@ -1,0 +1,17 @@
+[project]
+name = "sdg-explorer-india"
+version = "2.0.0"
+description = "India's progress on the 17 SDGs from official sources: ingestion pipeline and Streamlit dashboard"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

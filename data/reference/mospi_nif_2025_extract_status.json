@@ -1,0 +1,21 @@
+{
+  "status": "loaded",
+  "pdf_created": "2025-06-27",
+  "pdf_modified": "2025-06-29",
+  "indicators_in_snapshot": 277,
+  "indicators_parsed": 224,
+  "indicators_not_parsed": 53,
+  "rows": 1886,
+  "table_rows_checked": 1303,
+  "confirmed_by_word_positions": 1302,
+  "confirmed_visually": 1,
+  "dropped_unconfirmed": 0,
+  "gridline_parser": {
+    "tables_reviewed": 23,
+    "tables_used": 23,
+    "values_used": 392,
+    "rows_not_confirmed_dropped": 0,
+    "rejected": {},
+    "not_readable": {}
+  }
+}

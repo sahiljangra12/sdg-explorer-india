@@ -1,0 +1,744 @@
+geo_id,geography,geo_level,valid_from,valid_to,note,parent_geo_id
+IN,India,national,,,,
+IN.AP,Andhra Pradesh,state,,,Telangana was carved out on 2 June 2014; earlier values cover the combined state.,
+IN.AR,Arunachal Pradesh,state,,,,
+IN.AS,Assam,state,,,,
+IN.BR,Bihar,state,,,,
+IN.CG,Chhattisgarh,state,,,,
+IN.GA,Goa,state,,,,
+IN.GJ,Gujarat,state,,,,
+IN.HR,Haryana,state,,,,
+IN.HP,Himachal Pradesh,state,,,,
+IN.JH,Jharkhand,state,,,,
+IN.KA,Karnataka,state,,,,
+IN.KL,Kerala,state,,,,
+IN.MP,Madhya Pradesh,state,,,,
+IN.MH,Maharashtra,state,,,,
+IN.MN,Manipur,state,,,,
+IN.ML,Meghalaya,state,,,,
+IN.MZ,Mizoram,state,,,,
+IN.NL,Nagaland,state,,,,
+IN.OD,Odisha,state,,,,
+IN.PB,Punjab,state,,,,
+IN.RJ,Rajasthan,state,,,,
+IN.SK,Sikkim,state,,,,
+IN.TN,Tamil Nadu,state,,,,
+IN.TS,Telangana,state,2014.0,,Formed on 2 June 2014.,
+IN.TR,Tripura,state,,,,
+IN.UP,Uttar Pradesh,state,,,,
+IN.UK,Uttarakhand,state,,,,
+IN.WB,West Bengal,state,,,,
+IN.AN,Andaman and Nicobar Islands,union_territory,,,,
+IN.CH,Chandigarh,union_territory,,,,
+IN.DH,Dadra and Nagar Haveli and Daman and Diu,union_territory,2020.0,,Formed on 26 January 2020 by merging two Union Territories.,
+IN.DL,Delhi,union_territory,,,National Capital Territory of Delhi.,
+IN.JK,Jammu and Kashmir,union_territory,,,"A state until 31 October 2019, when it was reorganised into the Union Territories of Jammu and Kashmir and Ladakh. Earlier values cover the former state.",
+IN.LA,Ladakh,union_territory,2019.0,,Formed on 31 October 2019.,
+IN.LD,Lakshadweep,union_territory,,,,
+IN.PY,Puducherry,union_territory,,,,
+IN.DN,Dadra and Nagar Haveli,former_union_territory,,2019.0,Merged into IN.DH in 2020.,
+IN.DD,Daman and Diu,former_union_territory,,2019.0,Merged into IN.DH in 2020.,
+IN.AN.nicobar,Nicobar,district,,,,IN.AN
+IN.AN.north-middle-andaman,North & Middle Andaman,district,,,,IN.AN
+IN.AN.south-andaman,South Andaman,district,,,,IN.AN
+IN.AP.anantapur,Anantapur,district,,,,IN.AP
+IN.AP.chittoor,Chittoor,district,,,,IN.AP
+IN.AP.east-godavari,East Godavari,district,,,,IN.AP
+IN.AP.guntur,Guntur,district,,,,IN.AP
+IN.AP.krishna,Krishna,district,,,,IN.AP
+IN.AP.kurnool,Kurnool,district,,,,IN.AP
+IN.AP.prakasam,Prakasam,district,,,,IN.AP
+IN.AP.sri-potti-sriramulu-nellore,Sri Potti Sriramulu Nellore,district,,,,IN.AP
+IN.AP.srikakulam,Srikakulam,district,,,,IN.AP
+IN.AP.visakhapatnam,Visakhapatnam,district,,,,IN.AP
+IN.AP.vizianagaram,Vizianagaram,district,,,,IN.AP
+IN.AP.west-godavari,West Godavari,district,,,,IN.AP
+IN.AP.y-s-r,Y.S.R.,district,,,,IN.AP
+IN.AR.anjaw,Anjaw,district,,,,IN.AR
+IN.AR.changlang,Changlang,district,,,,IN.AR
+IN.AR.dibang-valley,Dibang Valley,district,,,,IN.AR
+IN.AR.east-kameng,East Kameng,district,,,,IN.AR
+IN.AR.east-siang,East Siang,district,,,,IN.AR
+IN.AR.kra-daadi,Kra Daadi,district,,,,IN.AR
+IN.AR.kurung-kumey,Kurung Kumey,district,,,,IN.AR
+IN.AR.lohit,Lohit,district,,,,IN.AR
+IN.AR.longding,Longding,district,,,,IN.AR
+IN.AR.lower-dibang-valley,Lower Dibang Valley,district,,,,IN.AR
+IN.AR.lower-subansiri,Lower Subansiri,district,,,,IN.AR
+IN.AR.namsai,Namsai,district,,,,IN.AR
+IN.AR.papum-pare,Papum Pare,district,,,,IN.AR
+IN.AR.siang,Siang,district,,,,IN.AR
+IN.AR.tawang,Tawang,district,,,,IN.AR
+IN.AR.tirap,Tirap,district,,,,IN.AR
+IN.AR.upper-siang,Upper Siang,district,,,,IN.AR
+IN.AR.upper-subansiri,Upper Subansiri,district,,,,IN.AR
+IN.AR.west-kameng,West Kameng,district,,,,IN.AR
+IN.AR.west-siang,West Siang,district,,,,IN.AR
+IN.AS.baksa,Baksa,district,,,,IN.AS
+IN.AS.barpeta,Barpeta,district,,,,IN.AS
+IN.AS.biswanath,Biswanath,district,,,,IN.AS
+IN.AS.bongaigaon,Bongaigaon,district,,,,IN.AS
+IN.AS.cachar,Cachar,district,,,,IN.AS
+IN.AS.charaideo,Charaideo,district,,,,IN.AS
+IN.AS.chirang,Chirang,district,,,,IN.AS
+IN.AS.darrang,Darrang,district,,,,IN.AS
+IN.AS.dhemaji,Dhemaji,district,,,,IN.AS
+IN.AS.dhubri,Dhubri,district,,,,IN.AS
+IN.AS.dibrugarh,Dibrugarh,district,,,,IN.AS
+IN.AS.dima-hasao,Dima Hasao,district,,,,IN.AS
+IN.AS.goalpara,Goalpara,district,,,,IN.AS
+IN.AS.golaghat,Golaghat,district,,,,IN.AS
+IN.AS.hailakandi,Hailakandi,district,,,,IN.AS
+IN.AS.hojai,Hojai,district,,,,IN.AS
+IN.AS.jorhat,Jorhat,district,,,,IN.AS
+IN.AS.kamrup,Kamrup,district,,,,IN.AS
+IN.AS.kamrup-metropolitan,Kamrup Metropolitan,district,,,,IN.AS
+IN.AS.karbi-anglong,Karbi Anglong,district,,,,IN.AS
+IN.AS.karimganj,Karimganj,district,,,,IN.AS
+IN.AS.kokrajhar,Kokrajhar,district,,,,IN.AS
+IN.AS.lakhimpur,Lakhimpur,district,,,,IN.AS
+IN.AS.majuli,Majuli,district,,,,IN.AS
+IN.AS.morigaon,Morigaon,district,,,,IN.AS
+IN.AS.nagaon,Nagaon,district,,,,IN.AS
+IN.AS.nalbari,Nalbari,district,,,,IN.AS
+IN.AS.sivasagar,Sivasagar,district,,,,IN.AS
+IN.AS.sonitpur,Sonitpur,district,,,,IN.AS
+IN.AS.south-salmara-mancachar,South Salmara Mancachar,district,,,,IN.AS
+IN.AS.tinsukia,Tinsukia,district,,,,IN.AS
+IN.AS.udalguri,Udalguri,district,,,,IN.AS
+IN.AS.west-karbi-anglong,West Karbi Anglong,district,,,,IN.AS
+IN.BR.araria,Araria,district,,,,IN.BR
+IN.BR.arwal,Arwal,district,,,,IN.BR
+IN.BR.aurangabad,Aurangabad,district,,,,IN.BR
+IN.BR.banka,Banka,district,,,,IN.BR
+IN.BR.begusarai,Begusarai,district,,,,IN.BR
+IN.BR.bhagalpur,Bhagalpur,district,,,,IN.BR
+IN.BR.bhojpur,Bhojpur,district,,,,IN.BR
+IN.BR.buxar,Buxar,district,,,,IN.BR
+IN.BR.darbhanga,Darbhanga,district,,,,IN.BR
+IN.BR.gaya,Gaya,district,,,,IN.BR
+IN.BR.gopalganj,Gopalganj,district,,,,IN.BR
+IN.BR.jamui,Jamui,district,,,,IN.BR
+IN.BR.jehanabad,Jehanabad,district,,,,IN.BR
+IN.BR.kaimur-bhabua,Kaimur (Bhabua),district,,,,IN.BR
+IN.BR.katihar,Katihar,district,,,,IN.BR
+IN.BR.khagaria,Khagaria,district,,,,IN.BR
+IN.BR.kishanganj,Kishanganj,district,,,,IN.BR
+IN.BR.lakhisarai,Lakhisarai,district,,,,IN.BR
+IN.BR.madhepura,Madhepura,district,,,,IN.BR
+IN.BR.madhubani,Madhubani,district,,,,IN.BR
+IN.BR.munger,Munger,district,,,,IN.BR
+IN.BR.muzaffarpur,Muzaffarpur,district,,,,IN.BR
+IN.BR.nalanda,Nalanda,district,,,,IN.BR
+IN.BR.nawada,Nawada,district,,,,IN.BR
+IN.BR.pashchim-champaran,Pashchim Champaran,district,,,,IN.BR
+IN.BR.patna,Patna,district,,,,IN.BR
+IN.BR.purba-champaran,Purba Champaran,district,,,,IN.BR
+IN.BR.purnia,Purnia,district,,,,IN.BR
+IN.BR.rohtas,Rohtas,district,,,,IN.BR
+IN.BR.saharsa,Saharsa,district,,,,IN.BR
+IN.BR.samastipur,Samastipur,district,,,,IN.BR
+IN.BR.saran,Saran,district,,,,IN.BR
+IN.BR.sheikhpura,Sheikhpura,district,,,,IN.BR
+IN.BR.sheohar,Sheohar,district,,,,IN.BR
+IN.BR.sitamarhi,Sitamarhi,district,,,,IN.BR
+IN.BR.siwan,Siwan,district,,,,IN.BR
+IN.BR.supaul,Supaul,district,,,,IN.BR
+IN.BR.vaishali,Vaishali,district,,,,IN.BR
+IN.CG.balod,Balod,district,,,,IN.CG
+IN.CG.baloda-bazar,Baloda Bazar,district,,,,IN.CG
+IN.CG.balrampur,Balrampur,district,,,,IN.CG
+IN.CG.bastar,Bastar,district,,,,IN.CG
+IN.CG.bemetara,Bemetara,district,,,,IN.CG
+IN.CG.bijapur,Bijapur,district,,,,IN.CG
+IN.CG.bilaspur,Bilaspur,district,,,,IN.CG
+IN.CG.dantewada,Dantewada,district,,,,IN.CG
+IN.CG.dhamtari,Dhamtari,district,,,,IN.CG
+IN.CG.durg,Durg,district,,,,IN.CG
+IN.CG.gariyaband,Gariyaband,district,,,,IN.CG
+IN.CG.janjgir-champa,Janjgir - Champa,district,,,,IN.CG
+IN.CG.jashpur,Jashpur,district,,,,IN.CG
+IN.CG.kabeerdham,Kabeerdham,district,,,,IN.CG
+IN.CG.kodagaon,Kodagaon,district,,,,IN.CG
+IN.CG.korba,Korba,district,,,,IN.CG
+IN.CG.koriya,Koriya,district,,,,IN.CG
+IN.CG.mahasamund,Mahasamund,district,,,,IN.CG
+IN.CG.mungeli,Mungeli,district,,,,IN.CG
+IN.CG.narayanpur,Narayanpur,district,,,,IN.CG
+IN.CG.raigarh,Raigarh,district,,,,IN.CG
+IN.CG.raipur,Raipur,district,,,,IN.CG
+IN.CG.rajnandgaon,Rajnandgaon,district,,,,IN.CG
+IN.CG.sukma,Sukma,district,,,,IN.CG
+IN.CG.surajpur,Surajpur,district,,,,IN.CG
+IN.CG.surguja,Surguja,district,,,,IN.CG
+IN.CG.uttar-bastar-kanker,Uttar Bastar Kanker,district,,,,IN.CG
+IN.DH.dadra-nagar-haveli,Dadra & Nagar Haveli,district,,,,IN.DH
+IN.DH.daman,Daman,district,,,,IN.DH
+IN.DH.diu,Diu,district,,,,IN.DH
+IN.GA.north-goa,North Goa,district,,,,IN.GA
+IN.GA.south-goa,South Goa,district,,,,IN.GA
+IN.GJ.ahmedabad,Ahmedabad,district,,,,IN.GJ
+IN.GJ.amreli,Amreli,district,,,,IN.GJ
+IN.GJ.anand,Anand,district,,,,IN.GJ
+IN.GJ.aravali,Aravali,district,,,,IN.GJ
+IN.GJ.banaskantha,Banaskantha,district,,,,IN.GJ
+IN.GJ.bharuch,Bharuch,district,,,,IN.GJ
+IN.GJ.bhavnagar,Bhavnagar,district,,,,IN.GJ
+IN.GJ.botad,Botad,district,,,,IN.GJ
+IN.GJ.chhota-udaipur,Chhota Udaipur,district,,,,IN.GJ
+IN.GJ.dahod,Dahod,district,,,,IN.GJ
+IN.GJ.devbhumi-dwarka,Devbhumi Dwarka,district,,,,IN.GJ
+IN.GJ.gandhinagar,Gandhinagar,district,,,,IN.GJ
+IN.GJ.gir-somnath,Gir Somnath,district,,,,IN.GJ
+IN.GJ.jamnagar,Jamnagar,district,,,,IN.GJ
+IN.GJ.junagadh,Junagadh,district,,,,IN.GJ
+IN.GJ.kachchh,Kachchh,district,,,,IN.GJ
+IN.GJ.kheda,Kheda,district,,,,IN.GJ
+IN.GJ.mahesana,Mahesana,district,,,,IN.GJ
+IN.GJ.mahisagar,Mahisagar,district,,,,IN.GJ
+IN.GJ.morbi,Morbi,district,,,,IN.GJ
+IN.GJ.narmada,Narmada,district,,,,IN.GJ
+IN.GJ.navsari,Navsari,district,,,,IN.GJ
+IN.GJ.panchmahal,Panchmahal,district,,,,IN.GJ
+IN.GJ.patan,Patan,district,,,,IN.GJ
+IN.GJ.porbandar,Porbandar,district,,,,IN.GJ
+IN.GJ.rajkot,Rajkot,district,,,,IN.GJ
+IN.GJ.sabarkantha,Sabarkantha,district,,,,IN.GJ
+IN.GJ.surat,Surat,district,,,,IN.GJ
+IN.GJ.surendranagar,Surendranagar,district,,,,IN.GJ
+IN.GJ.tapi,Tapi,district,,,,IN.GJ
+IN.GJ.the-dangs,The Dangs,district,,,,IN.GJ
+IN.GJ.vadodara,Vadodara,district,,,,IN.GJ
+IN.GJ.valsad,Valsad,district,,,,IN.GJ
+IN.HR.ambala,Ambala,district,,,,IN.HR
+IN.HR.bhiwani,Bhiwani,district,,,,IN.HR
+IN.HR.charkhi-dadri,Charkhi Dadri,district,,,,IN.HR
+IN.HR.faridabad,Faridabad,district,,,,IN.HR
+IN.HR.fatehabad,Fatehabad,district,,,,IN.HR
+IN.HR.gurgaon,Gurgaon,district,,,,IN.HR
+IN.HR.hisar,Hisar,district,,,,IN.HR
+IN.HR.jhajjar,Jhajjar,district,,,,IN.HR
+IN.HR.jind,Jind,district,,,,IN.HR
+IN.HR.kaithal,Kaithal,district,,,,IN.HR
+IN.HR.karnal,Karnal,district,,,,IN.HR
+IN.HR.kurukshetra,Kurukshetra,district,,,,IN.HR
+IN.HR.mahendragarh,Mahendragarh,district,,,,IN.HR
+IN.HR.mewat,Mewat,district,,,,IN.HR
+IN.HR.palwal,Palwal,district,,,,IN.HR
+IN.HR.panchkula,Panchkula,district,,,,IN.HR
+IN.HR.panipat,Panipat,district,,,,IN.HR
+IN.HR.rewari,Rewari,district,,,,IN.HR
+IN.HR.rohtak,Rohtak,district,,,,IN.HR
+IN.HR.sirsa,Sirsa,district,,,,IN.HR
+IN.HR.sonipat,Sonipat,district,,,,IN.HR
+IN.HR.yamunanagar,Yamunanagar,district,,,,IN.HR
+IN.HP.bilaspur,Bilaspur,district,,,,IN.HP
+IN.HP.chamba,Chamba,district,,,,IN.HP
+IN.HP.hamirpur,Hamirpur,district,,,,IN.HP
+IN.HP.kangra,Kangra,district,,,,IN.HP
+IN.HP.kinnaur,Kinnaur,district,,,,IN.HP
+IN.HP.kullu,Kullu,district,,,,IN.HP
+IN.HP.lahul-spiti,Lahul & Spiti,district,,,,IN.HP
+IN.HP.mandi,Mandi,district,,,,IN.HP
+IN.HP.shimla,Shimla,district,,,,IN.HP
+IN.HP.sirmaur,Sirmaur,district,,,,IN.HP
+IN.HP.solan,Solan,district,,,,IN.HP
+IN.HP.una,Una,district,,,,IN.HP
+IN.JK.anantnag,Anantnag,district,,,,IN.JK
+IN.JK.badgam,Badgam,district,,,,IN.JK
+IN.JK.bandipore,Bandipore,district,,,,IN.JK
+IN.JK.baramula,Baramula,district,,,,IN.JK
+IN.JK.doda,Doda,district,,,,IN.JK
+IN.JK.ganderbal,Ganderbal,district,,,,IN.JK
+IN.JK.jammu,Jammu,district,,,,IN.JK
+IN.JK.kathua,Kathua,district,,,,IN.JK
+IN.JK.kishtwar,Kishtwar,district,,,,IN.JK
+IN.JK.kulgam,Kulgam,district,,,,IN.JK
+IN.JK.kupwara,Kupwara,district,,,,IN.JK
+IN.JK.pulwama,Pulwama,district,,,,IN.JK
+IN.JK.punch,Punch,district,,,,IN.JK
+IN.JK.rajouri,Rajouri,district,,,,IN.JK
+IN.JK.ramban,Ramban,district,,,,IN.JK
+IN.JK.reasi,Reasi,district,,,,IN.JK
+IN.JK.samba,Samba,district,,,,IN.JK
+IN.JK.shupiyan,Shupiyan,district,,,,IN.JK
+IN.JK.srinagar,Srinagar,district,,,,IN.JK
+IN.JK.udhampur,Udhampur,district,,,,IN.JK
+IN.JH.bokaro,Bokaro,district,,,,IN.JH
+IN.JH.chatra,Chatra,district,,,,IN.JH
+IN.JH.deoghar,Deoghar,district,,,,IN.JH
+IN.JH.dhanbad,Dhanbad,district,,,,IN.JH
+IN.JH.dumka,Dumka,district,,,,IN.JH
+IN.JH.garhwa,Garhwa,district,,,,IN.JH
+IN.JH.giridih,Giridih,district,,,,IN.JH
+IN.JH.godda,Godda,district,,,,IN.JH
+IN.JH.gumla,Gumla,district,,,,IN.JH
+IN.JH.hazaribagh,Hazaribagh,district,,,,IN.JH
+IN.JH.jamtara,Jamtara,district,,,,IN.JH
+IN.JH.khunti,Khunti,district,,,,IN.JH
+IN.JH.kodarma,Kodarma,district,,,,IN.JH
+IN.JH.latehar,Latehar,district,,,,IN.JH
+IN.JH.lohardaga,Lohardaga,district,,,,IN.JH
+IN.JH.pakur,Pakur,district,,,,IN.JH
+IN.JH.palamu,Palamu,district,,,,IN.JH
+IN.JH.pashchimi-singhbhum,Pashchimi Singhbhum,district,,,,IN.JH
+IN.JH.purbi-singhbhum,Purbi Singhbhum,district,,,,IN.JH
+IN.JH.ramgarh,Ramgarh,district,,,,IN.JH
+IN.JH.ranchi,Ranchi,district,,,,IN.JH
+IN.JH.sahibganj,Sahibganj,district,,,,IN.JH
+IN.JH.saraikela-kharsawan,Saraikela-Kharsawan,district,,,,IN.JH
+IN.JH.simdega,Simdega,district,,,,IN.JH
+IN.KA.bagalkot,Bagalkot,district,,,,IN.KA
+IN.KA.bangalore,Bangalore,district,,,,IN.KA
+IN.KA.bangalore-rural,Bangalore Rural,district,,,,IN.KA
+IN.KA.belgaum,Belgaum,district,,,,IN.KA
+IN.KA.bellary,Bellary,district,,,,IN.KA
+IN.KA.bidar,Bidar,district,,,,IN.KA
+IN.KA.bijapur,Bijapur,district,,,,IN.KA
+IN.KA.chamarajanagar,Chamarajanagar,district,,,,IN.KA
+IN.KA.chikkaballapura,Chikkaballapura,district,,,,IN.KA
+IN.KA.chikmagalur,Chikmagalur,district,,,,IN.KA
+IN.KA.chitradurga,Chitradurga,district,,,,IN.KA
+IN.KA.dakshina-kannada,Dakshina Kannada,district,,,,IN.KA
+IN.KA.davanagere,Davanagere,district,,,,IN.KA
+IN.KA.dharwad,Dharwad,district,,,,IN.KA
+IN.KA.gadag,Gadag,district,,,,IN.KA
+IN.KA.gulbarga,Gulbarga,district,,,,IN.KA
+IN.KA.hassan,Hassan,district,,,,IN.KA
+IN.KA.haveri,Haveri,district,,,,IN.KA
+IN.KA.kodagu,Kodagu,district,,,,IN.KA
+IN.KA.kolar,Kolar,district,,,,IN.KA
+IN.KA.koppal,Koppal,district,,,,IN.KA
+IN.KA.mandya,Mandya,district,,,,IN.KA
+IN.KA.mysore,Mysore,district,,,,IN.KA
+IN.KA.raichur,Raichur,district,,,,IN.KA
+IN.KA.ramanagara,Ramanagara,district,,,,IN.KA
+IN.KA.shimoga,Shimoga,district,,,,IN.KA
+IN.KA.tumkur,Tumkur,district,,,,IN.KA
+IN.KA.udupi,Udupi,district,,,,IN.KA
+IN.KA.uttara-kannada,Uttara Kannada,district,,,,IN.KA
+IN.KA.yadgir,Yadgir,district,,,,IN.KA
+IN.KL.alappuzha,Alappuzha,district,,,,IN.KL
+IN.KL.ernakulam,Ernakulam,district,,,,IN.KL
+IN.KL.idukki,Idukki,district,,,,IN.KL
+IN.KL.kannur,Kannur,district,,,,IN.KL
+IN.KL.kasaragod,Kasaragod,district,,,,IN.KL
+IN.KL.kollam,Kollam,district,,,,IN.KL
+IN.KL.kottayam,Kottayam,district,,,,IN.KL
+IN.KL.kozhikode,Kozhikode,district,,,,IN.KL
+IN.KL.malappuram,Malappuram,district,,,,IN.KL
+IN.KL.palakkad,Palakkad,district,,,,IN.KL
+IN.KL.pathanamthitta,Pathanamthitta,district,,,,IN.KL
+IN.KL.thiruvananthapuram,Thiruvananthapuram,district,,,,IN.KL
+IN.KL.thrissur,Thrissur,district,,,,IN.KL
+IN.KL.wayanad,Wayanad,district,,,,IN.KL
+IN.LA.kargil,Kargil,district,,,,IN.LA
+IN.LA.leh-ladakh,Leh (Ladakh),district,,,,IN.LA
+IN.MP.agar-malwa,Agar Malwa,district,,,,IN.MP
+IN.MP.alirajpur,Alirajpur,district,,,,IN.MP
+IN.MP.anuppur,Anuppur,district,,,,IN.MP
+IN.MP.ashoknagar,Ashoknagar,district,,,,IN.MP
+IN.MP.balaghat,Balaghat,district,,,,IN.MP
+IN.MP.barwani,Barwani,district,,,,IN.MP
+IN.MP.betul,Betul,district,,,,IN.MP
+IN.MP.bhind,Bhind,district,,,,IN.MP
+IN.MP.bhopal,Bhopal,district,,,,IN.MP
+IN.MP.burhanpur,Burhanpur,district,,,,IN.MP
+IN.MP.chhatarpur,Chhatarpur,district,,,,IN.MP
+IN.MP.chhindwara,Chhindwara,district,,,,IN.MP
+IN.MP.damoh,Damoh,district,,,,IN.MP
+IN.MP.datia,Datia,district,,,,IN.MP
+IN.MP.dewas,Dewas,district,,,,IN.MP
+IN.MP.dhar,Dhar,district,,,,IN.MP
+IN.MP.dindori,Dindori,district,,,,IN.MP
+IN.MP.guna,Guna,district,,,,IN.MP
+IN.MP.gwalior,Gwalior,district,,,,IN.MP
+IN.MP.harda,Harda,district,,,,IN.MP
+IN.MP.hoshangabad,Hoshangabad,district,,,,IN.MP
+IN.MP.indore,Indore,district,,,,IN.MP
+IN.MP.jabalpur,Jabalpur,district,,,,IN.MP
+IN.MP.jhabua,Jhabua,district,,,,IN.MP
+IN.MP.katni,Katni,district,,,,IN.MP
+IN.MP.khandwa-east-nimar,Khandwa (East Nimar),district,,,,IN.MP
+IN.MP.khargone-west-nimar,Khargone (West Nimar),district,,,,IN.MP
+IN.MP.mandla,Mandla,district,,,,IN.MP
+IN.MP.mandsaur,Mandsaur,district,,,,IN.MP
+IN.MP.morena,Morena,district,,,,IN.MP
+IN.MP.narsinghpur,Narsinghpur,district,,,,IN.MP
+IN.MP.neemuch,Neemuch,district,,,,IN.MP
+IN.MP.panna,Panna,district,,,,IN.MP
+IN.MP.raisen,Raisen,district,,,,IN.MP
+IN.MP.rajgarh,Rajgarh,district,,,,IN.MP
+IN.MP.ratlam,Ratlam,district,,,,IN.MP
+IN.MP.rewa,Rewa,district,,,,IN.MP
+IN.MP.sagar,Sagar,district,,,,IN.MP
+IN.MP.satna,Satna,district,,,,IN.MP
+IN.MP.sehore,Sehore,district,,,,IN.MP
+IN.MP.seoni,Seoni,district,,,,IN.MP
+IN.MP.shahdol,Shahdol,district,,,,IN.MP
+IN.MP.shajapur,Shajapur,district,,,,IN.MP
+IN.MP.sheopur,Sheopur,district,,,,IN.MP
+IN.MP.shivpuri,Shivpuri,district,,,,IN.MP
+IN.MP.sidhi,Sidhi,district,,,,IN.MP
+IN.MP.singrauli,Singrauli,district,,,,IN.MP
+IN.MP.tikamgarh,Tikamgarh,district,,,,IN.MP
+IN.MP.ujjain,Ujjain,district,,,,IN.MP
+IN.MP.umaria,Umaria,district,,,,IN.MP
+IN.MH.ahmednagar,Ahmednagar,district,,,,IN.MH
+IN.MH.akola,Akola,district,,,,IN.MH
+IN.MH.amravati,Amravati,district,,,,IN.MH
+IN.MH.aurangabad,Aurangabad,district,,,,IN.MH
+IN.MH.bhandara,Bhandara,district,,,,IN.MH
+IN.MH.bid,Bid,district,,,,IN.MH
+IN.MH.buldana,Buldana,district,,,,IN.MH
+IN.MH.chandrapur,Chandrapur,district,,,,IN.MH
+IN.MH.dhule,Dhule,district,,,,IN.MH
+IN.MH.gadchiroli,Gadchiroli,district,,,,IN.MH
+IN.MH.gondiya,Gondiya,district,,,,IN.MH
+IN.MH.hingoli,Hingoli,district,,,,IN.MH
+IN.MH.jalgaon,Jalgaon,district,,,,IN.MH
+IN.MH.jalna,Jalna,district,,,,IN.MH
+IN.MH.kolhapur,Kolhapur,district,,,,IN.MH
+IN.MH.latur,Latur,district,,,,IN.MH
+IN.MH.mumbai,Mumbai,district,,,,IN.MH
+IN.MH.mumbai-suburban,Mumbai Suburban,district,,,,IN.MH
+IN.MH.nagpur,Nagpur,district,,,,IN.MH
+IN.MH.nanded,Nanded,district,,,,IN.MH
+IN.MH.nandurbar,Nandurbar,district,,,,IN.MH
+IN.MH.nashik,Nashik,district,,,,IN.MH
+IN.MH.osmanabad,Osmanabad,district,,,,IN.MH
+IN.MH.palghar,Palghar,district,,,,IN.MH
+IN.MH.parbhani,Parbhani,district,,,,IN.MH
+IN.MH.pune,Pune,district,,,,IN.MH
+IN.MH.raigarh,Raigarh,district,,,,IN.MH
+IN.MH.ratnagiri,Ratnagiri,district,,,,IN.MH
+IN.MH.sangli,Sangli,district,,,,IN.MH
+IN.MH.satara,Satara,district,,,,IN.MH
+IN.MH.sindhudurg,Sindhudurg,district,,,,IN.MH
+IN.MH.solapur,Solapur,district,,,,IN.MH
+IN.MH.thane,Thane,district,,,,IN.MH
+IN.MH.wardha,Wardha,district,,,,IN.MH
+IN.MH.washim,Washim,district,,,,IN.MH
+IN.MH.yavatmal,Yavatmal,district,,,,IN.MH
+IN.MN.bishnupur,Bishnupur,district,,,,IN.MN
+IN.MN.chandel,Chandel,district,,,,IN.MN
+IN.MN.churachandpur,Churachandpur,district,,,,IN.MN
+IN.MN.imphal-east,Imphal East,district,,,,IN.MN
+IN.MN.imphal-west,Imphal West,district,,,,IN.MN
+IN.MN.senapati,Senapati,district,,,,IN.MN
+IN.MN.tamenglong,Tamenglong,district,,,,IN.MN
+IN.MN.thoubal,Thoubal,district,,,,IN.MN
+IN.MN.ukhrul,Ukhrul,district,,,,IN.MN
+IN.ML.east-garo-hills,East Garo Hills,district,,,,IN.ML
+IN.ML.east-jaintia-hills,East Jaintia Hills,district,,,,IN.ML
+IN.ML.east-khasi-hills,East Khasi Hills,district,,,,IN.ML
+IN.ML.north-garo-hills,North Garo Hills,district,,,,IN.ML
+IN.ML.ribhoi,Ribhoi,district,,,,IN.ML
+IN.ML.south-garo-hills,South Garo Hills,district,,,,IN.ML
+IN.ML.south-west-garo-hills,South West Garo Hills,district,,,,IN.ML
+IN.ML.south-west-khasi-hills,South West Khasi Hills,district,,,,IN.ML
+IN.ML.west-garo-hills,West Garo Hills,district,,,,IN.ML
+IN.ML.west-jaintia-hills,West Jaintia Hills,district,,,,IN.ML
+IN.ML.west-khasi-hills,West Khasi Hills,district,,,,IN.ML
+IN.MZ.aizawl,Aizawl,district,,,,IN.MZ
+IN.MZ.champhai,Champhai,district,,,,IN.MZ
+IN.MZ.kolasib,Kolasib,district,,,,IN.MZ
+IN.MZ.lawngtlai,Lawngtlai,district,,,,IN.MZ
+IN.MZ.lunglei,Lunglei,district,,,,IN.MZ
+IN.MZ.mamit,Mamit,district,,,,IN.MZ
+IN.MZ.saiha,Saiha,district,,,,IN.MZ
+IN.MZ.serchhip,Serchhip,district,,,,IN.MZ
+IN.NL.dimapur,Dimapur,district,,,,IN.NL
+IN.NL.kiphire,Kiphire,district,,,,IN.NL
+IN.NL.kohima,Kohima,district,,,,IN.NL
+IN.NL.longleng,Longleng,district,,,,IN.NL
+IN.NL.mokokchung,Mokokchung,district,,,,IN.NL
+IN.NL.mon,Mon,district,,,,IN.NL
+IN.NL.peren,Peren,district,,,,IN.NL
+IN.NL.phek,Phek,district,,,,IN.NL
+IN.NL.tuensang,Tuensang,district,,,,IN.NL
+IN.NL.wokha,Wokha,district,,,,IN.NL
+IN.NL.zunheboto,Zunheboto,district,,,,IN.NL
+IN.DL.central,Central,district,,,,IN.DL
+IN.DL.east,East,district,,,,IN.DL
+IN.DL.new-delhi,New Delhi,district,,,,IN.DL
+IN.DL.north,North,district,,,,IN.DL
+IN.DL.north-east,North East,district,,,,IN.DL
+IN.DL.north-west,North West,district,,,,IN.DL
+IN.DL.shahdara,Shahdara,district,,,,IN.DL
+IN.DL.south,South,district,,,,IN.DL
+IN.DL.south-east,South East,district,,,,IN.DL
+IN.DL.south-west,South West,district,,,,IN.DL
+IN.DL.west,West,district,,,,IN.DL
+IN.OD.anugul,Anugul,district,,,,IN.OD
+IN.OD.balangir,Balangir,district,,,,IN.OD
+IN.OD.baleshwar,Baleshwar,district,,,,IN.OD
+IN.OD.bargarh,Bargarh,district,,,,IN.OD
+IN.OD.baudh,Baudh,district,,,,IN.OD
+IN.OD.bhadrak,Bhadrak,district,,,,IN.OD
+IN.OD.cuttack,Cuttack,district,,,,IN.OD
+IN.OD.debagarh,Debagarh,district,,,,IN.OD
+IN.OD.dhenkanal,Dhenkanal,district,,,,IN.OD
+IN.OD.gajapati,Gajapati,district,,,,IN.OD
+IN.OD.ganjam,Ganjam,district,,,,IN.OD
+IN.OD.jagatsinghapur,Jagatsinghapur,district,,,,IN.OD
+IN.OD.jajapur,Jajapur,district,,,,IN.OD
+IN.OD.jharsuguda,Jharsuguda,district,,,,IN.OD
+IN.OD.kalahandi,Kalahandi,district,,,,IN.OD
+IN.OD.kandhamal,Kandhamal,district,,,,IN.OD
+IN.OD.kendrapara,Kendrapara,district,,,,IN.OD
+IN.OD.kendujhar,Kendujhar,district,,,,IN.OD
+IN.OD.khordha,Khordha,district,,,,IN.OD
+IN.OD.koraput,Koraput,district,,,,IN.OD
+IN.OD.malkangiri,Malkangiri,district,,,,IN.OD
+IN.OD.mayurbhanj,Mayurbhanj,district,,,,IN.OD
+IN.OD.nabarangapur,Nabarangapur,district,,,,IN.OD
+IN.OD.nayagarh,Nayagarh,district,,,,IN.OD
+IN.OD.nuapada,Nuapada,district,,,,IN.OD
+IN.OD.puri,Puri,district,,,,IN.OD
+IN.OD.rayagada,Rayagada,district,,,,IN.OD
+IN.OD.sambalpur,Sambalpur,district,,,,IN.OD
+IN.OD.subarnapur,Subarnapur,district,,,,IN.OD
+IN.OD.sundargarh,Sundargarh,district,,,,IN.OD
+IN.PY.karaikal,Karaikal,district,,,,IN.PY
+IN.PY.mahe,Mahe,district,,,,IN.PY
+IN.PY.puducherry,Puducherry,district,,,,IN.PY
+IN.PY.yanam,Yanam,district,,,,IN.PY
+IN.PB.amritsar,Amritsar,district,,,,IN.PB
+IN.PB.barnala,Barnala,district,,,,IN.PB
+IN.PB.bathinda,Bathinda,district,,,,IN.PB
+IN.PB.faridkot,Faridkot,district,,,,IN.PB
+IN.PB.fatehgarh-sahib,Fatehgarh Sahib,district,,,,IN.PB
+IN.PB.fazilka,Fazilka,district,,,,IN.PB
+IN.PB.firozpur,Firozpur,district,,,,IN.PB
+IN.PB.gurudaspur,Gurudaspur,district,,,,IN.PB
+IN.PB.hoshiarpur,Hoshiarpur,district,,,,IN.PB
+IN.PB.jalandhar,Jalandhar,district,,,,IN.PB
+IN.PB.kapurthala,Kapurthala,district,,,,IN.PB
+IN.PB.ludhiana,Ludhiana,district,,,,IN.PB
+IN.PB.mansa,Mansa,district,,,,IN.PB
+IN.PB.moga,Moga,district,,,,IN.PB
+IN.PB.muktsar,Muktsar,district,,,,IN.PB
+IN.PB.pathankot,Pathankot,district,,,,IN.PB
+IN.PB.patiala,Patiala,district,,,,IN.PB
+IN.PB.rupnagar,Rupnagar,district,,,,IN.PB
+IN.PB.sahibzada-ajit-singh-nagar,Sahibzada Ajit Singh Nagar,district,,,,IN.PB
+IN.PB.sangrur,Sangrur,district,,,,IN.PB
+IN.PB.shahid-bhagat-singh-nagar,Shahid Bhagat Singh Nagar,district,,,,IN.PB
+IN.PB.tarn-taran,Tarn Taran,district,,,,IN.PB
+IN.RJ.ajmer,Ajmer,district,,,,IN.RJ
+IN.RJ.alwar,Alwar,district,,,,IN.RJ
+IN.RJ.banswara,Banswara,district,,,,IN.RJ
+IN.RJ.baran,Baran,district,,,,IN.RJ
+IN.RJ.barmer,Barmer,district,,,,IN.RJ
+IN.RJ.bharatpur,Bharatpur,district,,,,IN.RJ
+IN.RJ.bhilwara,Bhilwara,district,,,,IN.RJ
+IN.RJ.bikaner,Bikaner,district,,,,IN.RJ
+IN.RJ.bundi,Bundi,district,,,,IN.RJ
+IN.RJ.chittaurgarh,Chittaurgarh,district,,,,IN.RJ
+IN.RJ.churu,Churu,district,,,,IN.RJ
+IN.RJ.dausa,Dausa,district,,,,IN.RJ
+IN.RJ.dhaulpur,Dhaulpur,district,,,,IN.RJ
+IN.RJ.dungarpur,Dungarpur,district,,,,IN.RJ
+IN.RJ.ganganagar,Ganganagar,district,,,,IN.RJ
+IN.RJ.hanumangarh,Hanumangarh,district,,,,IN.RJ
+IN.RJ.jaipur,Jaipur,district,,,,IN.RJ
+IN.RJ.jaisalmer,Jaisalmer,district,,,,IN.RJ
+IN.RJ.jalor,Jalor,district,,,,IN.RJ
+IN.RJ.jhalawar,Jhalawar,district,,,,IN.RJ
+IN.RJ.jhunjhunun,Jhunjhunun,district,,,,IN.RJ
+IN.RJ.jodhpur,Jodhpur,district,,,,IN.RJ
+IN.RJ.karauli,Karauli,district,,,,IN.RJ
+IN.RJ.kota,Kota,district,,,,IN.RJ
+IN.RJ.nagaur,Nagaur,district,,,,IN.RJ
+IN.RJ.pali,Pali,district,,,,IN.RJ
+IN.RJ.pratapgarh,Pratapgarh,district,,,,IN.RJ
+IN.RJ.rajsamand,Rajsamand,district,,,,IN.RJ
+IN.RJ.sawai-madhopur,Sawai Madhopur,district,,,,IN.RJ
+IN.RJ.sikar,Sikar,district,,,,IN.RJ
+IN.RJ.sirohi,Sirohi,district,,,,IN.RJ
+IN.RJ.tonk,Tonk,district,,,,IN.RJ
+IN.RJ.udaipur,Udaipur,district,,,,IN.RJ
+IN.SK.east-district,East District,district,,,,IN.SK
+IN.SK.north-district,North District,district,,,,IN.SK
+IN.SK.south-district,South District,district,,,,IN.SK
+IN.SK.west-district,West District,district,,,,IN.SK
+IN.TN.ariyalur,Ariyalur,district,,,,IN.TN
+IN.TN.chennai,Chennai,district,,,,IN.TN
+IN.TN.coimbatore,Coimbatore,district,,,,IN.TN
+IN.TN.cuddalore,Cuddalore,district,,,,IN.TN
+IN.TN.dharmapuri,Dharmapuri,district,,,,IN.TN
+IN.TN.dindigul,Dindigul,district,,,,IN.TN
+IN.TN.erode,Erode,district,,,,IN.TN
+IN.TN.kancheepuram,Kancheepuram,district,,,,IN.TN
+IN.TN.kanniyakumari,Kanniyakumari,district,,,,IN.TN
+IN.TN.karur,Karur,district,,,,IN.TN
+IN.TN.krishnagiri,Krishnagiri,district,,,,IN.TN
+IN.TN.madurai,Madurai,district,,,,IN.TN
+IN.TN.nagapattinam,Nagapattinam,district,,,,IN.TN
+IN.TN.namakkal,Namakkal,district,,,,IN.TN
+IN.TN.perambalur,Perambalur,district,,,,IN.TN
+IN.TN.pudukkottai,Pudukkottai,district,,,,IN.TN
+IN.TN.ramanathapuram,Ramanathapuram,district,,,,IN.TN
+IN.TN.salem,Salem,district,,,,IN.TN
+IN.TN.sivaganga,Sivaganga,district,,,,IN.TN
+IN.TN.thanjavur,Thanjavur,district,,,,IN.TN
+IN.TN.the-nilgiris,The Nilgiris,district,,,,IN.TN
+IN.TN.theni,Theni,district,,,,IN.TN
+IN.TN.thiruvallur,Thiruvallur,district,,,,IN.TN
+IN.TN.thiruvarur,Thiruvarur,district,,,,IN.TN
+IN.TN.thoothukkudi,Thoothukkudi,district,,,,IN.TN
+IN.TN.tiruchirappalli,Tiruchirappalli,district,,,,IN.TN
+IN.TN.tirunelveli,Tirunelveli,district,,,,IN.TN
+IN.TN.tiruppur,Tiruppur,district,,,,IN.TN
+IN.TN.tiruvannamalai,Tiruvannamalai,district,,,,IN.TN
+IN.TN.vellore,Vellore,district,,,,IN.TN
+IN.TN.viluppuram,Viluppuram,district,,,,IN.TN
+IN.TN.virudhunagar,Virudhunagar,district,,,,IN.TN
+IN.TS.adilabad,Adilabad,district,,,,IN.TS
+IN.TS.bhadradri-kothagudem,Bhadradri Kothagudem,district,,,,IN.TS
+IN.TS.hyderabad,Hyderabad,district,,,,IN.TS
+IN.TS.jagitial,Jagitial,district,,,,IN.TS
+IN.TS.jangoan,Jangoan,district,,,,IN.TS
+IN.TS.jayashankar-bhupalapally,Jayashankar Bhupalapally,district,,,,IN.TS
+IN.TS.jogulamba-gadwal,Jogulamba Gadwal,district,,,,IN.TS
+IN.TS.kamareddy,Kamareddy,district,,,,IN.TS
+IN.TS.karimnagar,Karimnagar,district,,,,IN.TS
+IN.TS.khammam,Khammam,district,,,,IN.TS
+IN.TS.komaram-bheem-asifabad,Komaram Bheem Asifabad,district,,,,IN.TS
+IN.TS.mahabubabad,Mahabubabad,district,,,,IN.TS
+IN.TS.mahabubnagar,Mahabubnagar,district,,,,IN.TS
+IN.TS.mancherial,Mancherial,district,,,,IN.TS
+IN.TS.medak,Medak,district,,,,IN.TS
+IN.TS.medchal-malkajgiri,Medchal-Malkajgiri,district,,,,IN.TS
+IN.TS.nagarkurnool,Nagarkurnool,district,,,,IN.TS
+IN.TS.nalgonda,Nalgonda,district,,,,IN.TS
+IN.TS.nirmal,Nirmal,district,,,,IN.TS
+IN.TS.nizamabad,Nizamabad,district,,,,IN.TS
+IN.TS.peddapalli,Peddapalli,district,,,,IN.TS
+IN.TS.rajanna-sircilla,Rajanna Sircilla,district,,,,IN.TS
+IN.TS.ranga-reddy,Ranga Reddy,district,,,,IN.TS
+IN.TS.sangareddy,Sangareddy,district,,,,IN.TS
+IN.TS.siddipet,Siddipet,district,,,,IN.TS
+IN.TS.suryapet,Suryapet,district,,,,IN.TS
+IN.TS.vikarabad,Vikarabad,district,,,,IN.TS
+IN.TS.wanaparthy,Wanaparthy,district,,,,IN.TS
+IN.TS.warangal-rural,Warangal Rural,district,,,,IN.TS
+IN.TS.warangal-urban,Warangal Urban,district,,,,IN.TS
+IN.TS.yadadri-bhuvanagiri,Yadadri Bhuvanagiri,district,,,,IN.TS
+IN.TR.dhalai,Dhalai,district,,,,IN.TR
+IN.TR.gomati,Gomati,district,,,,IN.TR
+IN.TR.khowai,Khowai,district,,,,IN.TR
+IN.TR.north-tripura,North Tripura,district,,,,IN.TR
+IN.TR.sepahijala,Sepahijala,district,,,,IN.TR
+IN.TR.south-tripura,South Tripura,district,,,,IN.TR
+IN.TR.unakoti,Unakoti,district,,,,IN.TR
+IN.TR.west-tripura,West Tripura,district,,,,IN.TR
+IN.UP.agra,Agra,district,,,,IN.UP
+IN.UP.aligarh,Aligarh,district,,,,IN.UP
+IN.UP.ambedkar-nagar,Ambedkar Nagar,district,,,,IN.UP
+IN.UP.amethi,Amethi,district,,,,IN.UP
+IN.UP.auraiya,Auraiya,district,,,,IN.UP
+IN.UP.azamgarh,Azamgarh,district,,,,IN.UP
+IN.UP.baghpat,Baghpat,district,,,,IN.UP
+IN.UP.bahraich,Bahraich,district,,,,IN.UP
+IN.UP.ballia,Ballia,district,,,,IN.UP
+IN.UP.balrampur,Balrampur,district,,,,IN.UP
+IN.UP.banda,Banda,district,,,,IN.UP
+IN.UP.barabanki,Barabanki,district,,,,IN.UP
+IN.UP.bareilly,Bareilly,district,,,,IN.UP
+IN.UP.basti,Basti,district,,,,IN.UP
+IN.UP.bijnor,Bijnor,district,,,,IN.UP
+IN.UP.budaun,Budaun,district,,,,IN.UP
+IN.UP.bulandshahr,Bulandshahr,district,,,,IN.UP
+IN.UP.chandauli,Chandauli,district,,,,IN.UP
+IN.UP.chitrakoot,Chitrakoot,district,,,,IN.UP
+IN.UP.deoria,Deoria,district,,,,IN.UP
+IN.UP.etah,Etah,district,,,,IN.UP
+IN.UP.etawah,Etawah,district,,,,IN.UP
+IN.UP.faizabad,Faizabad,district,,,,IN.UP
+IN.UP.farrukhabad,Farrukhabad,district,,,,IN.UP
+IN.UP.fatehpur,Fatehpur,district,,,,IN.UP
+IN.UP.firozabad,Firozabad,district,,,,IN.UP
+IN.UP.gautam-buddha-nagar,Gautam Buddha Nagar,district,,,,IN.UP
+IN.UP.ghaziabad,Ghaziabad,district,,,,IN.UP
+IN.UP.ghazipur,Ghazipur,district,,,,IN.UP
+IN.UP.gonda,Gonda,district,,,,IN.UP
+IN.UP.gorakhpur,Gorakhpur,district,,,,IN.UP
+IN.UP.hamirpur,Hamirpur,district,,,,IN.UP
+IN.UP.hapur,Hapur,district,,,,IN.UP
+IN.UP.hardoi,Hardoi,district,,,,IN.UP
+IN.UP.jalaun,Jalaun,district,,,,IN.UP
+IN.UP.jaunpur,Jaunpur,district,,,,IN.UP
+IN.UP.jhansi,Jhansi,district,,,,IN.UP
+IN.UP.jyotiba-phule-nagar,Jyotiba Phule Nagar,district,,,,IN.UP
+IN.UP.kannauj,Kannauj,district,,,,IN.UP
+IN.UP.kanpur-dehat,Kanpur Dehat,district,,,,IN.UP
+IN.UP.kanpur-nagar,Kanpur Nagar,district,,,,IN.UP
+IN.UP.kanshiram-nagar,Kanshiram Nagar,district,,,,IN.UP
+IN.UP.kaushambi,Kaushambi,district,,,,IN.UP
+IN.UP.kheri,Kheri,district,,,,IN.UP
+IN.UP.kushinagar,Kushinagar,district,,,,IN.UP
+IN.UP.lalitpur,Lalitpur,district,,,,IN.UP
+IN.UP.lucknow,Lucknow,district,,,,IN.UP
+IN.UP.mahamaya-nagar,Mahamaya Nagar,district,,,,IN.UP
+IN.UP.maharajganj,Maharajganj,district,,,,IN.UP
+IN.UP.mahoba,Mahoba,district,,,,IN.UP
+IN.UP.mainpuri,Mainpuri,district,,,,IN.UP
+IN.UP.mathura,Mathura,district,,,,IN.UP
+IN.UP.mau,Mau,district,,,,IN.UP
+IN.UP.meerut,Meerut,district,,,,IN.UP
+IN.UP.mirzapur,Mirzapur,district,,,,IN.UP
+IN.UP.moradabad,Moradabad,district,,,,IN.UP
+IN.UP.muzaffarnagar,Muzaffarnagar,district,,,,IN.UP
+IN.UP.pilibhit,Pilibhit,district,,,,IN.UP
+IN.UP.pratapgarh,Pratapgarh,district,,,,IN.UP
+IN.UP.prayagraj,Prayagraj,district,,,,IN.UP
+IN.UP.rae-bareli,Rae Bareli,district,,,,IN.UP
+IN.UP.rampur,Rampur,district,,,,IN.UP
+IN.UP.saharanpur,Saharanpur,district,,,,IN.UP
+IN.UP.sambhal,Sambhal,district,,,,IN.UP
+IN.UP.sant-kabeer-nagar,Sant Kabeer Nagar,district,,,,IN.UP
+IN.UP.sant-ravidas-nagar-bhadohi,Sant Ravidas Nagar (Bhadohi),district,,,,IN.UP
+IN.UP.shahjahanpur,Shahjahanpur,district,,,,IN.UP
+IN.UP.shamli,Shamli,district,,,,IN.UP
+IN.UP.shravasti,Shravasti,district,,,,IN.UP
+IN.UP.siddharthnagar,Siddharthnagar,district,,,,IN.UP
+IN.UP.sitapur,Sitapur,district,,,,IN.UP
+IN.UP.sonbhadra,Sonbhadra,district,,,,IN.UP
+IN.UP.sultanpur,Sultanpur,district,,,,IN.UP
+IN.UP.unnao,Unnao,district,,,,IN.UP
+IN.UP.varanasi,Varanasi,district,,,,IN.UP
+IN.UK.almora,Almora,district,,,,IN.UK
+IN.UK.bageshwar,Bageshwar,district,,,,IN.UK
+IN.UK.chamoli,Chamoli,district,,,,IN.UK
+IN.UK.champawat,Champawat,district,,,,IN.UK
+IN.UK.dehradun,Dehradun,district,,,,IN.UK
+IN.UK.haridwar,Haridwar,district,,,,IN.UK
+IN.UK.nainital,Nainital,district,,,,IN.UK
+IN.UK.pauri-garhwal,Pauri Garhwal,district,,,,IN.UK
+IN.UK.pithoragarh,Pithoragarh,district,,,,IN.UK
+IN.UK.rudraprayag,Rudraprayag,district,,,,IN.UK
+IN.UK.tehri-garhwal,Tehri Garhwal,district,,,,IN.UK
+IN.UK.udam-singh-nagar,Udam Singh Nagar,district,,,,IN.UK
+IN.UK.uttarkashi,Uttarkashi,district,,,,IN.UK
+IN.WB.bankura,Bankura,district,,,,IN.WB
+IN.WB.birbhum,Birbhum,district,,,,IN.WB
+IN.WB.dakshin-dinajpur,Dakshin Dinajpur,district,,,,IN.WB
+IN.WB.darjeeling,Darjeeling,district,,,,IN.WB
+IN.WB.haora,Haora,district,,,,IN.WB
+IN.WB.hugli,Hugli,district,,,,IN.WB
+IN.WB.jalpaiguri,Jalpaiguri,district,,,,IN.WB
+IN.WB.koch-bihar,Koch Bihar,district,,,,IN.WB
+IN.WB.kolkata,Kolkata,district,,,,IN.WB
+IN.WB.maldah,Maldah,district,,,,IN.WB
+IN.WB.murshidabad,Murshidabad,district,,,,IN.WB
+IN.WB.nadia,Nadia,district,,,,IN.WB
+IN.WB.north-twenty-four-parganas,North Twenty Four Parganas,district,,,,IN.WB
+IN.WB.paschim-barddhaman,Paschim Barddhaman,district,,,,IN.WB
+IN.WB.paschim-medinipur,Paschim Medinipur,district,,,,IN.WB
+IN.WB.purba-barddhaman,Purba Barddhaman,district,,,,IN.WB
+IN.WB.purba-medinipur,Purba Medinipur,district,,,,IN.WB
+IN.WB.puruliya,Puruliya,district,,,,IN.WB
+IN.WB.south-twenty-four-parganas,South Twenty Four Parganas,district,,,,IN.WB
+IN.WB.uttar-dinajpur,Uttar Dinajpur,district,,,,IN.WB
