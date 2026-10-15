@@ -1,8 +1,17 @@
-# SDG Explorer India
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/header-sdg-dark.svg">
+  <img src="assets/header-sdg-light.svg" alt="SDG Explorer India: official data on all 17 goals, from national series to 704 districts" width="100%">
+</picture>
 
-An explorer for India's progress on all 17 UN Sustainable Development Goals, built only from official sources. A reproducible Python pipeline downloads, checks and cleans the data; a Streamlit dashboard lets you explore it. Every value links back to the official file it came from, and missing data stays missing.
+[![CI](https://github.com/sahiljangra12/sdg-explorer-india/actions/workflows/ci.yml/badge.svg)](https://github.com/sahiljangra12/sdg-explorer-india/actions/workflows/ci.yml)
 
-**Live site: [sahiljangra12.github.io/sdg-explorer-india](https://sahiljangra12.github.io/sdg-explorer-india/)**. It runs in the browser; nothing to install.
+How is India doing on the 17 UN Sustainable Development Goals, and where is data missing? This project brings together four official sources: the UN Global SDG Indicators Database, MoSPI's National Indicator Framework report, NITI Aayog's SDG India Index and the National Family Health Survey district fact sheets. A tested Python pipeline downloads, checks and cleans them, and a website lets anyone explore the result. Every value links back to the official file it came from, and missing data stays missing.
+
+**[Open the explorer →](https://sahiljangra12.github.io/sdg-explorer-india/)** · [Methods](docs/METHODS.md) · [Coverage report](docs/COVERAGE.md) · [Download the data](data/processed/)
+
+<a href="https://sahiljangra12.github.io/sdg-explorer-india/"><img src="assets/cover.jpg" alt="NITI Aayog SDG India Index 2023-24 by State and Union Territory" width="100%"></a>
+
+**At a glance:** 51,700 observations · all 17 goals · 312 indicators · 751 data series · India and 704 districts · 1977–2026
 
 ## The website
 
@@ -125,4 +134,4 @@ Nothing is invented, imputed or interpolated. Values are kept exactly as publish
 - Ministry of Health and Family Welfare / IIPS, [NFHS-5 District Fact Sheets](http://rchiips.org/nfhs/districtfactsheet_NFHS-5.shtml); files obtained from the [SaiSiddhardhaKalla/NFHS](https://github.com/SaiSiddhardhaKalla/NFHS) mirror; cross-checked with [pratapvardhan/NFHS-5](https://github.com/pratapvardhan/NFHS-5) (CC BY 4.0)
 - State boundaries: [DataMeet India community](https://github.com/datameet/maps) (CC BY 4.0), simplified; illustrative, not an authoritative depiction of India's borders
 
-The data remain subject to each publisher's terms of use.
+The code is under the [MIT License](LICENSE). The data remain subject to each publisher's terms of use.
