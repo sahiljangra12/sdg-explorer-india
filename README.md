@@ -17,14 +17,16 @@ How is India doing on the 17 UN Sustainable Development Goals, and where is data
 
 `docs/index.html` is a static page served by GitHub Pages. It reads small JSON files in `docs/data/`, which `python -m sdg_india build` (or `python -m sdg_india site`) writes from `data/processed/`. The page computes nothing new: it shows the processed values, statuses and labels as they are, and a test checks that every national and district value on the site matches `data/processed/observations.csv`.
 
-| Tab | What it shows |
+| Page | What it shows |
 |---|---|
-| Indicators | National series for each goal: trend chart (lines join consecutive years only), breakdowns, definition, original source, footnotes, values as published, CSV download |
+| Home | The 17 goals as colour tiles in the official SDG colours, with how many data series each has and how many of the UN's series have India data |
+| Goal pages (one per goal) | National series for that goal: keyword search, trend chart (lines join consecutive years only), breakdowns, definition, original source, footnotes, values as published, CSV download, previous/next goal |
 | States & UTs | NITI Aayog SDG India Index 2023-24: map and ranking of the 36 States/UTs; India's scores by edition and goal. Labelled as a composite index |
 | Districts | NFHS-5 vs NFHS-4 for 704 districts: spread across India, lowest and highest districts, every district of a State, CSV download |
-| Missing data | UN series with and without India data, a series-by-year grid, MoSPI tables not parsed, district values not read |
-| Goal overview | Series with data per goal and per year |
-| Sources & downloads | Source register, validation report, links to the full tables |
+| Data gaps | UN series with and without India data, a series-by-year grid per goal, MoSPI tables not parsed, district values not read, and coverage across all goals |
+| Sources | Source register, validation report, data rules, links to the full tables |
+
+Each page has its own link (for example `#goal-6`, `#gaps-13`, `#districts`), so a view can be shared directly.
 
 To view it locally: `cd docs && python3 -m http.server 8000`, then open http://localhost:8000.
 
