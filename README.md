@@ -20,9 +20,9 @@ How is India doing on the 17 UN Sustainable Development Goals, and where is data
 | Page | What it shows |
 |---|---|
 | Home | The 17 goals as colour tiles in the official SDG colours, with how many data series each has and how many of the UN's series have India data |
-| Goal pages (one per goal) | National series for that goal: keyword search, trend chart (lines join consecutive years only), breakdowns, definition, original source, footnotes, values as published, CSV download, previous/next goal |
+| Goal pages (one per goal) | Every national series for that goal as a card with India's latest published value and a small trend line. Opening a card shows all values as a table; "Plot over time" draws the trend when at least 3 years have values (lines join consecutive years only). Breakdowns, definition, original source, footnotes, CSV download |
 | States & UTs | NITI Aayog SDG India Index 2023-24: map and ranking of the 36 States/UTs; India's scores by edition and goal. Labelled as a composite index |
-| Districts | NFHS-5 vs NFHS-4 for 704 districts: spread across India, lowest and highest districts, every district of a State, CSV download |
+| Compare districts | 704 districts, 34 NFHS indicators. Filters: State/UT, poverty level (fifths of districts by NITI Aayog's MPI headcount ratio) and Aspirational District status. Spread of the indicator, poverty vs indicator scatter (Spearman rank correlation, flags indicators that are part of the poverty index), box plots by group, and a side-by-side profile of up to four districts against the all-district range |
 | Data gaps | UN series with and without India data, a series-by-year grid per goal, MoSPI tables not parsed, district values not read, and coverage across all goals |
 | Sources | Source register, validation report, data rules, links to the full tables |
 
@@ -54,6 +54,9 @@ Full, automatically generated figures are in [docs/COVERAGE.md](docs/COVERAGE.md
 | **NITI Aayog SDG India Index 2023-24** (composite index) | ✅ Verified, kept separate | 98 published scores: 36 State/UT composite scores, India's composite score for 4 editions (2018–2023-24), and India's 58 goal scores. |
 | **MoSPI NIF Progress Report 2025** (national time series) | ✅ Verified | 1,886 values for 224 of the 277 national indicators in the report's Data Snapshot, all 17 goals. The other 53 are listed with reasons in `data/processed/not_parsed.csv`. |
 | **NFHS-5 District Fact Sheets** (MoHFW / IIPS) | ✅ Verified against an independent digitisation | 43,359 rows: 34 SDG-linked indicators for 704 districts in 34 States/UTs, NFHS-5 (2019-21) and NFHS-4 (2015-16). Goals 2, 3, 4, 5, 6, 7, 16, 17. |
+| **NITI Aayog National MPI 2023, district tables** (district grouping) | ✅ Verified, kept separate | Headcount ratio, intensity and MPI for NFHS-4 and NFHS-5, 709 rows; all 704 NFHS districts matched. Used only to group and filter districts. |
+| **NITI Aayog Aspirational Districts list** (district grouping) | ✅ Loaded | 112 districts; 108 linked to NFHS districts (4 were created after NFHS-5). |
+| **Census 2011 population, area, urban share** | ❌ Not yet | The Census website refuses connections from outside India, so the official tables could not be downloaded. |
 | **State/UT raw indicator values** | ❌ Not yet | The NITI report is a 96-dpi scanned image, not reliable to read by OCR. NFHS-5 State/UT values need the official compendium PDFs (not reachable from the build machine). |
 | **Chandigarh and Lakshadweep districts** | ❌ Missing | Single-district UTs; their fact sheets are not in the copy of the 704 sheets used. |
 
@@ -61,6 +64,7 @@ How the data were verified:
 - **UN data.** The API reported 14,594 records for India. All were received, across 15 complete pages. 1,181 were exact repeats: series filed under several indicators are returned once per indicator. These were merged only after checking that their content was identical. 944 records are the UN's own "NaN = Not Available" markers; they are kept for the missing-data analysis but not counted as observations. A test traces 300 random processed values back to the raw files byte for byte.
 - **MoSPI data.** Tables were parsed only when every row and column could be read unambiguously. Tables with multi-line headers, hidden grouping columns (such as quarters) or garbled layout were skipped and listed rather than guessed. Every one of the 1,303 parsed table rows was then checked by a second, independent method: the period and its values must appear together on the printed page, using pdfplumber's word positions. 1,302 passed; 1 (`1.3.2`, 2023-24 = 54.82) is a word pdfplumber cannot extract, and was confirmed on the rendered page image. Column alignment of multi-column tables with "-" cells was also checked against the rendered page. 23 further tables, with multi-line headers or grouping columns, were read from their drawn gridlines (pdfplumber) instead: 392 values. Their column labels were reviewed on the page images, every row was confirmed against Poppler's text layout, and where both parsers can read a table they agree on all 773 shared rows.
 - **NFHS district data.** The fact sheets were read from the PDF text layer. Each indicator was matched by its name, not only its printed number. This matters because two official sheets (Mahisagar, Wardha) skip a number in their list. Values in brackets (25–49 cases) are kept, with a note. `na` and `*` are kept as "not available". 13 values in 9 sheets, whose numbers were split across lines out of column order, were left out and listed. The result was compared with an independent digitisation of the same fact sheets (pratapvardhan/NFHS-5, CC BY 4.0): 20,409 of 20,413 shared values are identical, and the 4 differences are a column shift in that copy (Dhule), not in this one. **Pending:** the 704 PDFs came from a public GitHub mirror (SaiSiddhardhaKalla/NFHS), because the official IIPS site was not reachable from the build machine. Their file checksums still need comparing with copies downloaded directly from rchiips.org.
+- **NITI Aayog MPI district tables.** Some pages of the report carry an invisible copy of a neighbouring State's table under the printed one (Assam's districts under Bihar's). Text covered by shapes drawn later is removed before reading. Every row must satisfy MPI = headcount ratio × intensity within rounding, and a second reader (Poppler) shows the same six values on one line for every row outside the Bihar page; Bihar's 38 rows, where Poppler mixes in the hidden copy, were checked against the rendered page image. District names were matched within each State by name, then through a reviewed alias list (`data/reference/niti_mpi_district_aliases.csv`); districts that were split or merged are not matched to anything.
 - **NITI scores.** Each score was read from the report's page images (pages 67–68). They were cross-checked against figures the report states in its text (for example State range 57–79; Goal 13 rose from 54 to 67). Two independent readings agreed. The "change since 2020-21" labels were not legible enough at the report's resolution and are not included.
 
 ## The Streamlit dashboard (local)
@@ -89,7 +93,7 @@ python -m sdg_india all              # fetch, then build
 python -m sdg_india report           # print the coverage manifest
 streamlit run app/app.py             # open the dashboard
 python -m sdg_india site             # rewrite the website data in docs/data
-python -m pytest                     # run the 68 tests
+python -m pytest                     # run the tests
 ```
 
 The pipeline:

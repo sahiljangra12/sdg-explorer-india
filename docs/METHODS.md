@@ -58,6 +58,28 @@ Each NFHS-5 District Fact Sheet is a two- or three-page PDF with about 104 numbe
 - **District identifiers** are `<State id>.<district slug>`, for example `IN.UP.lucknow`. District boundaries are not mapped.
 - **No aggregation.** State or national values are never computed from district values; survey weights differ.
 
+## District grouping: NITI Aayog MPI and Aspirational Districts
+
+These two sources describe districts; they are not SDG indicator observations. They are stored in
+`data/processed/district_context.csv` and used only to group and filter districts on the website.
+
+- **MPI 2023 district tables.** For each district: headcount ratio H (% of people multidimensionally
+  poor), intensity A and MPI, for NFHS-4 and NFHS-5, copied as published. Hidden text (an earlier
+  copy of a neighbouring State's table drawn under the printed one) is removed by dropping glyphs that a
+  later-drawn filled shape covers. A row is loaded only if MPI = H × A within 0.0015. Rows are matched to
+  NFHS districts by name within the State, then by a reviewed alias list; districts that were split or
+  merged after NFHS-5 are left unmatched and listed, never given another district's value.
+- **Poverty level** on the website: the 704 districts are split into five equal-sized groups by the
+  NFHS-5 headcount ratio (cuts at the 20th, 40th, 60th and 80th percentiles of districts). The group
+  ranges are shown next to each choice.
+- **Indicators that are part of the MPI.** The MPI is built from NFHS-5 data, including nutrition,
+  maternal health, cooking fuel, sanitation, drinking water and electricity. NFHS indicators that measure
+  one of these are marked, because their link with the headcount ratio is partly built in.
+- **Aspirational Districts.** NITI Aayog's list of 112. Four districts created after NFHS-5 are not linked.
+- **Statistics shown.** Relationships are described with Spearman's rank correlation (needs at least 10
+  districts) and groups with medians and box plots across districts. These describe districts, not people,
+  are unweighted by population, and show association only.
+
 ## Completeness checks on download
 
 - UN SDG API: every page from 1 to `totalPages` must be present, all pages must report the same `totalElements`, and the number of records must equal it. Otherwise the build stops.

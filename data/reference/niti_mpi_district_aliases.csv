@@ -1,0 +1,58 @@
+state_as_published,district_as_published,geo_id,note
+Andhra Pradesh,SPSR Nellore,IN.AP.sri-potti-sriramulu-nellore,abbreviation
+Andhra Pradesh,Visakhapatanam,IN.AP.visakhapatnam,spelling
+Assam,Kamrup Metro,IN.AS.kamrup-metropolitan,abbreviation
+Assam,Marigaon,IN.AS.morigaon,spelling
+Bihar,Purbi Champaran,IN.BR.purba-champaran,spelling
+Chhattisgarh,Kabirdham,IN.CG.kabeerdham,spelling
+Chhattisgarh,Kondagaon,IN.CG.kodagaon,spelling
+Chhattisgarh,Korea,IN.CG.koriya,spelling
+Gujarat,Arvalli,IN.GJ.aravali,spelling
+Gujarat,Chhotaudepur,IN.GJ.chhota-udaipur,spelling
+Gujarat,Dang,IN.GJ.the-dangs,spelling
+Gujarat,Dohad,IN.GJ.dahod,spelling
+Gujarat,Panch Mahals,IN.GJ.panchmahal,spelling
+Haryana,Charki Dadri,IN.HR.charkhi-dadri,spelling
+Haryana,Gurugram,IN.HR.gurgaon,renamed (same district)
+Jharkhand,Koderma,IN.JH.kodarma,spelling
+Jharkhand,Sahebganj,IN.JH.sahibganj,spelling
+Karnataka,Bagalkote,IN.KA.bagalkot,spelling
+Karnataka,Belagavi,IN.KA.belgaum,renamed (same district)
+Karnataka,Chamarajanagara,IN.KA.chamarajanagar,spelling
+Karnataka,Chikkamagaluru,IN.KA.chikmagalur,renamed (same district)
+Karnataka,Davangere,IN.KA.davanagere,spelling
+Karnataka,Mysuru,IN.KA.mysore,renamed (same district)
+Karnataka,Shivamogga,IN.KA.shimoga,renamed (same district)
+Karnataka,Tumakuru,IN.KA.tumkur,renamed (same district)
+Maharashtra,Buldhana,IN.MH.buldana,spelling
+Maharashtra,Gondia,IN.MH.gondiya,spelling
+Maharashtra,Raigad,IN.MH.raigarh,spelling (Raigad district of Maharashtra)
+Odisha,Deogarh,IN.OD.debagarh,spelling
+Odisha,Nabarangpur,IN.OD.nabarangapur,spelling
+Odisha,Sonepur,IN.OD.subarnapur,alternative name (same district)
+Punjab,Ferozepur,IN.PB.firozpur,spelling
+Punjab,Gurdaspur,IN.PB.gurudaspur,spelling
+Rajasthan,Chittorgarh,IN.RJ.chittaurgarh,spelling
+Rajasthan,Dholpur,IN.RJ.dhaulpur,spelling
+Rajasthan,Jalore,IN.RJ.jalor,spelling
+Rajasthan,Jhunjhunu,IN.RJ.jhunjhunun,spelling
+Sikkim,Gangtok,IN.SK.east-district,renamed in 2021 (East District)
+Sikkim,Mangan,IN.SK.north-district,renamed in 2021 (North District)
+Sikkim,Namchi,IN.SK.south-district,renamed in 2021 (South District)
+Sikkim,Gyalshing,IN.SK.west-district,renamed in 2021 (West District)
+Tamil Nadu,Kanchipuram,IN.TN.kancheepuram,spelling
+Tamil Nadu,Villupuram,IN.TN.viluppuram,spelling
+Telangana,Kumuram Bheem Asifabad,IN.TS.komaram-bheem-asifabad,spelling
+Uttar Pradesh,Kasganj,IN.UP.kanshiram-nagar,renamed (same district)
+Uttar Pradesh,Mahrajganj,IN.UP.maharajganj,spelling
+Uttarakhand,Udham Singh Nagar,IN.UK.udam-singh-nagar,spelling
+West Bengal,Howrah,IN.WB.haora,spelling
+West Bengal,North Parganas,IN.WB.north-twenty-four-parganas,published as "North Parganas"
+West Bengal,South Parganas,IN.WB.south-twenty-four-parganas,published as "South Parganas"
+West Bengal,Paschim Bardhaman,IN.WB.paschim-barddhaman,spelling
+West Bengal,Purba Bardhaman,IN.WB.purba-barddhaman,spelling
+Andaman & Nicobar Islands,Nicobars,IN.AN.nicobar,spelling
+Andaman & Nicobar Islands,South Andamans,IN.AN.south-andaman,spelling
+Jammu & Kashmir,Bandipora,IN.JK.bandipore,spelling
+Jammu & Kashmir,Baramulla,IN.JK.baramula,spelling
+Jammu & Kashmir,Shopian,IN.JK.shupiyan,spelling

@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-15T18:19:56+00:00",
+  "built_at": "2026-10-21T11:49:31+00:00",
   "totals": {
     "records": 58658,
     "observations": 51700,
@@ -140,7 +140,7 @@
       "note": "Series linked to several SDG indicators are returned once per indicator; identical copies are merged."
     },
     "MOSPI_NIF_2025": {
-      "status": "loaded",
+      "status": "loaded from verified extract",
       "pdf_created": "2025-06-27",
       "pdf_modified": "2025-06-29",
       "indicators_in_snapshot": 277,
@@ -158,22 +158,34 @@
         "rows_not_confirmed_dropped": 0,
         "rejected": {},
         "not_readable": {}
-      }
+      },
+      "detail": "report PDF not downloaded; using mospi_nif_2025_extract.csv, parsed and verified from the PDF whose SHA-256 is in raw_sha256"
     },
     "NFHS5_DISTRICTS": {
-      "status": "loaded",
-      "fact_sheets": 704,
-      "districts": 704,
-      "states_and_uts": 34,
-      "indicators_mapped": 34,
-      "rows": 43359,
-      "sheets_with_source_numbering_errors_corrected_by_name": 2,
-      "problem_count": 11
+      "status": "loaded from verified extract",
+      "detail": "fact sheets not downloaded",
+      "rows": 43359
     },
     "NITI_SDGII_2023_24": {
       "status": "loaded",
       "rows": 98,
       "verified_rows": 98,
+      "pdf_available": false
+    },
+    "NITI_MPI_2023": {
+      "status": "loaded",
+      "rows_in_report": 709,
+      "matched_districts": 704,
+      "unmatched_rows": 5,
+      "rows_not_read": 3,
+      "checked": "every loaded row satisfies MPI = H x A within rounding",
+      "pdf_available": true
+    },
+    "NITI_ASPIRATIONAL": {
+      "status": "loaded",
+      "listed": 112,
+      "matched_districts": 108,
+      "unmatched": 4,
       "pdf_available": true
     }
   },

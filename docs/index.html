@@ -15,7 +15,7 @@
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --text:"Source Sans 3",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
 }
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-padding-top:80px}
+*{box-sizing:border-box}[hidden]{display:none!important}html{-webkit-text-size-adjust:100%;scroll-padding-top:80px}
 body{margin:0;background:var(--page);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.55}
 a{color:var(--focus);text-underline-offset:2px}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
@@ -158,6 +158,59 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 footer{border-top:1px solid var(--line);background:#fff;padding:26px 0 34px;font-size:15px;color:var(--ink2)}
 footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
 footer p{max-width:70ch}
+
+/* series cards (goal pages) */
+.cardbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;margin:18px 0 12px}
+.cardbar .cap{margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:14px}
+.scard{display:flex;flex-direction:column;text-align:left;font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-top:6px solid var(--gc);border-radius:16px;padding:14px 16px 14px;cursor:pointer;min-height:206px}
+.scard:hover{border-color:var(--ink3);border-top-color:var(--gc)}
+.scard .code{font-size:13.5px;font-weight:700;color:var(--ink3)}
+.scard .t{font-weight:600;font-size:15.5px;line-height:1.32;margin-top:4px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.scard .v{margin-top:auto;padding-top:12px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.scard .v b{font-family:var(--display);font-size:30px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.scard .v small{display:block;font-size:13.5px;color:var(--ink2);margin-top:4px}
+.scard svg{flex:none}
+.scard .foot{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;color:var(--ink3);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.scard.none{border-top-color:#c9cfdb;background:#fafbfc}
+.scard.none .v b{font-size:17px;color:var(--ink3);font-family:var(--text)}
+.more{display:flex;justify-content:center;margin-top:18px}
+
+/* dialog */
+dialog.sheet{border:0;padding:0;border-radius:20px;width:min(1040px,calc(100vw - 24px));max-height:calc(100vh - 32px);box-shadow:0 24px 64px rgba(27,33,64,.32);color:var(--ink)}
+dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
+.sheet .shead{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid var(--line);padding:18px 24px 14px;display:flex;gap:16px;align-items:flex-start;border-top:8px solid var(--gc)}
+.sheet .shead h2{font-size:clamp(20px,2.4vw,26px);line-height:1.22}
+.sheet .x{margin-left:auto;flex:none;font:inherit;font-size:15px;font-weight:700;border:1.5px solid #c9cfdb;background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer}
+.sheet .sbody{padding:18px 24px 26px}
+@media (max-width:640px){.sheet .shead,.sheet .sbody{padding-left:16px;padding-right:16px}}
+.viewseg{margin:6px 0 14px}
+.facts3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:4px 0 16px}
+.facts3 div{background:var(--soft);border-radius:12px;padding:10px 14px}
+.facts3 b{display:block;font-family:var(--display);font-size:24px;line-height:1.15;font-variant-numeric:tabular-nums}
+.facts3 span{font-size:14px;color:var(--ink2)}
+.ptable td.na{color:var(--ink3);font-style:italic}
+
+/* district dashboard */
+.filters{position:sticky;top:64px;z-index:8;background:rgba(245,246,248,.96);backdrop-filter:blur(6px);padding:12px 0 10px;margin-top:10px;border-bottom:1px solid var(--line)}
+@media (max-width:820px){.filters{position:static}}
+.filters .controls{margin:0}
+.fcount{font-size:15px;color:var(--ink2);margin-top:8px}
+.fcount b{color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14.5px;color:var(--ink2);margin:6px 0 4px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend i.sq{border-radius:3px}
+.picks{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px}
+.pick{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--pc);border-radius:999px;padding:4px 6px 4px 12px;font-size:15px;font-weight:600;background:#fff}
+.pick i{width:12px;height:12px;border-radius:50%;background:var(--pc)}
+.pick button{font:inherit;border:0;background:var(--soft);border-radius:999px;width:26px;height:26px;cursor:pointer;color:var(--ink2);font-weight:700}
+.prof{display:grid;grid-template-columns:minmax(180px,300px) 1fr;gap:4px 16px;align-items:center;margin-top:10px}
+.prof .lab{font-size:14.5px;line-height:1.3}
+.prof .lab small{display:block;color:var(--ink3);font-size:12.5px}
+.prof svg{width:100%;height:46px;display:block;overflow:visible}
+.prof .gh{grid-column:1/-1;margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+@media (max-width:640px){.prof{grid-template-columns:1fr}.prof .lab{margin-top:8px}}
+.flag{display:inline-block;font-size:12.5px;font-weight:700;background:#fff0d6;color:#8a5300;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -200,7 +253,7 @@ footer p{max-width:70ch}
       <div class="sectionhead"><h2>Other ways to explore</h2></div>
       <div class="ways">
         <a class="way" href="#states"><div class="mini" id="mini-states" aria-hidden="true"></div><h3>Compare States and UTs</h3><p>NITI Aayog's SDG India Index 2023-24 on a map and as a ranking of all 36 States and Union Territories.</p><span class="go">Open the map</span></a>
-        <a class="way" href="#districts"><div class="mini" id="mini-districts" aria-hidden="true"></div><h3>Look up a district</h3><p>34 health, nutrition and household indicators for 704 districts, comparing NFHS-5 (2019-21) with NFHS-4 (2015-16).</p><span class="go">Find your district</span></a>
+        <a class="way" href="#districts"><div class="mini" id="mini-districts" aria-hidden="true"></div><h3>Compare districts</h3><p>34 health and household indicators for 704 districts, with filters for State, poverty level and Aspirational Districts, and a side-by-side view.</p><span class="go">Compare districts</span></a>
         <a class="way" href="#gaps"><div class="mini" id="mini-gaps" aria-hidden="true"></div><h3>See what is missing</h3><p>Which UN data series have no India values, which years are empty, and which report tables could not be read safely.</p><span class="go">Check the gaps</span></a>
       </div>
 
@@ -231,29 +284,38 @@ footer p{max-width:70ch}
     <div class="wrap">
       <nav class="goalstrip" id="goalstrip" aria-label="All goals"></nav>
       <div class="panel">
-        <h2>Find a data series</h2>
-        <p class="how">A goal has many indicators, and an indicator can have several data series (for example by age group or measure). Search by keyword, or narrow to one source.</p>
+        <h2>Data series for this goal</h2>
+        <p class="how">Each card is one official data series with India's most recent published value. Open a card to see every value as a table, and plot it over time when there are enough years to show a trend.</p>
         <div class="controls">
           <label class="field grow">Search this goal<input type="search" id="ex-q" placeholder="Try: poverty, women, electricity, school" autocomplete="off"></label>
           <div class="field">Source<div class="seg" id="ex-src" role="group" aria-label="Source"><button data-v="" class="on">All</button><button data-v="UN_SDG_API">UN database</button><button data-v="MOSPI_NIF_2025">MoSPI</button></div></div>
+          <div class="field">Sort<div class="seg" id="ex-sort" role="group" aria-label="Sort"><button data-v="code" class="on">By indicator</button><button data-v="years">Most years first</button></div></div>
         </div>
-        <label class="field"><span>Data series <span id="ex-count" style="font-weight:400"></span></span><select id="ex-series"></select></label>
-      </div>
-
-      <div class="panel" id="ex-panel">
-        <div id="ex-tags"></div>
-        <div class="seriestitle" id="ex-title"></div>
-        <div id="ex-sub" class="cap" style="margin-top:2px"></div>
-        <div id="ex-chips-label" class="cap" style="margin-bottom:0"></div>
-        <div class="chips" id="ex-chips"></div>
-        <div id="ex-chart" class="chart"></div>
-        <div id="ex-cap" class="cap"></div>
-        <div class="btnrow"><button class="btn dark" id="ex-dl">Download this series (CSV)</button><a class="btn" id="ex-gaps" href="#gaps">What is missing for this goal</a></div>
-        <details open><summary>About this series</summary><div id="ex-meta"></div></details>
-        <details><summary>Values as published</summary><div class="tablewrap" id="ex-table"></div></details>
+        <div class="cardbar"><p class="cap" id="ex-count"></p><label class="cap" style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" id="ex-empty"> Show series with no India values</label></div>
+        <div class="cards" id="ex-cards"></div>
+        <div class="more"><button class="btn" id="ex-more" hidden>Show more series</button></div>
       </div>
     </div>
   </section>
+
+  <dialog class="sheet" id="sheet" aria-labelledby="sh-title">
+    <div class="shead">
+      <div><div id="sh-tags"></div><h2 id="sh-title"></h2><div class="cap" id="sh-sub" style="margin:4px 0 0"></div></div>
+      <button class="x" id="sh-close">Close</button>
+    </div>
+    <div class="sbody">
+      <div class="facts3" id="sh-facts"></div>
+      <div id="sh-chips-label" class="cap" style="margin-bottom:0"></div>
+      <div class="chips" id="sh-chips"></div>
+      <div class="seg viewseg" id="sh-view" role="group" aria-label="View"><button data-v="table" class="on">Table</button><button data-v="chart">Plot over time</button></div>
+      <div id="sh-chart-note" class="note" hidden></div>
+      <div id="sh-chart" class="chart" hidden></div>
+      <div id="sh-cap" class="cap"></div>
+      <div class="tablewrap ptable" id="sh-table"></div>
+      <div class="btnrow"><button class="btn dark" id="sh-dl">Download this series (CSV)</button></div>
+      <details><summary>About this series</summary><div id="sh-meta"></div></details>
+    </div>
+  </dialog>
 
   <!-- ======================================================= states -->
   <section class="view" id="v-states" aria-labelledby="h-states">
@@ -286,20 +348,69 @@ footer p{max-width:70ch}
   <section class="view" id="v-districts" aria-labelledby="h-districts">
     <div class="wrap">
       <div class="pagehead">
-        <h1 id="h-districts">Districts</h1>
-        <p class="lede">Pick an indicator to see how all 704 districts compare, or pick your State to see every district in it, from NFHS-4 (2015-16) to NFHS-5 (2019-21).</p>
+        <h1 id="h-districts">Compare districts</h1>
+        <p class="lede">704 districts, 34 health and household indicators from NFHS-5 (2019-21) and NFHS-4 (2015-16). Narrow the districts by State, poverty level or programme, then compare them side by side.</p>
       </div>
-      <div class="panel">
+      <div class="filters">
         <div class="controls">
           <label class="field grow">Indicator<select id="di-ind"></select></label>
-          <label class="field" style="flex:0 1 280px">State / UT<select id="di-state"></select></label>
+          <label class="field" style="flex:0 1 230px">State / UT<select id="di-state"></select></label>
+          <label class="field" style="flex:0 1 260px">Poverty level<select id="di-pov"></select></label>
+          <label class="field" style="flex:0 1 220px">Aspirational District<select id="di-asp"><option value="">All districts</option><option value="1">Aspirational only</option><option value="0">Not aspirational</option></select></label>
         </div>
-        <div id="di-rel"></div>
+        <div class="fcount" id="di-count"></div>
+      </div>
+      <div id="di-rel" style="margin-top:14px"></div>
+
+      <div class="panel">
+        <h2>How districts are spread</h2>
+        <p class="how" id="di-spread-how"></p>
         <div id="di-chart" class="chart"></div>
         <div id="di-cap" class="cap"></div>
         <div id="di-extra"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Poverty and this indicator</h2>
+        <p class="how">Each dot is a district. Across: the share of people who are multidimensionally poor (NITI Aayog, NFHS-5). Up: the indicator above. Districts outside your filters are shown in light grey. Click a dot to add that district to the comparison below.</p>
+        <div id="di-mpi-note"></div>
+        <div class="legend" id="di-sc-legend"></div>
+        <div id="di-scatter" class="chart"></div>
+        <div id="di-sc-cap" class="cap"></div>
+      </div>
+
+      <div class="panel">
+        <h2>By group</h2>
+        <p class="how">The indicator for the districts in your filters, grouped by poverty level and by Aspirational District status. The box covers the middle half of districts and the line inside it is the median district; every dot is one district.</p>
+        <div class="seg viewseg" id="di-grp" role="group" aria-label="Group by"><button data-v="pov" class="on">By poverty level</button><button data-v="asp">Aspirational or not</button></div>
+        <div id="di-box" class="chart"></div>
+        <div id="di-box-cap" class="cap"></div>
+      </div>
+
+      <div class="panel" id="di-compare-panel">
+        <h2>Compare districts side by side</h2>
+        <p class="how">Add up to four districts. Each row is one indicator: the grey bar shows where the middle half of all 704 districts lies (with a tick for the median), and the coloured dots show your districts. Hollow dots are the same districts in NFHS-4.</p>
+        <div class="controls">
+          <label class="field grow">Add a district<input type="search" id="cmp-q" list="cmp-list" placeholder="Type a district name" autocomplete="off"><datalist id="cmp-list"></datalist></label>
+          <div class="field"><span>&nbsp;</span><button class="btn" id="cmp-add">Add district</button></div>
+        </div>
+        <div class="picks" id="cmp-picks"></div>
+        <div id="cmp-prof"></div>
+        <details id="cmp-tdet"><summary>Values as published</summary><div class="tablewrap" id="cmp-table" style="max-height:none"></div></details>
         <div class="btnrow"><button class="btn dark" id="di-dl">Download this indicator for all districts (CSV)</button></div>
-        <details><summary>About the district data</summary><p class="how" style="margin-top:8px">National Family Health Survey district fact sheets (Ministry of Health and Family Welfare / IIPS), for 34 indicators with a clear SDG counterpart. District estimates come from a sample survey and have sampling error. Values in brackets are based on 25–49 cases; "na" and "*" mean no estimate was published. Districts formed after 2015-16 have no NFHS-4 value. No State totals are calculated from district values.</p></details>
+      </div>
+
+      <div class="panel">
+        <h2>About the district data</h2>
+        <ul class="rules">
+          <li>Indicators come from the National Family Health Survey district fact sheets (Ministry of Health and Family Welfare / IIPS). District estimates come from a sample survey and have sampling error, so small differences between districts or rounds may not be meaningful.</li>
+          <li>Values in brackets in the fact sheets are based on 25–49 cases; "na" and "*" mean no estimate was published. Districts formed after 2015-16 have no NFHS-4 value.</li>
+          <li>Poverty level is NITI Aayog's district headcount ratio from the National Multidimensional Poverty Index 2023 (NFHS-5 round). Districts are split into five equal-sized groups by that figure; the ranges are shown in the filter.</li>
+          <li>The multidimensional poverty index is itself built from NFHS data, including nutrition, child mortality, schooling, cooking fuel, sanitation, drinking water, electricity, housing, assets, bank accounts and maternal health. For indicators that measure one of these, a strong link with poverty is partly built in; those indicators are marked.</li>
+          <li>Aspirational Districts are the 112 districts on NITI Aayog's list; 4 districts created after NFHS-5 cannot be linked to fact sheet data.</li>
+          <li>Group summaries are medians across districts, not population totals. Districts differ greatly in population, so they are not State or national figures.</li>
+          <li>Population, area and urban share (Census 2011) are not included yet: the Census website could not be reached to download the official tables.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -321,6 +432,7 @@ footer p{max-width:70ch}
         <details id="mi-un"></details>
         <details id="mi-mospi"></details>
         <details id="mi-nfhs"></details>
+        <details id="mi-ctx"></details>
       </div>
       <div class="panel">
         <h2>All goals at a glance</h2>
@@ -383,12 +495,15 @@ const INK = "#1b2140";
 // text colour on each goal colour: white where it reaches 3:1 for large bold text, otherwise ink
 function lum(hex) { const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; }
 const GT = GC.map(c => c && (1.05 / (lum(c) + 0.05) >= 3 ? "#ffffff" : INK));
+const darken = (hex, f) => { const n = parseInt(hex.slice(1), 16); return "#" + [n >> 16, (n >> 8) & 255, n & 255].map(v => Math.round(v * f).toString(16).padStart(2, "0")).join(""); };
+const ACC = GC.map((c, i) => c && (GT[i] === INK ? darken(c, lum(c) > 0.45 ? 0.62 : 0.78) : c));
 const tone = (hex, a) => { const n = parseInt(hex.slice(1), 16); const m = v => Math.round(v + (255 - v) * (1 - a)); return `rgb(${m(n >> 16)},${m((n >> 8) & 255)},${m(n & 255)})`; };
-const LINE_COLORS = g => [GC[g], INK, "#7a8099", ...[17, 10, 14, 11, 3, 8].filter(x => x !== g).map(x => GC[x])].slice(0, 8);
+const LINE_COLORS = g => [ACC[g], INK, "#7a8099", ...[17, 10, 14, 11, 3, 8].filter(x => x !== g).map(x => GC[x])].slice(0, 8);
 const SEQ = [[0, "#f3f0c2"], [0.2, "#c7e6a3"], [0.4, "#80c995"], [0.6, "#3ea59a"], [0.8, "#1f748b"], [1, "#19486a"]];
 const SEQ_CSS = "linear-gradient(90deg," + SEQ.map(([p, c]) => `${c} ${p * 100}%`).join(",") + ")";
 const GOAL_NAMES = {};
-const SRC_NAME = {UN_SDG_API: "UN SDG database", MOSPI_NIF_2025: "MoSPI NIF report 2025", NFHS5_DISTRICTS: "NFHS district fact sheets", NITI_SDGII_2023_24: "NITI Aayog SDG India Index"};
+const SRC_NAME = {UN_SDG_API: "UN SDG database", MOSPI_NIF_2025: "MoSPI NIF report 2025", NFHS5_DISTRICTS: "NFHS district fact sheets", NITI_SDGII_2023_24: "NITI Aayog SDG India Index",
+  NITI_MPI_2023: "NITI Aayog National MPI 2023", NITI_ASPIRATIONAL: "NITI Aayog Aspirational Districts"};
 const FONT = "'Source Sans 3',-apple-system,Segoe UI,Helvetica,Arial,sans-serif";
 const AX = {gridcolor: "#e9ecf2", linecolor: "#c9cfdb", tickcolor: "#c9cfdb", zeroline: false};
 const LAYOUT = {paper_bgcolor: "#ffffff", plot_bgcolor: "#ffffff", font: {family: FONT, size: 14, color: INK},
@@ -516,9 +631,37 @@ function seqColor(x) {
   return SEQ[SEQ.length - 1][1];
 }
 
-// ------------------------------------------------------------------ goal pages (national indicators)
-const EX = {g: null, goal: null, series: null, picked: new Map(), src: ""};
+// ------------------------------------------------------------------ goal pages: series cards and the series sheet
+const MIN_YEARS = 3; // fewer distinct years than this: a table is shown, not a trend chart
+const PAGE = 24;
+const EX = {g: null, goal: null, src: "", sort: "code", shown: PAGE, series: null, picked: new Map(), view: "table"};
 let exWired = false;
+const SRC_SHORT = {UN_SDG_API: "UN database", MOSPI_NIF_2025: "MoSPI report"};
+const numPts = gr => gr.pts.filter(p => p[4] === "numeric");
+const headGroup = s => s.groups.find(g => g.headline && numPts(g).length) || s.groups.find(g => numPts(g).length) || s.groups[0];
+const yearsOf = s => new Set(s.groups.flatMap(g => numPts(g).map(p => p[0])));
+function latestOf(s) {
+  const gr = headGroup(s); if (!gr) return null;
+  const pts = numPts(gr); if (!pts.length) return null;
+  const p = pts.reduce((a, b) => (b[0] > a[0] || (b[0] === a[0] && String(b[1]) > String(a[1]))) ? b : a);
+  return {p, label: gr.label};
+}
+function spark(s, col) {
+  // tiny trend of the headline breakdown; segments join consecutive years only (a gap breaks the line)
+  const gr = headGroup(s); if (!gr) return "";
+  const by = new Map(); numPts(gr).forEach(p => by.set(p[0], p[2]));
+  const ys = [...by.keys()].sort((a, b) => a - b);
+  if (ys.length < MIN_YEARS) return "";
+  const v = ys.map(y => by.get(y)), lo = Math.min(...v), hi = Math.max(...v), W = 88, H = 34;
+  const X = y => 3 + (W - 6) * (y - ys[0]) / ((ys[ys.length - 1] - ys[0]) || 1), Y = x => hi === lo ? H / 2 : H - 3 - (H - 6) * (x - lo) / (hi - lo);
+  let d = "";
+  ys.forEach((y, i) => { d += (i && y - ys[i - 1] === 1 ? "L" : "M") + X(y).toFixed(1) + "," + Y(by.get(y)).toFixed(1); });
+  const last = ys[ys.length - 1];
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><path d="${d}" fill="none" stroke="${col}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>` +
+    ys.filter((y, i) => (i === 0 || y - ys[i - 1] > 1) && (i === ys.length - 1 || ys[i + 1] - y > 1)).map(y => `<circle cx="${X(y)}" cy="${Y(by.get(y))}" r="2" fill="${col}"/>`).join("") +
+    `<circle cx="${X(last)}" cy="${Y(by.get(last))}" r="3.4" fill="${col}"/></svg>`;
+}
+
 async function showGoal(g) {
   const x = S.goals[g - 1], root = document.documentElement.style;
   root.setProperty("--gc", GC[g]); root.setProperty("--gt", GT[g]);
@@ -528,106 +671,152 @@ async function showGoal(g) {
   $("g-next").href = `#goal-${g === 17 ? 1 : g + 1}`; $("g-next").textContent = `Goal ${g === 17 ? 1 : g + 1}`;
   $("g-prev").setAttribute("aria-label", "Previous goal"); $("g-next").setAttribute("aria-label", "Next goal");
   $("goalstrip").querySelectorAll("a").forEach((a, i) => a.classList.toggle("on", i + 1 === g));
-  $("ex-gaps").href = `#gaps-${g}`;
   document.querySelector('#menu a[data-v="goal"]').href = `#goal-${g}`;
   if (!exWired) {
     exWired = true;
-    $("ex-q").oninput = fillSeries; $("ex-series").onchange = pickSeries;
-    $("ex-src").onclick = e => { const b = e.target.closest("button"); if (!b) return; EX.src = b.dataset.v; $("ex-src").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); fillSeries(); };
-    $("ex-dl").onclick = () => {
-      const s = EX.series; if (!s) return;
-      const rows = []; s.groups.forEach(gr => gr.pts.forEach(p => rows.push([s.code, s.source, s.indicators.join(" "), gr.label, p[0], p[1], p[3], p[4], s.unit, p[5], p[6]])));
-      downloadCSV(`sdg_india_${s.code}.csv`, ["series_code", "source", "indicator", "breakdown", "year", "time_period", "value_as_published", "status", "unit", "lower_bound", "upper_bound"], rows);
-    };
+    $("ex-q").oninput = () => { EX.shown = PAGE; renderCards(); };
+    $("ex-empty").onchange = () => { EX.shown = PAGE; renderCards(); };
+    const seg = (id, key) => $(id).onclick = e => { const b = e.target.closest("button"); if (!b) return; EX[key] = b.dataset.v; $(id).querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); EX.shown = PAGE; renderCards(); };
+    seg("ex-src", "src"); seg("ex-sort", "sort");
+    $("ex-more").onclick = () => { EX.shown += PAGE; renderCards(); };
+    $("ex-cards").onclick = e => { const c = e.target.closest(".scard"); if (c) openSeries(EX.goal.series[+c.dataset.i]); };
+    wireSheet();
   }
   if (EX.g === g) return;
-  EX.g = g; $("ex-q").value = "";
-  message("ex-chart", '<div class="loading">Loading this goal…</div>');
+  EX.g = g; $("ex-q").value = ""; EX.shown = PAGE;
+  $("ex-cards").innerHTML = '<div class="loading">Loading this goal…</div>';
   EX.goal = await getJSON(`goal_${pad(g)}.json`);
-  fillSeries();
+  renderCards();
 }
-function fillSeries() {
-  const q = $("ex-q").value.trim().toLowerCase();
-  const all = EX.goal.series.filter(s => !EX.src || s.source === EX.src);
-  // series with values first, then those without
-  const list = all.filter(s => !q || (s.desc + " " + s.code + " " + s.indicators.join(" ")).toLowerCase().includes(q)).sort((a, b) => (b.n > 0) - (a.n > 0));
-  $("ex-count").textContent = `(${list.length} of ${all.length})`;
-  const opt = s => `<option value="${esc(s.source + "|" + s.code)}">${esc(`${s.indicators.join(", ")}  ${s.desc}${s.source === "MOSPI_NIF_2025" ? " (MoSPI)" : ""}`)}</option>`;
-  const withV = list.filter(s => s.n), noV = list.filter(s => !s.n);
-  $("ex-series").innerHTML = (withV.length ? `<optgroup label="With values for India">${withV.map(opt).join("")}</optgroup>` : "") +
-    (noV.length ? `<optgroup label="No values for India">${noV.map(opt).join("")}</optgroup>` : "");
+function renderCards() {
+  const q = $("ex-q").value.trim().toLowerCase(), showEmpty = $("ex-empty").checked;
+  const all = EX.goal.series.map((s, i) => ({s, i})).filter(({s}) => !EX.src || s.source === EX.src);
+  const match = all.filter(({s}) => !q || (s.desc + " " + s.code + " " + s.indicators.join(" ")).toLowerCase().includes(q));
+  const withV = match.filter(({s}) => s.n > 0), noV = match.filter(({s}) => !s.n);
+  let list = showEmpty ? [...withV, ...noV] : withV;
+  if (EX.sort === "years") list = [...list].sort((a, b) => yearsOf(b.s).size - yearsOf(a.s).size);
+  $("ex-count").textContent = `${withV.length} series with India values` + (noV.length ? `, ${noV.length} without` : "") + (q ? ` matching "${$("ex-q").value.trim()}"` : "") + ".";
   if (!list.length) {
-    EX.series = null; message("ex-chart", `<div class="empty">No series match "${esc(q)}". Try a shorter word, or choose All sources.</div>`);
-    ["ex-meta", "ex-table", "ex-chips", "ex-tags", "ex-title", "ex-sub"].forEach(id => $(id).innerHTML = ""); $("ex-cap").textContent = ""; $("ex-chips-label").textContent = ""; return;
+    $("ex-cards").innerHTML = `<div class="empty">${q ? `No series match "${esc($("ex-q").value.trim())}". Try a shorter word, or choose All sources.` : "No series with India values for this source. Tick “Show series with no India values” to list the others."}</div>`;
+    $("ex-more").hidden = true; return;
   }
-  pickSeries();
+  const col = ACC[EX.g];
+  $("ex-cards").innerHTML = list.slice(0, EX.shown).map(({s, i}) => {
+    const L = latestOf(s), yrs = yearsOf(s).size;
+    if (!L) return `<button class="scard none" data-i="${i}"><span class="code">${esc(s.indicators.join(", "))} · ${esc(SRC_SHORT[s.source] || s.source)}</span><span class="t">${esc(s.desc)}</span>` +
+      `<span class="v"><b>No values for India</b></span><span class="foot"><span>${s.na ? s.na + " entries marked not available" : "Nothing published"}</span></span></button>`;
+    const sub = [s.unit, L.p[1], L.label !== "Total" ? L.label : ""].filter(Boolean).join(" · ");
+    return `<button class="scard" data-i="${i}"><span class="code">${esc(s.indicators.join(", "))} · ${esc(SRC_SHORT[s.source] || s.source)}</span><span class="t">${esc(s.desc)}</span>` +
+      `<span class="v"><span><b>${esc(L.p[3])}</b><small>${esc(sub)}</small></span>${spark(s, col)}</span>` +
+      `<span class="foot"><span>${yrs} ${yrs === 1 ? "year" : "years"} with values</span><span>${s.first === s.last ? s.first : s.first + "–" + s.last}</span></span></button>`;
+  }).join("");
+  $("ex-more").hidden = list.length <= EX.shown;
+  $("ex-more").textContent = `Show more series (${list.length - EX.shown} more)`;
 }
-function pickSeries() {
-  const [src, code] = $("ex-series").value.split("|");
-  EX.series = EX.goal.series.find(s => s.source === src && s.code === code);
-  EX.picked = new Map();
-  const groups = EX.series.groups;
-  const start = groups.filter(g => g.headline).slice(0, 8);
-  (start.length ? start : groups.slice(0, 1)).forEach((g, i) => EX.picked.set(g.label, i));
-  drawChips(); drawSeries();
+
+// ---- the series sheet (dialog)
+function wireSheet() {
+  const dlg = $("sheet");
+  $("sh-close").onclick = () => dlg.close();
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("close", () => Plotly.purge($("sh-chart")));
+  $("sh-view").onclick = e => { const b = e.target.closest("button"); if (!b || b.disabled) return; EX.view = b.dataset.v; drawSheet(); };
+  $("sh-dl").onclick = () => {
+    const s = EX.series; if (!s) return;
+    const rows = []; s.groups.forEach(gr => gr.pts.forEach(p => rows.push([s.code, s.source, s.indicators.join(" "), gr.label, p[0], p[1], p[3], p[4], s.unit, p[5], p[6]])));
+    downloadCSV(`sdg_india_${s.code}.csv`, ["series_code", "source", "indicator", "breakdown", "year", "time_period", "value_as_published", "status", "unit", "lower_bound", "upper_bound"], rows);
+  };
 }
+function openSeries(s) {
+  EX.series = s; EX.picked = new Map(); EX.view = "table";
+  const start = s.groups.filter(g => g.headline).slice(0, 8);
+  (start.length ? start : s.groups.slice(0, 1)).forEach((g, i) => EX.picked.set(g.label, i));
+  const isM = s.source === "MOSPI_NIF_2025";
+  $("sh-tags").innerHTML = `<span class="tag ok">${isM ? "Verified extract" : "Official API"}</span><span class="tag">${esc(SRC_NAME[s.source] || s.source)}</span><span class="tag">Indicator ${esc(s.indicators.join(", "))}</span>`;
+  $("sh-title").textContent = s.desc;
+  $("sh-sub").textContent = (s.unit ? `Unit: ${s.unit}. ` : "") + (s.n ? `Published values for ${s.first === s.last ? s.first : s.first + "–" + s.last}.` : "No values for India have been published in this series.");
+  const L = latestOf(s), yrs = yearsOf(s);
+  const first = (() => { const gr = headGroup(s); const p = gr ? numPts(gr) : []; return p.length ? p.reduce((a, b) => b[0] < a[0] ? b : a) : null; })();
+  $("sh-facts").innerHTML = [
+    L ? [L.p[3], `Latest value (${L.p[1]}${L.label !== "Total" ? ", " + L.label : ""})`, s.unit] : ["None", "Latest value"],
+    first && L && first[0] !== L.p[0] ? [first[3], `First published value (${first[1]})`, s.unit] : null,
+    [yrs.size, yrs.size === 1 ? "year with a value" : "years with values"],
+    [s.groups.length, s.groups.length === 1 ? "breakdown" : "breakdowns (for example by sex or age)"],
+  ].filter(Boolean).map(([v, l, u]) => `<div><b>${esc(String(v).trim())}</b>${u ? `<span style="display:block;font-weight:600">${esc(u)}</span>` : ""}<span>${esc(l)}</span></div>`).join("");
+  drawMeta(s);
+  const dlg = $("sheet"); if (!dlg.open) dlg.showModal();
+  dlg.scrollTop = 0; drawChips(); drawSheet();
+}
+function pickedYears() { return new Set(EX.series.groups.filter(g => EX.picked.has(g.label)).flatMap(g => numPts(g).map(p => p[0]))).size; }
 function drawChips() {
   const s = EX.series, full = EX.picked.size >= 8, cols = LINE_COLORS(EX.g);
-  $("ex-chips-label").textContent = s.groups.length > 1 ? `Breakdowns: ${EX.picked.size} of ${s.groups.length} shown. Tap to add or remove (up to 8).` : "";
-  $("ex-chips").innerHTML = s.groups.length > 1 ? s.groups.map((g, i) => {
+  $("sh-chips-label").textContent = s.groups.length > 1 ? `Breakdowns: ${EX.picked.size} of ${s.groups.length} shown. Tap to add or remove (up to 8).` : "";
+  $("sh-chips").innerHTML = s.groups.length > 1 ? s.groups.map((g, i) => {
     const on = EX.picked.has(g.label), col = on ? cols[EX.picked.get(g.label)] : "transparent";
     return `<button class="chip ${on ? "on" : ""}" data-i="${i}" aria-pressed="${on}" ${!on && full ? "disabled" : ""}><span class="dot" style="background:${col};border-color:${on ? col : "#c9cfdb"}"></span>${esc(g.label)}</button>`;
   }).join("") : "";
-  $("ex-chips").querySelectorAll("button").forEach(b => b.onclick = () => {
+  $("sh-chips").querySelectorAll("button").forEach(b => b.onclick = () => {
     const g = s.groups[+b.dataset.i];
     if (EX.picked.has(g.label)) { if (EX.picked.size > 1) EX.picked.delete(g.label); }
     else { const used = new Set(EX.picked.values()); let slot = 0; while (used.has(slot)) slot++; if (slot < 8) EX.picked.set(g.label, slot); }
-    drawChips(); drawSeries();
+    drawChips(); drawSheet();
   });
 }
 function lineXY(pts) {
   // a line joins consecutive years only; a gap in the published years breaks the line
   const xs = [], ys = [], txt = [], up = [], down = [];
   let prev = null;
-  pts.filter(p => p[4] === "numeric").forEach(p => {
+  [...pts].filter(p => p[4] === "numeric").sort((a, b) => a[0] - b[0]).forEach(p => {
     if (prev != null && p[0] - prev > 1) { xs.push(null); ys.push(null); txt.push(null); up.push(null); down.push(null); }
     xs.push(p[0]); ys.push(p[2]); txt.push(p[1]); prev = p[0];
     up.push(p[6] != null ? p[6] - p[2] : null); down.push(p[5] != null ? p[2] - p[5] : null);
   });
   return [xs, ys, txt, up, down];
 }
-function drawSeries() {
-  const s = EX.series, traces = [], cols = LINE_COLORS(EX.g);
-  const isM = s.source === "MOSPI_NIF_2025";
-  $("ex-tags").innerHTML = `<span class="tag ok">${isM ? "Verified extract" : "Official API"}</span><span class="tag">${esc(SRC_NAME[s.source] || s.source)}</span><span class="tag">Indicator ${esc(s.indicators.join(", "))}</span>`;
-  $("ex-title").textContent = s.desc;
-  $("ex-sub").textContent = (s.unit ? `Unit: ${s.unit}. ` : "") + (s.n ? `Values for ${s.first}–${s.last}.` : "No values for India have been published in this series.");
-  const shown = s.groups.filter(g => EX.picked.has(g.label));
-  shown.forEach(g => {
-    const col = cols[EX.picked.get(g.label)];
-    const [xs, ys, txt, up, down] = lineXY(g.pts);
-    const hasCI = up.some(v => v != null) || down.some(v => v != null);
-    traces.push({x: xs, y: ys, text: txt, type: "scatter", mode: "lines+markers", name: g.label, connectgaps: false,
-      line: {color: col, width: 3, shape: "linear"}, marker: {color: col, size: 9, line: {color: "#ffffff", width: 2}},
-      hovertemplate: `%{text}: <b>%{y}</b> ${esc(s.unit)}<extra>${esc(g.label)}</extra>`,
-      error_y: hasCI ? {type: "data", symmetric: false, array: up, arrayminus: down, color: col, thickness: 1.2, width: 3} : undefined});
-  });
-  // a soft area under a single line makes the trend easier to read
-  if (traces.length === 1) Object.assign(traces[0], {fill: "tozeroy", fillcolor: tone(cols[0], 0.12)});
-  const nNum = shown.reduce((a, g) => a + g.pts.filter(p => p[4] === "numeric").length, 0);
-  if (!nNum) message("ex-chart", '<div class="empty">No numbers to chart for these breakdowns. The publisher marks them as not available or publishes them as text; see "Values as published" below.</div>');
-  else draw("ex-chart", traces, lay({height: 420, showlegend: shown.length > 1, legend: {orientation: "h", y: -0.2},
-    xaxis: {title: AXT("Observation year"), tickformat: "d"}, yaxis: {title: AXT(s.unit || ""), rangemode: "tozero"}, hovermode: "closest"}));
+function drawSheet() {
+  const s = EX.series, cols = LINE_COLORS(EX.g), shown = s.groups.filter(g => EX.picked.has(g.label));
+  const ny = pickedYears(), canPlot = ny >= MIN_YEARS;
+  const cb = $("sh-view").querySelector('[data-v="chart"]');
+  cb.disabled = !canPlot; cb.title = canPlot ? "" : `Needs at least ${MIN_YEARS} years with values`;
+  if (!canPlot) EX.view = "table";
+  $("sh-view").querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.v === EX.view));
+  const note = $("sh-chart-note");
+  note.hidden = canPlot; note.textContent = canPlot ? "" : `${ny === 0 ? "No year has" : ny === 1 ? "Only one year has" : "Only " + ny + " years have"} a published number for the selected breakdowns, which is too few to show a trend, so the values are shown as a table.`;
+  const chart = $("sh-chart");
+  chart.hidden = EX.view !== "chart";
+  const nNum = shown.reduce((a, g) => a + numPts(g).length, 0);
   const nNA = shown.reduce((a, g) => a + g.pts.filter(p => p[4] === "not_available").length, 0);
   const nTxt = shown.reduce((a, g) => a + g.pts.filter(p => p[4] === "text").length, 0);
-  $("ex-cap").textContent = (nNum ? `${nNum} published values shown. Lines join consecutive years only; a break means nothing was published for the years in between.` : "") +
-    (nNA ? ` ${nNA} entries are marked "not available" by the publisher.` : "") + (nTxt ? ` ${nTxt} values are published as text and are listed in the table, not plotted.` : "") +
-    (s.groups.some(g => g.pts.some(p => p[5] != null)) ? " Vertical bars show published lower and upper bounds." : "");
-  const rows = [
-    ["Source", esc(SRC_NAME[s.source] || s.source)],
-    ["Series code", esc(s.code)],
-    ["SDG indicator", esc(s.indicators.join(", ")) + (s.indicator_description ? ": " + esc(s.indicator_description) : "") + (isM ? " <span class='cap'>(MoSPI national NIF code; not the same as the UN global indicator)</span>" : "")],
-  ];
+  if (EX.view === "chart") {
+    const traces = shown.map(g => {
+      const col = cols[EX.picked.get(g.label)], [xs, ys, txt, up, down] = lineXY(g.pts);
+      const hasCI = up.some(v => v != null) || down.some(v => v != null);
+      return {x: xs, y: ys, text: txt, type: "scatter", mode: "lines+markers", name: g.label, connectgaps: false,
+        line: {color: col, width: 3}, marker: {color: col, size: 9, line: {color: "#ffffff", width: 2}},
+        hovertemplate: `%{text}: <b>%{y}</b> ${esc(s.unit)}<extra>${esc(g.label)}</extra>`,
+        error_y: hasCI ? {type: "data", symmetric: false, array: up, arrayminus: down, color: col, thickness: 1.2, width: 3} : undefined};
+    });
+    const allV = shown.flatMap(g => numPts(g).map(p => p[2])), nonneg = allV.every(v => v >= 0);
+    draw("sh-chart", traces, lay({height: 420, showlegend: true, legend: {orientation: "h", y: 1.02, yanchor: "bottom", x: 0, font: {size: 13.5}},
+      margin: {l: 70, r: 18, t: 40, b: 54},
+      xaxis: {title: AXT("Observation year"), tickformat: "d", dtick: (Math.max(...shown.flatMap(g => numPts(g).map(p => p[0]))) - Math.min(...shown.flatMap(g => numPts(g).map(p => p[0])))) > 12 ? undefined : 1},
+      yaxis: {title: AXT(s.unit || "Value as published"), rangemode: nonneg ? "tozero" : "normal"}, hovermode: "closest"}));
+  } else Plotly.purge(chart);
+  $("sh-cap").textContent = (EX.view === "chart" ? "Lines join consecutive years only; a break means nothing was published for the years in between. " +
+    (s.groups.some(g => g.pts.some(p => p[5] != null)) ? "Vertical bars show the published lower and upper bounds. " : "") : "") +
+    `${nNum} published values` + (nNA ? `, ${nNA} marked "not available" by the publisher` : "") + (nTxt ? `, ${nTxt} published as text` : "") + ".";
+  // table: one row per period, one column per selected breakdown, values exactly as published
+  const periods = new Map();
+  shown.forEach(g => g.pts.forEach(p => { const k = p[0] + "|" + p[1]; if (!periods.has(k)) periods.set(k, {y: p[0], label: p[1], cells: {}}); periods.get(k).cells[g.label] = p; }));
+  const rows = [...periods.values()].sort((a, b) => b.y - a.y || String(b.label).localeCompare(String(a.label)));
+  const cell = p => !p ? `<td class="num na">—</td>` : p[4] === "not_available" ? `<td class="num na">not available</td>` : `<td class="num">${esc(p[3])}${p[4] === "text" ? ' <span class="cap">(text)</span>' : ""}${p[5] != null ? `<br><span class="cap">${esc(fmt(p[5]))} to ${esc(fmt(p[6]))}</span>` : ""}</td>`;
+  $("sh-table").innerHTML = `<table><thead><tr><th>Period</th>${shown.map(g => `<th class="num">${esc(g.label)}${s.unit ? `<br><span style="font-weight:400">${esc(s.unit)}</span>` : ""}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map(r => `<tr><td>${esc(r.label)}</td>${shown.map(g => cell(r.cells[g.label])).join("")}</tr>`).join("") + "</tbody></table>";
+}
+function drawMeta(s) {
+  const isM = s.source === "MOSPI_NIF_2025";
+  const rows = [["Source", esc(SRC_NAME[s.source] || s.source)], ["Series code", esc(s.code)],
+    ["SDG indicator", esc(s.indicators.join(", ")) + (s.indicator_description ? ": " + esc(s.indicator_description) : "") + (isM ? " <span class='cap'>(MoSPI national NIF code; not the same as the UN global indicator)</span>" : "")]];
   if (s.target_description) rows.push(["Target", esc(s.target_description)]);
   if (s.unit) rows.push(["Unit", esc(s.unit) + (s.unit_multiplier && s.unit_multiplier !== "0" ? ` (multiplier ${esc(s.unit_multiplier)})` : "")]);
   rows.push(["Years with values", s.n ? `${s.first}–${s.last} (${s.n} values${s.na ? `, ${s.na} not available` : ""})` : "None"]);
@@ -638,12 +827,8 @@ function drawSeries() {
   rows.push(["Links", s.urls.map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">${isM ? "Report page" : "API request"}${s.urls.length > 1 ? " " + (i + 1) : ""}</a>`).join(", ") +
     (s.metadata_url ? `, <a href="${esc(s.metadata_url)}" target="_blank" rel="noopener">UN metadata</a>` : "")]);
   let html = `<dl class="meta">${rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
-  if (s.footnotes.length) html += `<details><summary>Footnotes (${s.footnotes.length})</summary><ul class="rules">${s.footnotes.map(f => `<li>${esc(f)}</li>`).join("")}</ul></details>`;
-  $("ex-meta").innerHTML = html;
-  const trows = [];
-  shown.forEach(g => g.pts.forEach(p => trows.push([p[1], g.label, p[3], p[4] === "numeric" ? "" : p[4] === "text" ? "published as text" : "not available"])));
-  trows.sort((a, b) => String(a[0]).localeCompare(String(b[0])) || a[1].localeCompare(b[1]));
-  $("ex-table").innerHTML = table([{label: "Period"}, {label: "Breakdown"}, {label: "Value as published", num: true}, {label: "Note"}], trows);
+  if (s.footnotes.length) html += `<h3 style="margin-top:12px;font-size:16px">Footnotes</h3><ul class="rules">${s.footnotes.map(f => `<li>${esc(f)}</li>`).join("")}</ul>`;
+  $("sh-meta").innerHTML = html;
 }
 
 // ------------------------------------------------------------------ states (composite index)
@@ -676,65 +861,211 @@ async function initStates() {
   $("st-goals").innerHTML = html + "</tbody></table>";
 }
 
-// ------------------------------------------------------------------ districts
-const DI = {};
+// ------------------------------------------------------------------ districts: filters, spread, poverty link, groups, side-by-side
+const DI = {D: null, sel: [], grp: "pov", bands: null};
+const PCOL = ["#2b59c3", "#d1495b", "#00968f", "#c98a0b"];
+// NFHS indicators that measure an ingredient of NITI Aayog's MPI (nutrition, maternal health, cooking fuel,
+// sanitation, drinking water, electricity): their link with the poverty headcount is partly built in
+const MPI_PARTS = new Set(["NFHS_D007", "NFHS_D008", "NFHS_D009", "NFHS_D010", "NFHS_D033", "NFHS_D045", "NFHS_D073", "NFHS_D076", "NFHS_D078"]);
+const BAND_NAMES = ["Least poor fifth", "Second fifth", "Middle fifth", "Fourth fifth", "Poorest fifth"];
+const BAND_COLS = ["#bfe3c0", "#8fcf9a", "#4fa98c", "#2a7c86", "#19486a"];
+
+function quantileBands(vals) {
+  // five equal-sized groups of districts by MPI headcount; ties at a cut stay together in the higher group
+  const v = vals.filter(x => x != null).sort((a, b) => a - b), n = v.length;
+  const cuts = [1, 2, 3, 4].map(k => v[Math.floor(k * n / 5)]);
+  const band = x => x == null ? null : cuts.filter(c => x >= c).length;
+  const ranges = [0, 1, 2, 3, 4].map(b => { const m = v.filter(x => band(x) === b); return [m[0], m[m.length - 1], m.length]; });
+  return {band, ranges};
+}
+function spearman(x, y) {
+  const rank = a => { const o = a.map((v, i) => [v, i]).sort((p, q) => p[0] - q[0]), r = Array(a.length); let i = 0;
+    while (i < o.length) { let j = i; while (j + 1 < o.length && o[j + 1][0] === o[i][0]) j++; const avg = (i + j) / 2 + 1; for (let k = i; k <= j; k++) r[o[k][1]] = avg; i = j + 1; } return r; };
+  const rx = rank(x), ry = rank(y), n = x.length, mx = rx.reduce((a, b) => a + b) / n, my = ry.reduce((a, b) => a + b) / n;
+  let sxy = 0, sxx = 0, syy = 0; for (let i = 0; i < n; i++) { sxy += (rx[i] - mx) * (ry[i] - my); sxx += (rx[i] - mx) ** 2; syy += (ry[i] - my) ** 2; }
+  return sxy / Math.sqrt(sxx * syy);
+}
+const median = a => { const s = [...a].sort((p, q) => p - q), n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : null; };
+const quant = (s, q) => { const pos = (s.length - 1) * q, lo = Math.floor(pos); return s[lo] + (s[Math.min(lo + 1, s.length - 1)] - s[lo]) * (pos - lo); };
+
 async function initDistricts() {
   message("di-chart", '<div class="loading">Loading 704 districts…</div>');
   const D = await getJSON("districts.json"); DI.D = D;
+  const C = D.context || {};
+  DI.bands = quantileBands(C.mpi5 || []);
   const byGoal = {};
   D.series.forEach((s, i) => (byGoal[s.goal] = byGoal[s.goal] || []).push([s, i]));
   $("di-ind").innerHTML = Object.keys(byGoal).sort((a, b) => a - b).map(g => `<optgroup label="Goal ${g}: ${esc(GOAL_NAMES[g])}">${byGoal[g].map(([s, i]) => `<option value="${i}">${esc(s.label)}</option>`).join("")}</optgroup>`).join("");
   const stunted = D.series.findIndex(s => s.code === "NFHS_D073"); if (stunted >= 0) $("di-ind").value = stunted;
   $("di-state").innerHTML = '<option value="">All India</option>' + Object.entries(D.states).sort((a, b) => a[1].localeCompare(b[1])).map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join("");
-  $("di-ind").onchange = drawDistricts; $("di-state").onchange = drawDistricts;
+  $("di-pov").innerHTML = '<option value="">All poverty levels</option>' + DI.bands.ranges.map(([lo, hi, n], b) =>
+    `<option value="${b}">${BAND_NAMES[b]}: ${lo.toFixed(1)}–${hi.toFixed(1)}% poor (${n})</option>`).join("");
+  $("cmp-list").innerHTML = D.districts.map(([, name, st]) => `<option value="${esc(name + ", " + D.states[st])}">`).join("");
+  ["di-ind", "di-state", "di-pov", "di-asp"].forEach(id => $(id).onchange = drawDistrictsAll);
+  $("di-grp").onclick = e => { const b = e.target.closest("button"); if (!b) return; DI.grp = b.dataset.v; $("di-grp").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); drawBox(); };
+  const add = () => {
+    const q = $("cmp-q").value.trim().toLowerCase(); if (!q) return;
+    let i = D.districts.findIndex(([, n, st]) => (n + ", " + D.states[st]).toLowerCase() === q);
+    if (i < 0) { const hits = D.districts.map((d, j) => j).filter(j => D.districts[j][1].toLowerCase() === q || D.districts[j][1].toLowerCase().startsWith(q)); if (hits.length === 1) i = hits[0]; }
+    if (i < 0) { $("cmp-picks").insertAdjacentHTML("afterend", ""); $("cmp-q").setCustomValidity("Choose a district from the list"); $("cmp-q").reportValidity(); return; }
+    $("cmp-q").setCustomValidity(""); $("cmp-q").value = ""; addPick(i);
+  };
+  $("cmp-add").onclick = add; $("cmp-q").onkeydown = e => { if (e.key === "Enter") add(); };
+  $("cmp-q").oninput = () => $("cmp-q").setCustomValidity("");
   $("di-dl").onclick = () => {
     const s = D.series[+$("di-ind").value];
-    const rows = D.districts.map(([id, name, st], i) => [s.code, s.label, D.states[st], name, id, s.r5[i] ?? "", s.v5[i] ?? "", s.r4[i] ?? "", s.v4[i] ?? ""]);
-    downloadCSV(`nfhs_districts_${s.code}.csv`, ["series_code", "indicator", "state", "district", "geo_id", "nfhs5_2019_21_as_published", "nfhs5_value", "nfhs4_2015_16_as_published", "nfhs4_value"], rows);
+    const rows = D.districts.map(([id, name, st], i) => [s.code, s.label, D.states[st], name, id, s.r5[i] ?? "", s.v5[i] ?? "", s.r4[i] ?? "", s.v4[i] ?? "", C.mpi5_raw?.[i] ?? "", C.asp?.[i] ? "yes" : "no"]);
+    downloadCSV(`nfhs_districts_${s.code}.csv`, ["series_code", "indicator", "state", "district", "geo_id", "nfhs5_2019_21_as_published", "nfhs5_value", "nfhs4_2015_16_as_published", "nfhs4_value", "niti_mpi_headcount_nfhs5", "aspirational_district"], rows);
   };
-  drawDistricts();
+  drawDistrictsAll();
 }
-function drawDistricts() {
-  const D = DI.D, s = D.series[+$("di-ind").value], st = $("di-state").value, col = GC[s.goal];
-  $("di-rel").innerHTML = `<span class="tag" style="background:${GC[s.goal]};color:${GT[s.goal]}">Goal ${s.goal}</span><span class="tag">${esc(s.nfhs)}</span><span class="tag">${esc(s.relation)}</span><span class="tag">Unit: ${esc(s.unit)}</span>`;
+function addPick(i) {
+  if (DI.sel.includes(i)) return;
+  if (DI.sel.length >= 4) DI.sel.shift();
+  DI.sel.push(i); drawPicks(); drawScatter(); drawProfiles();
+}
+function filtered() {
+  const D = DI.D, C = D.context || {}, st = $("di-state").value, pv = $("di-pov").value, as = $("di-asp").value;
+  return D.districts.map((d, i) => i).filter(i => (!st || D.districts[i][2] === st) &&
+    (pv === "" || DI.bands.band(C.mpi5?.[i]) === +pv) && (as === "" || (!!C.asp?.[i]) === (as === "1")));
+}
+function drawDistrictsAll() {
+  const D = DI.D, s = D.series[+$("di-ind").value], idx = filtered(), n = idx.length;
+  const parts = [$("di-state").value && D.states[$("di-state").value], $("di-pov").value !== "" && BAND_NAMES[+$("di-pov").value].toLowerCase() + " by poverty", $("di-asp").value === "1" ? "Aspirational Districts" : $("di-asp").value === "0" ? "not Aspirational" : ""].filter(Boolean);
+  $("di-count").innerHTML = `<b>${n}</b> of ${D.districts.length} districts${parts.length ? ": " + esc(parts.join(", ")) : ""}.` + (n && n < 10 ? " Few districts: patterns may not hold more widely." : "");
+  $("di-rel").innerHTML = `<span class="tag" style="background:${GC[s.goal]};color:${GT[s.goal]}">Goal ${s.goal}</span><span class="tag">${esc(s.nfhs)}</span><span class="tag">${esc(s.relation)}</span><span class="tag">Unit: ${esc(s.unit)}</span>` +
+    (MPI_PARTS.has(s.code) ? '<span class="tag idx">Part of the poverty index</span>' : "");
+  drawSpread(s, idx); drawScatter(); drawBox(); drawProfiles();
+}
+function drawSpread(s, idx) {
+  const D = DI.D, col = ACC[s.goal], st = $("di-state").value;
   $("di-extra").innerHTML = "";
-  const idx = D.districts.map((d, i) => i).filter(i => !st || D.districts[i][2] === st);
   const bracket = r => r && /^\(.*\)$/.test(r);
+  if (!idx.length) { message("di-chart", '<div class="empty">No district matches these filters. Widen the poverty level or choose All India.</div>'); $("di-cap").textContent = ""; return; }
   if (!st) {
-    const vals = idx.filter(i => s.v5[i] != null);
+    $("di-spread-how").textContent = "How many districts have each value of the indicator in NFHS-5 (2019-21). Grey bars are all districts in India; coloured bars are the districts in your filters.";
+    const allV = D.districts.map((d, i) => s.v5[i]).filter(v => v != null), vals = idx.filter(i => s.v5[i] != null);
+    const lo = Math.min(...allV), hi = Math.max(...allV), size = (hi - lo) / 36 || 1, bins = {start: lo, end: hi + size, size};
+    const subset = vals.length < D.districts.length;
+    const tr = [{type: "histogram", name: "All districts", x: allV, xbins: bins, marker: {color: "#d5dae3"}, hovertemplate: "%{x}: <b>%{y}</b> districts<extra>All districts</extra>"}];
+    if (subset) tr.push({type: "histogram", name: "Your filters", x: vals.map(i => s.v5[i]), xbins: bins, marker: {color: col}, hovertemplate: "%{x}: <b>%{y}</b> districts<extra>Your filters</extra>"});
+    else tr[0] = {...tr[0], name: "All districts", marker: {color: col}};
+    draw("di-chart", tr, lay({height: 360, barmode: "overlay", bargap: 0.05, showlegend: subset, legend: {orientation: "h", y: 1.04, yanchor: "bottom", x: 0},
+      margin: {l: 64, r: 18, t: 36, b: 52}, xaxis: {title: AXT(`${s.label}, NFHS-5 (${s.unit})`)}, yaxis: {title: AXT("Number of districts")}}));
     const missing = idx.filter(i => s.v5[i] == null && s.r5[i] != null).length;
-    draw("di-chart", [{type: "histogram", x: vals.map(i => s.v5[i]), nbinsx: 40, marker: {color: col, line: {color: "#ffffff", width: 1}},
-      hovertemplate: "%{x}: <b>%{y}</b> districts<extra></extra>"}],
-      lay({height: 360, bargap: 0.04, xaxis: {title: AXT(`NFHS-5 value (${s.unit})`)}, yaxis: {title: AXT("Number of districts")}}));
-    $("di-cap").textContent = `How the ${vals.length} districts with an NFHS-5 estimate are spread; ${missing} were published as "na" or "*" (no estimate).` +
-      ` ${vals.filter(i => bracket(s.r5[i])).length} estimates are based on 25–49 cases (shown in brackets in the fact sheets). Choose a State above to see its districts one by one.`;
+    $("di-cap").textContent = `${vals.length} districts in your filters have an NFHS-5 estimate` + (missing ? `; ${missing} were published as "na" or "*" (no estimate)` : "") + "." +
+      (() => { const b = vals.filter(i => bracket(s.r5[i])).length; return b ? ` ${b} ${b === 1 ? "estimate is" : "estimates are"} based on 25–49 cases (in brackets in the fact sheets).` : ""; })() +
+      ` Median district: ${fmt(median(vals.map(i => s.v5[i])))} ${s.unit}` + (subset ? `, compared with ${fmt(median(allV))} ${s.unit} for all districts.` : ".");
     const sorted = [...vals].sort((a, b) => s.v5[a] - s.v5[b]);
     const rowOf = i => [D.districts[i][1], D.states[D.districts[i][2]], s.r5[i]];
-    const cols = [{label: "District"}, {label: "State / UT"}, {label: "NFHS-5", num: true}];
-    $("di-extra").innerHTML = `<div class="grid2"><div><h3>Lowest 15 districts</h3><div class="tablewrap">${table(cols, sorted.slice(0, 15).map(rowOf))}</div></div>` +
-      `<div><h3>Highest 15 districts</h3><div class="tablewrap">${table(cols, sorted.slice(-15).reverse().map(rowOf))}</div></div></div>`;
+    const cols = [{label: "District"}, {label: "State / UT"}, {label: `NFHS-5 (${s.unit})`, num: true}];
+    const k = Math.min(10, Math.floor(sorted.length / 2));
+    if (k >= 3) $("di-extra").innerHTML = `<div class="grid2"><div><h3>Lowest ${k} in your filters</h3><div class="tablewrap">${table(cols, sorted.slice(0, k).map(rowOf))}</div></div>` +
+      `<div><h3>Highest ${k} in your filters</h3><div class="tablewrap">${table(cols, sorted.slice(-k).reverse().map(rowOf))}</div></div></div>`;
     return;
   }
+  $("di-spread-how").textContent = `Every district of ${D.states[st]} in your filters, from NFHS-4 (2015-16, hollow dot) to NFHS-5 (2019-21, filled dot), sorted by NFHS-5.`;
   const order = [...idx].sort((a, b) => (s.v5[a] ?? -Infinity) - (s.v5[b] ?? -Infinity) || D.districts[b][1].localeCompare(D.districts[a][1]));
   const names = order.map(i => D.districts[i][1]);
   const lx = [], ly = [];
   order.forEach(i => { if (s.v4[i] != null && s.v5[i] != null) { lx.push(s.v4[i], s.v5[i], null); ly.push(D.districts[i][1], D.districts[i][1], null); } });
-  const h = Math.max(340, 28 * order.length + 100);
   draw("di-chart", [
     {type: "scatter", mode: "lines", x: lx, y: ly, line: {color: tone(col, 0.35), width: 4}, hoverinfo: "skip", showlegend: false},
     {type: "scatter", mode: "markers", name: "NFHS-4 (2015-16)", x: order.map(i => s.v4[i]), y: names, text: order.map(i => s.r4[i]),
       marker: {size: 10, color: "#ffffff", line: {color: col, width: 2.5}}, hovertemplate: "%{y}<br>NFHS-4: <b>%{text}</b><extra></extra>"},
     {type: "scatter", mode: "markers", name: "NFHS-5 (2019-21)", x: order.map(i => s.v5[i]), y: names, text: order.map(i => s.r5[i]),
       marker: {size: 11, color: col, line: {color: "#ffffff", width: 1}}, hovertemplate: "%{y}<br>NFHS-5: <b>%{text}</b><extra></extra>"}],
-    lay({height: h, margin: {l: 160, r: 18, t: 34, b: 46}, legend: {orientation: "h", y: 1.0, yanchor: "bottom", x: 0},
-      xaxis: {title: AXT(`Value (${s.unit})`)}, yaxis: {type: "category", tickfont: {size: 13}, automargin: true}}));
+    lay({height: Math.max(340, 28 * order.length + 110), margin: {l: 160, r: 18, t: 40, b: 52}, legend: {orientation: "h", y: 1.0, yanchor: "bottom", x: 0},
+      xaxis: {title: AXT(`${s.label} (${s.unit})`)}, yaxis: {type: "category", tickfont: {size: 13}, automargin: true}}));
   const new5 = order.filter(i => s.r4[i] == null).length;
-  $("di-cap").textContent = `${D.states[st]}: ${order.length} districts, sorted by NFHS-5. Hollow dot = NFHS-4, filled dot = NFHS-5.` +
-    (new5 ? ` ${new5} districts have no NFHS-4 value (formed after 2015-16).` : "") + ` Districts with "na" or "*" have no dot for that round.`;
-  const rows = order.slice().reverse().map(i => [D.districts[i][1], s.r5[i] ?? "—", s.r4[i] ?? "—",
-    s.v5[i] != null && s.v4[i] != null ? (s.v5[i] - s.v4[i] > 0 ? "+" : "") + fmt(s.v5[i] - s.v4[i]) : ""]);
-  $("di-extra").innerHTML = `<details><summary>Values as published</summary><div class="tablewrap">${table([{label: "District"}, {label: "NFHS-5 (2019-21)", num: true}, {label: "NFHS-4 (2015-16)", num: true}, {label: "Change, points", num: true}], rows)}</div>` +
-    `<p class="cap">A dash means no NFHS-4 column for this district. Change is NFHS-5 minus NFHS-4, both as published; survey estimates have sampling error, so small changes may not be meaningful.</p></details>`;
+  $("di-cap").textContent = `${order.length} districts.` + (new5 ? ` ${new5} have no NFHS-4 value (formed after 2015-16).` : "") +
+    ` Districts with "na" or "*" have no dot for that round. Survey estimates have sampling error, so small changes may not be meaningful.`;
+}
+function drawScatter() {
+  const D = DI.D, C = D.context || {}, s = D.series[+$("di-ind").value], col = ACC[s.goal];
+  if (!C.mpi5) { message("di-scatter", '<div class="empty">Poverty data is not available in this build.</div>'); return; }
+  const inF = new Set(filtered()), has = i => C.mpi5[i] != null && s.v5[i] != null;
+  const all = D.districts.map((d, i) => i).filter(has), fin = all.filter(i => inF.has(i)), fout = all.filter(i => !inF.has(i));
+  $("di-mpi-note").innerHTML = MPI_PARTS.has(s.code) ? `<div class="note warn">This indicator measures one of the ingredients of the poverty index itself, so part of the link you see is built in. It is not separate evidence that the two are related.</div>` : "";
+  const pt = (ids, name, marker) => ({type: "scattergl", mode: "markers", name, x: ids.map(i => C.mpi5[i]), y: ids.map(i => s.v5[i]), customdata: ids,
+    text: ids.map(i => `${D.districts[i][1]}, ${D.states[D.districts[i][2]]}`), marker,
+    hovertemplate: `%{text}<br>Poor: <b>%{x}%</b><br>${esc(s.label)}: <b>%{y}</b> ${esc(s.unit)}<extra></extra>`});
+  const tr = [];
+  if (fout.length) tr.push(pt(fout, "Outside your filters", {color: "#d5dae3", size: 6}));
+  tr.push(pt(fin, "In your filters", {color: col, size: 7, opacity: 0.85, line: {color: "#ffffff", width: 0.5}}));
+  DI.sel.forEach((i, k) => { if (has(i)) tr.push({...pt([i], D.districts[i][1], {color: PCOL[k], size: 15, line: {color: "#ffffff", width: 2}}), type: "scatter", mode: "markers+text", cliponaxis: false, textposition: C.mpi5[i] < 8 ? "top right" : C.mpi5[i] > 45 ? "top left" : "top center", texttemplate: D.districts[i][1], textfont: {size: 13, color: PCOL[k]}}); });
+  draw("di-scatter", tr, lay({height: 460, showlegend: false, margin: {l: 70, r: 18, t: 18, b: 56},
+    xaxis: {title: AXT("Multidimensionally poor, % of population (NITI Aayog MPI, NFHS-5)"), rangemode: "tozero"},
+    yaxis: {title: AXT(`${s.label}, NFHS-5 (${s.unit})`), rangemode: "tozero"}, hovermode: "closest"})).then(el => {
+    el.removeAllListeners && el.removeAllListeners("plotly_click");
+    el.on("plotly_click", ev => { const p = ev.points[0]; if (p && p.customdata != null) addPick(+p.customdata); });
+  });
+  $("di-sc-legend").innerHTML = `<span><i style="background:${col}"></i>In your filters (${fin.length})</span>` + (fout.length ? `<span><i style="background:#d5dae3"></i>Other districts (${fout.length})</span>` : "") +
+    DI.sel.map((i, k) => `<span><i style="background:${PCOL[k]}"></i>${esc(D.districts[i][1])}</span>`).join("");
+  if (fin.length >= 10) {
+    const rho = spearman(fin.map(i => C.mpi5[i]), fin.map(i => s.v5[i]));
+    const strength = Math.abs(rho) >= 0.7 ? "strong" : Math.abs(rho) >= 0.4 ? "moderate" : Math.abs(rho) >= 0.2 ? "weak" : "little or no";
+    $("di-sc-cap").textContent = `Across the ${fin.length} districts in your filters, the rank correlation (Spearman's ρ) is ${rho.toFixed(2)}: a ${strength} ${rho > 0 ? "tendency for both to be high together" : rho < 0 ? "tendency for one to be high where the other is low" : "pattern"}${strength === "little or no" ? "" : ""}. ` +
+      "This describes districts, not people, and shows association only: other factors can drive both. ";
+  } else $("di-sc-cap").textContent = `Only ${fin.length} districts in your filters have both values; at least 10 are needed to describe a pattern.`;
+}
+function drawBox() {
+  const D = DI.D, C = D.context || {}, s = D.series[+$("di-ind").value], col = GC[s.goal];
+  const idx = filtered().filter(i => s.v5[i] != null);
+  let groups;
+  if (DI.grp === "pov") groups = [0, 1, 2, 3, 4].map(b => ({name: BAND_NAMES[b], c: BAND_COLS[b], ids: idx.filter(i => DI.bands.band(C.mpi5?.[i]) === b)}));
+  else groups = [{name: "Aspirational Districts", c: "#c98a0b", ids: idx.filter(i => C.asp?.[i])}, {name: "Other districts", c: "#7a8099", ids: idx.filter(i => !C.asp?.[i])}];
+  groups = groups.filter(g => g.ids.length);
+  if (!groups.length) { message("di-box", '<div class="empty">No district matches these filters.</div>'); $("di-box-cap").textContent = ""; return; }
+  draw("di-box", groups.map(g => ({type: "box", name: `${g.name}<br><span style="font-size:12px">${g.ids.length} districts</span>`, y: g.ids.map(i => s.v5[i]),
+    text: g.ids.map(i => D.districts[i][1]), boxpoints: "all", jitter: 0.45, pointpos: 0, marker: {color: g.c, size: 4, opacity: 0.55},
+    line: {color: g.c === "#bfe3c0" ? "#6fae7a" : g.c, width: 2}, fillcolor: tone(g.c === "#bfe3c0" ? "#6fae7a" : g.c, 0.18),
+    hovertemplate: "%{text}: <b>%{y}</b><extra></extra>", boxmean: false})),
+    lay({height: 420, showlegend: false, margin: {l: 70, r: 18, t: 16, b: 70}, yaxis: {title: AXT(`${s.label}, NFHS-5 (${s.unit})`), rangemode: "tozero"}, xaxis: {tickfont: {size: 13}}}));
+  const small = groups.filter(g => g.ids.length < 10).map(g => g.name);
+  $("di-box-cap").textContent = "Median district: " + groups.map(g => `${g.name.toLowerCase()} ${fmt(median(g.ids.map(i => s.v5[i])))}`).join("; ") + ` (${s.unit}). ` +
+    (DI.grp === "pov" ? "Poverty groups are fifths of all 704 districts, so a filter can leave some groups small. " : "") +
+    (small.length ? `Fewer than 10 districts in: ${small.join(", ")}; read those with care. ` : "") + (MPI_PARTS.has(s.code) && DI.grp === "pov" ? "This indicator is part of the poverty index, so differences between poverty groups are partly built in." : "");
+}
+function drawPicks() {
+  const D = DI.D;
+  $("cmp-picks").innerHTML = DI.sel.map((i, k) => `<span class="pick" style="--pc:${PCOL[k]}"><i></i>${esc(D.districts[i][1])}, ${esc(D.states[D.districts[i][2]])}<button aria-label="Remove ${esc(D.districts[i][1])}" data-i="${i}">×</button></span>`).join("");
+  $("cmp-picks").querySelectorAll("button").forEach(b => b.onclick = () => { DI.sel = DI.sel.filter(x => x !== +b.dataset.i); drawPicks(); drawScatter(); drawProfiles(); });
+}
+function drawProfiles() {
+  const D = DI.D, C = D.context || {};
+  if (!DI.sel.length) { $("cmp-prof").innerHTML = '<div class="empty">No districts added yet. Type a name above, or click a dot in the poverty chart.</div>'; $("cmp-table").innerHTML = ""; $("cmp-tdet").hidden = true; return; }
+  $("cmp-tdet").hidden = false;
+  const rows = [{label: "Multidimensionally poor", unit: "% of population", goal: 1, v5: C.mpi5, v4: C.mpi4, r5: C.mpi5_raw, r4: C.mpi4_raw, note: "NITI Aayog MPI 2023"}, ...D.series];
+  let html = '<div class="prof">', last = null;
+  const W = 1000;
+  rows.forEach(s => {
+    if (s.goal !== last) { last = s.goal; html += `<div class="gh"><span class="sw" style="${goalVars(s.goal)}">${s.goal}</span>${esc(GOAL_NAMES[s.goal])}</div>`; }
+    const all = s.v5.filter(v => v != null).sort((a, b) => a - b);
+    if (!all.length) return;
+    const extra = DI.sel.flatMap(i => [s.v5[i], s.v4[i]]).filter(v => v != null);
+    const lo = Math.min(all[0], ...extra), hi = Math.max(all[all.length - 1], ...extra), X = v => 12 + (W - 24) * (hi === lo ? 0.5 : (v - lo) / (hi - lo));
+    const q1 = quant(all, 0.25), md = quant(all, 0.5), q3 = quant(all, 0.75);
+    let svg = `<svg viewBox="0 0 ${W} 46" preserveAspectRatio="none" role="img" aria-label="${esc(s.label)}: middle half of districts ${fmt(q1)} to ${fmt(q3)} ${esc(s.unit)}">` +
+      `<line x1="${X(all[0])}" x2="${X(all[all.length - 1])}" y1="20" y2="20" stroke="#d5dae3" stroke-width="2"/>` +
+      `<rect x="${X(q1)}" y="13" width="${Math.max(2, X(q3) - X(q1))}" height="14" rx="4" fill="#dfe3ea"/>` +
+      `<line x1="${X(md)}" x2="${X(md)}" y1="10" y2="30" stroke="#7a8099" stroke-width="2.5"/>`;
+    DI.sel.forEach((i, k) => {
+      const n = D.districts[i][1];
+      if (s.v4[i] != null) svg += `<circle cx="${X(s.v4[i])}" cy="20" r="6.5" fill="#fff" stroke="${PCOL[k]}" stroke-width="2.5"><title>${esc(n)}, NFHS-4: ${esc(s.r4[i])}</title></circle>`;
+    });
+    DI.sel.forEach((i, k) => {
+      const n = D.districts[i][1];
+      if (s.v5[i] != null) svg += `<circle cx="${X(s.v5[i])}" cy="20" r="8" fill="${PCOL[k]}" stroke="#fff" stroke-width="2"><title>${esc(n)}, NFHS-5: ${esc(s.r5[i])}</title></circle>`;
+    });
+    svg += `<text x="12" y="44" font-size="13" fill="#727894">${esc(fmt(all[0]))}</text><text x="${W - 12}" y="44" font-size="13" fill="#727894" text-anchor="end">${esc(fmt(all[all.length - 1]))}</text>` +
+      `<text x="${X(md)}" y="44" font-size="13" fill="#4a5170" text-anchor="middle">median ${esc(fmt(md))}</text></svg>`;
+    html += `<div class="lab">${esc(s.label)}${MPI_PARTS.has(s.code) ? '<span class="flag">in poverty index</span>' : ""}<small>${esc(s.unit)}${s.note ? " · " + esc(s.note) : ""}</small></div><div>${svg}</div>`;
+  });
+  $("cmp-prof").innerHTML = html + "</div>";
+  const head = `<tr><th>Indicator</th>${DI.sel.map((i, k) => `<th class="num"><span style="color:${PCOL[k]}">●</span> ${esc(D.districts[i][1])}<br><span style="font-weight:400">NFHS-5 (NFHS-4)</span></th>`).join("")}</tr>`;
+  const body = rows.map(s => `<tr><td>${esc(s.label)} <span class="cap">${esc(s.unit)}</span></td>${DI.sel.map(i => `<td class="num">${esc(s.r5[i] ?? "—")} <span class="cap">(${esc(s.r4[i] ?? "—")})</span></td>`).join("")}</tr>`).join("");
+  $("cmp-table").innerHTML = `<table><thead>${head}</thead><tbody>${body}</tbody></table>`;
 }
 
 // ------------------------------------------------------------------ data gaps
@@ -770,6 +1101,11 @@ async function showGaps(g) {
   $("mi-nfhs").innerHTML = `<summary>District fact sheets: values not read or corrected (${S.nfhs_notes.length}, all goals)</summary>` +
     `<p class="cap">Values printed split across lines out of column order were left out rather than guessed. Two official fact sheets skip a number in their indicator list; their values were matched to indicators by name instead.</p>` +
     `<div class="tablewrap">${table([{label: "Fact sheet"}, {label: "Detail"}, {label: "Type"}], S.nfhs_notes)}</div>`;
+  const cn = S.context_notes || [];
+  $("mi-ctx").hidden = !cn.length;
+  $("mi-ctx").innerHTML = `<summary>District poverty and Aspirational lists: rows not linked to a district (${cn.length})</summary>` +
+    `<p class="cap">Rows of NITI Aayog's tables that could not be read without guessing, or that have no matching NFHS-5 district (created, split or renamed since). No other district is given their value.</p>` +
+    `<div class="tablewrap">${table([{label: "Source"}, {label: "Row as published"}, {label: "Report page", num: true}, {label: "Reason"}], cn.map(r => [SRC_NAME[r[0]] || r[0], r[1], r[2], r[3]]))}</div>`;
   if (!ovDrawn) { ovDrawn = true; drawOverview(); }
 }
 function drawOverview() {
@@ -792,7 +1128,7 @@ function drawOverview() {
 function initSources() {
   const st = S.source_status;
   const rows = S.sources.map(s => [`<b>${esc(s.name)}</b><br><span class="cap">${esc(s.publisher)}</span>`,
-    s.kind === "composite_index" ? '<span class="tag idx">Composite index</span>' : s.kind === "reference" ? '<span class="tag">Reference</span>' : '<span class="tag ok">Observations</span>', esc(s.geography),
+    s.kind === "composite_index" ? '<span class="tag idx">Composite index</span>' : s.kind === "district_context" ? '<span class="tag">District grouping</span>' : s.kind === "reference" ? '<span class="tag">Reference</span>' : '<span class="tag ok">Observations</span>', esc(s.geography),
     esc((st[s.source_id] || {}).status || s.status || ""), `<a href="${esc(s.url)}" target="_blank" rel="noopener">Source</a>` + (s.documentation ? `, <a href="${esc(s.documentation)}" target="_blank" rel="noopener">Docs</a>` : "")]);
   $("so-table").innerHTML = table([{label: "Source", html: true}, {label: "Kind", html: true}, {label: "Geography", html: true}, {label: "Status", html: true}, {label: "Links", html: true}], rows);
   const raw = f => `${S.repo}/raw/main/data/processed/${f}`;

@@ -1,0 +1,4 @@
+page,state,district,hcr4,int4,mpi4,hcr5,int5,mpi5,reason
+92,Arunachal Pradesh,,–,–,–,,,,stray dashes with no district name and no NFHS-5 values (remnant of the hidden text layer)
+116,Chhattisgarh,,–,–,–,,,,stray dashes with no district name and no NFHS-5 values (remnant of the hidden text layer)
+202,Meghalaya,,–,–,–,,,,stray dashes with no district name and no NFHS-5 values (remnant of the hidden text layer)

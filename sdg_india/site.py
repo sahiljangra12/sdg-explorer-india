@@ -92,6 +92,25 @@ def national(obs: pd.DataFrame, indicators: pd.DataFrame, cov: pd.DataFrame) -> 
     return out
 
 
+def _pct(v):
+    """'12.34%' -> 12.34; '–' or empty -> None (copied, not computed)."""
+    s = "" if v is None or (isinstance(v, float) and math.isnan(v)) else str(v).strip()
+    return float(s.rstrip("%")) if s and s not in ("–", "-") else None
+
+
+def context(ctx: pd.DataFrame, ids: list[str]) -> dict:
+    """District context columns aligned to the district list (null where the source has no value)."""
+    if ctx.empty:
+        return {}
+    c = ctx.set_index("geo_id")
+    col = lambda name, f: [f(c.at[g, name]) if g in c.index else None for g in ids]  # noqa: E731
+    return {"mpi5": col("mpi_hcr_nfhs5", _pct), "mpi4": col("mpi_hcr_nfhs4", _pct),
+            "mpi5_raw": col("mpi_hcr_nfhs5", lambda v: None if pd.isna(v) else str(v)),
+            "mpi4_raw": col("mpi_hcr_nfhs4", lambda v: None if pd.isna(v) else str(v)),
+            "mpi_page": col("mpi_report_page", lambda v: None if pd.isna(v) else int(float(v))),
+            "asp": col("aspirational", lambda v: bool(v) if not pd.isna(v) else False)}
+
+
 def districts(obs: pd.DataFrame, geos: pd.DataFrame) -> dict:
     """District values as columns aligned to one district list; absent rounds stay null (never filled)."""
     d = obs[obs["geo_level"] == "district"].drop_duplicates("obs_id")
@@ -144,6 +163,7 @@ def summary(obs, indicators, scores, sources, not_parsed, manifest, nat_files) -
     npd = not_parsed.fillna("") if not not_parsed.empty else not_parsed
     mospi_np = npd[npd["source_id"] == "MOSPI_NIF_2025"] if len(npd) else npd
     nfhs_np = npd[npd["source_id"] == "NFHS5_DISTRICTS"] if len(npd) else npd
+    ctx_np = npd[npd["source_id"].isin(["NITI_MPI_2023", "NITI_ASPIRATIONAL"])] if len(npd) else npd
     sc = scores.fillna("") if not scores.empty else scores
     return {
         "built": manifest.get("built_at", ""), "totals": manifest.get("totals", {}),
@@ -156,6 +176,8 @@ def summary(obs, indicators, scores, sources, not_parsed, manifest, nat_files) -
         "mospi_not_parsed": [[str(r.code), str(r.goal).replace(".0", ""), str(r.name), str(r.reason),
                               str(r.page).replace(".0", "")] for r in mospi_np.itertuples()],
         "nfhs_notes": [[str(r.code), str(r.reason), str(r.kind)] for r in nfhs_np.itertuples()],
+        "context_notes": [[str(r.source_id), str(r.code), str(r.page).replace(".0", ""), str(r.reason)]
+                          for r in ctx_np.itertuples()],
         "repo": REPO,
     }
 
@@ -166,6 +188,7 @@ def build_site(proc: Path | None = None, out: Path | None = None) -> dict:
     indicators, cov = _csv(proc / "indicators.csv"), _csv(proc / "coverage.csv")
     scores, sources = _csv(proc / "index_scores.csv"), _csv(proc / "sources.csv")
     not_parsed, geos = _csv(proc / "not_parsed.csv"), _csv(proc / "geographies.csv")
+    ctx = _csv(proc / "district_context.csv")
     manifest = json.loads((proc / "manifest.json").read_text()) if (proc / "manifest.json").exists() else {}
     data = out / "data"
     if data.exists():
@@ -174,6 +197,7 @@ def build_site(proc: Path | None = None, out: Path | None = None) -> dict:
     for g, payload in nat.items():
         _dump(payload, data / f"goal_{g:02d}.json")
     dist = districts(obs, geos)
+    dist["context"] = context(ctx, [d[0] for d in dist["districts"]])
     _dump(dist, data / "districts.json")
     meta = summary(obs, indicators, scores, sources, not_parsed, manifest, set(nat))
     _dump(meta, data / "summary.json")

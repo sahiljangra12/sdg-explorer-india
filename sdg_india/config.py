@@ -39,6 +39,8 @@ GOALS = {
 # Every source the pipeline knows about. `kind` says how its numbers may be used:
 #   observation      raw indicator values (time series)
 #   composite_index  published index scores; never mixed with raw observations
+#   district_context attributes of districts used to group and filter them (poverty level, programme
+#                    membership); kept in their own table, never mixed with indicator observations
 #   reference        metadata or boundaries only
 SOURCES = [
     {
@@ -91,6 +93,26 @@ SOURCES = [
         "access_url": "https://github.com/SaiSiddhardhaKalla/NFHS/tree/main/pdfs",
         "documentation": "http://rchiips.org/nfhs/",
         "geography": "Districts (704)",
+    },
+    {
+        "source_id": "NITI_MPI_2023",
+        "name": "National Multidimensional Poverty Index: A Progress Review 2023 (district tables)",
+        "publisher": "NITI Aayog, Government of India (with OPHI and UNDP)",
+        "kind": "district_context",
+        "url": "https://www.niti.gov.in/sites/default/files/2023-08/India-National-Multidimentional-Poverty-Index-2023.pdf",
+        "access_url": "",
+        "documentation": "https://www.niti.gov.in/whats-new/national-multidimentional-poverty-index-2023",
+        "geography": "Districts (NFHS-4 and NFHS-5)",
+    },
+    {
+        "source_id": "NITI_ASPIRATIONAL",
+        "name": "List of 112 Aspirational Districts",
+        "publisher": "NITI Aayog, Government of India",
+        "kind": "district_context",
+        "url": "https://www.niti.gov.in/sites/default/files/2023-07/List-of-112-Aspirational-Districts%20%281%29.pdf",
+        "access_url": "",
+        "documentation": "https://www.niti.gov.in/aspirational-districts-programme",
+        "geography": "Districts (112)",
     },
     {
         "source_id": "DATAMEET_STATES",

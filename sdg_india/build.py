@@ -11,7 +11,7 @@ import pandas as pd
 
 from . import config, geography
 from .io import explode_by_indicator
-from .sources import mospi, nfhs, niti, un_sdg
+from .sources import aspirational, mospi, mpi, nfhs, niti, un_sdg
 from .validate import validate
 
 OUT = config.PROCESSED
@@ -75,6 +75,41 @@ def summarise(obs: pd.DataFrame) -> dict:
     }
 
 
+def district_context(districts: pd.DataFrame, status: dict, not_parsed: list) -> pd.DataFrame:
+    """One row per NFHS district: NITI Aayog MPI (NFHS-4 and NFHS-5) and Aspirational District status.
+
+    Values are copied as published. A district without a match keeps empty cells; nothing is filled in."""
+    cols = ["geo_id", "mpi_hcr_nfhs5", "mpi_intensity_nfhs5", "mpi_nfhs5", "mpi_hcr_nfhs4", "mpi_intensity_nfhs4",
+            "mpi_nfhs4", "mpi_published_name", "mpi_report_page", "aspirational", "aspirational_published_name"]
+    if districts.empty:
+        return pd.DataFrame(columns=cols)
+    out = districts[["geo_id"]].copy()
+    res = mpi.load(districts)
+    status[mpi.SOURCE_ID] = res["status"]
+    not_parsed += [{"source_id": mpi.SOURCE_ID, "code": f"{r.get('state', '')}: {r.get('district', '')}".strip(": "),
+                    "page": r.get("page", ""), "reason": r["reason"]} for r in res["skipped"]]
+    d = res["data"]
+    if len(d):
+        d = d[d["geo_id"].notna()].rename(columns={"hcr5": "mpi_hcr_nfhs5", "int5": "mpi_intensity_nfhs5",
+                                                     "mpi5": "mpi_nfhs5", "hcr4": "mpi_hcr_nfhs4",
+                                                     "int4": "mpi_intensity_nfhs4", "mpi4": "mpi_nfhs4",
+                                                     "district": "mpi_published_name", "page": "mpi_report_page"})
+        out = out.merge(d[cols[:9]], on="geo_id", how="left")
+    res = aspirational.load(districts)
+    status[aspirational.SOURCE_ID] = res["status"]
+    not_parsed += [{"source_id": aspirational.SOURCE_ID, "code": f"{r['state']}: {r['district']}",
+                    "reason": r["reason"]} for r in res["skipped"]]
+    a = res["data"]
+    if len(a):
+        a = a[a["geo_id"].notna()][["geo_id", "district"]].rename(columns={"district": "aspirational_published_name"})
+        out = out.merge(a, on="geo_id", how="left")
+        out["aspirational"] = out["aspirational_published_name"].notna()
+    for c in cols:
+        if c not in out:
+            out[c] = None
+    return out[cols]
+
+
 def build() -> dict:
     OUT.mkdir(parents=True, exist_ok=True)
     frames, status = [], {}
@@ -120,6 +155,8 @@ def build() -> dict:
     scores, score_status = niti.load_scores()
     status.update(score_status)
 
+    context = district_context(districts, status, not_parsed)
+
     report = validate(obs, scores, districts)
 
     indicators = un_sdg.parse_metadata()
@@ -135,6 +172,7 @@ def build() -> dict:
     cov.to_csv(OUT / "coverage.csv", index=False)
     indicators.to_csv(OUT / "indicators.csv", index=False)
     scores.to_csv(OUT / "index_scores.csv", index=False)
+    context.to_csv(OUT / "district_context.csv", index=False)
     geos = geography.registry().assign(parent_geo_id="")
     if not districts.empty:
         geos = pd.concat([geos, districts[["geo_id", "geography", "geo_level", "parent_geo_id"]]], ignore_index=True)

@@ -18,7 +18,7 @@ from pathlib import Path
 
 from . import build, config, geo, site
 from .http import DownloadError, write_meta
-from .sources import mospi, niti, un_sdg
+from .sources import aspirational, mospi, mpi, niti, un_sdg
 from .validate import ValidationError
 
 
@@ -27,6 +27,8 @@ def fetch(refresh: bool) -> dict:
     steps = [("UN SDG API (India, all pages)", lambda: un_sdg.fetch(refresh)),
              ("NITI Aayog SDG India Index 2023-24", lambda: niti.fetch(refresh)),
              ("MoSPI NIF Progress Report 2025", lambda: mospi.fetch(refresh)),
+             ("NITI Aayog National MPI 2023 (district tables)", lambda: mpi.fetch(refresh)),
+             ("NITI Aayog Aspirational Districts list", lambda: aspirational.fetch(refresh)),
              ("DataMeet state boundaries", lambda: geo.build(refresh))]
     for name, step in steps:
         try:
@@ -46,7 +48,11 @@ def import_folder(folder: Path) -> None:
     print(f"UN SDG files imported: {len(pages)}")
     for pdf in folder.glob("*.pdf"):
         name = pdf.name.lower()
-        if "niti" in name or "india_index" in name:
+        if "multidim" in name or "mpi" in name:
+            dest, url = mpi.PDF, mpi.URL
+        elif "aspirational" in name:
+            dest, url = aspirational.PDF, aspirational.URL
+        elif "niti" in name or "india_index" in name:
             dest, url = niti.PDF, config.SOURCE_BY_ID[niti.SOURCE_ID]["url"]
         elif "mospi" in name or "nif" in name:
             dest, url = mospi.PDF, config.SOURCE_BY_ID[mospi.SOURCE_ID]["url"]
