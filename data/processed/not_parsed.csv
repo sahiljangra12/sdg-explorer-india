@@ -52,6 +52,17 @@ MOSPI_NIF_2025,17.11.1,17.0,17.11,"Share of India’s exports in Global exports,
 MOSPI_NIF_2025,17.13.1,17.0,17.13,Macroeconomic Dashboard Yes,Ministry of Finance,Annual,150,no table: values published as text or under other indicators,
 MOSPI_NIF_2025,17.18.2,17.0,17.18,Whether the country has national statistical legislation that complieswith the Fundamental Principles of Official Statistics Yes,Ministry of Statistics and Programme Implementation,Annual,150,no table: values published as text or under other indicators,
 MOSPI_NIF_2025,17.18.3,17.0,17.18,"Whether the country has a national statistical plan that is fully funded and under implementation, by source of funding and under Yes implementation, by source of funding","CICD, Ministry of Statistics and Programme Implementation",Annual,150,no table: values published as text or under other indicators,
+NFHS5_DISTRICTS,chhattisgarh/raigarh.pdf,,,,,,,values not readable for indicators [97] (values split across lines out of column order),skipped
+NFHS5_DISTRICTS,gujarat/mahisagar.pdf,,,,,,,numbering in the source differs: printed number 11 is indicator 10 by its name; printed number 12 is indicator 11 by its name; printed number 14 is indicator 13 by its name; printed number 15 is indicator 14 by its name; printed numb,note
+NFHS5_DISTRICTS,gujarat/mahisagar.pdf,,,,,,,values not readable for indicators [12] (values split across lines out of column order),skipped
+NFHS5_DISTRICTS,himachal_pradesh/kangra.pdf,,,,,,,"values not readable for indicators [16, 49] (values split across lines out of column order)",skipped
+NFHS5_DISTRICTS,karnataka/bellary.pdf,,,,,,,"values not readable for indicators [94, 97] (values split across lines out of column order)",skipped
+NFHS5_DISTRICTS,karnataka/chitradurga.pdf,,,,,,,"values not readable for indicators [94, 97] (values split across lines out of column order)",skipped
+NFHS5_DISTRICTS,karnataka/koppal.pdf,,,,,,,"values not readable for indicators [94, 97] (values split across lines out of column order)",skipped
+NFHS5_DISTRICTS,maharashtra/raigarh.pdf,,,,,,,values not readable for indicators [97] (values split across lines out of column order),skipped
+NFHS5_DISTRICTS,maharashtra/wardha.pdf,,,,,,,numbering in the source differs: printed number 11 is indicator 10 by its name; printed number 12 is indicator 11 by its name; printed number 14 is indicator 13 by its name; printed number 15 is indicator 14 by its name; printed numb,note
+NFHS5_DISTRICTS,maharashtra/wardha.pdf,,,,,,,values not readable for indicators [12] (values split across lines out of column order),skipped
+NFHS5_DISTRICTS,tamil_nadu/tiruchirappalli.pdf,,,,,,,values not readable for indicators [49] (values split across lines out of column order),skipped
 NITI_MPI_2023,Arunachal Pradesh,,,,,,92,stray dashes with no district name and no NFHS-5 values (remnant of the hidden text layer),
 NITI_MPI_2023,Chhattisgarh,,,,,,116,stray dashes with no district name and no NFHS-5 values (remnant of the hidden text layer),
 NITI_MPI_2023,Meghalaya,,,,,,202,stray dashes with no district name and no NFHS-5 values (remnant of the hidden text layer),

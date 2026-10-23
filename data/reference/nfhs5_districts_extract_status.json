@@ -1,0 +1,31 @@
+{
+  "fact_sheets": 3,
+  "districts": 3,
+  "states_and_uts": 2,
+  "indicators_mapped": 34,
+  "rows": 23,
+  "problems": [
+    {
+      "file": "bihar/newpur.pdf",
+      "problem": "numbering in the source differs: printed number 72 is indicator 73 by its name",
+      "kind": "note"
+    },
+    {
+      "file": "bihar/newpur.pdf",
+      "problem": "values not readable for indicators [4, 5, 6, 8, 12, 13, 14, 18, 21, 28, 33, 42, 45, 49, 53, 55, 74, 76, 77, 78, 81, 83, 84, 94, 97, 101, 102, 103, 104] (values split across lines out of column order)",
+      "kind": "skipped"
+    },
+    {
+      "file": "uttar_pradesh/agra.pdf",
+      "problem": "values not readable for indicators [4, 5, 6, 8, 10, 12, 13, 14, 18, 21, 28, 33, 42, 45, 49, 53, 55, 74, 76, 77, 78, 81, 83, 84, 94, 97, 101, 102, 103, 104] (values split across lines out of column order)",
+      "kind": "skipped"
+    },
+    {
+      "file": "uttar_pradesh/lucknow.pdf",
+      "problem": "values not readable for indicators [4, 5, 6, 8, 12, 13, 14, 18, 21, 28, 33, 42, 45, 49, 53, 55, 74, 76, 77, 78, 81, 83, 84, 94, 97, 101, 102, 103, 104] (values split across lines out of column order)",
+      "kind": "skipped"
+    }
+  ],
+  "sheets_with_source_numbering_errors_corrected_by_name": 1,
+  "problem_count": 4
+}

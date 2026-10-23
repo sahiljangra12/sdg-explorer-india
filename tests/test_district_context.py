@@ -77,3 +77,10 @@ def test_mpi_rows_confirmed_by_a_second_pdf_reader():
 def test_aspirational_list_is_complete():
     df = pd.read_csv(aspirational.EXTRACT)
     assert df["s_no"].tolist() == list(range(1, 113))
+
+
+def test_nfhs_parse_notes_survive_a_build_from_the_extract():
+    """Building without the 704 fact sheets must keep the notes of the parse that made the extract."""
+    st = json.loads((config.REFERENCE / "nfhs5_districts_extract_status.json").read_text())
+    np_ = pd.read_csv(config.PROCESSED / "not_parsed.csv")
+    assert (np_["source_id"] == "NFHS5_DISTRICTS").sum() == st["problem_count"] == len(st["problems"])

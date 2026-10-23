@@ -27,6 +27,8 @@ from ..http import sha256
 SOURCE_ID = "NFHS5_DISTRICTS"
 RAW_DIR = config.RAW / "nfhs5_districts"
 EXTRACT = config.REFERENCE / "nfhs5_districts_extract.csv"
+# status and problems of the parse that wrote EXTRACT
+EXTRACT_STATUS = config.REFERENCE / "nfhs5_districts_extract_status.json"
 MIRROR = "https://github.com/SaiSiddhardhaKalla/NFHS/tree/main/pdfs"
 OFFICIAL = "http://rchiips.org/nfhs/districtfactsheet_NFHS-5.shtml"
 
@@ -194,8 +196,9 @@ def load_all() -> dict:
         if EXTRACT.exists():
             from ..io import read_observations
             df = read_observations(EXTRACT)
-            return {SOURCE_ID: {"status": {"status": "loaded from verified extract", "detail": reason,
-                                           "rows": int(len(df))}, "data": df, "districts": None}}
+            parsed = json.loads(EXTRACT_STATUS.read_text()) if EXTRACT_STATUS.exists() else {}
+            status = {**parsed, "status": "loaded from verified extract", "detail": reason, "rows": int(len(df))}
+            return {SOURCE_ID: {"status": status, "data": df, "districts": None}}
         return {SOURCE_ID: {"status": {"status": "not available", "detail": reason}, "data": None,
                             "districts": None}}
     out, districts, problems = [], [], []
@@ -272,4 +275,6 @@ def load_all() -> dict:
               "indicators_mapped": len(SDG_MAP), "rows": int(len(df)), "problems": problems,
               "sheets_with_source_numbering_errors_corrected_by_name": renumbered,
               "problem_count": len(problems)}
+    if not df.empty:
+        EXTRACT_STATUS.write_text(json.dumps({k: v for k, v in status.items() if k != "status"}, indent=2))
     return {SOURCE_ID: {"status": status, "data": df, "districts": dist}}
