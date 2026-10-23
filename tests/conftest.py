@@ -143,6 +143,7 @@ def use_synthetic_nfhs(tmp_path, monkeypatch):
         texts[pdf] = text
     monkeypatch.setattr(nfhs, "RAW_DIR", raw)
     monkeypatch.setattr(nfhs, "EXTRACT", tmp_path / "reference" / "nfhs_extract.csv")
+    monkeypatch.setattr(nfhs, "EXTRACT_STATUS", tmp_path / "reference" / "nfhs_extract_status.json")
     monkeypatch.setattr(nfhs, "page_text", lambda pdf: texts[pdf])
     monkeypatch.setattr(nfhs.shutil, "which", lambda name: "/usr/bin/" + name)
     return nfhs
