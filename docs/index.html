@@ -370,6 +370,16 @@ dialog.sheet{border-radius:24px}
 footer{background:var(--page);font-size:12.5px;color:var(--ink3);border-top:1px solid var(--line)}
 footer .wrap{padding-top:4px}
 @media (max-width:980px){header.top .wrap{height:auto;padding-top:8px;padding-bottom:4px}nav.menu a{padding:6px 8px}}
+.tile{position:relative;isolation:isolate}
+.tile>*{position:relative;z-index:1}
+.tile>.ph{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;border-radius:inherit}
+.tile>.ph::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.55) 30%,rgba(255,255,255,.94) 52%,#fff 66%)}
+.tile .tn{box-shadow:0 0 0 3px rgba(255,255,255,.9)}
+.tile .nm{margin-top:56px}
+.credits{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:10px}
+.credit{display:flex;gap:12px;align-items:center;font-size:13.5px;color:var(--ink3);line-height:1.35}
+.credit img{width:72px;height:48px;object-fit:cover;border-radius:8px;flex:none}
+.credit a{color:var(--focus)}
 </style>
 </head>
 <body>
@@ -705,6 +715,11 @@ footer .wrap{padding-top:4px}
           </ul>
         </div>
       </div>
+      <div class="panel" id="photo-credits">
+        <h2>Photo credits</h2>
+        <p class="how">The pictures on the goal tiles are from Wikimedia Commons, used under their open licences and resized for this site. They illustrate the goals; they are not data.</p>
+        <div class="credits" id="so-photos"></div>
+      </div>
       <div class="panel">
         <h2>Validation</h2>
         <div id="so-val"></div>
@@ -715,7 +730,6 @@ footer .wrap{padding-top:4px}
   </section>
 </main>
 
-<section class="datafrom" aria-labelledby="h-datafrom"><div class="wrap"><h2 id="h-datafrom">Data from</h2><div class="orgs"><a class="org" href="https://unstats.un.org/sdgs/dataportal/database" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #19486a">UNSD</span><span><b>United Nations Statistics Division</b><small>Global SDG Indicators Database</small></span></a><a class="org" href="https://www.mospi.gov.in/" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #c5192d">MoSPI</span><span><b>Ministry of Statistics and Programme Implementation</b><small>NIF Progress Report 2025</small></span></a><a class="org" href="https://www.niti.gov.in/" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #fd9d24">NITI</span><span><b>NITI Aayog</b><small>SDG India Index, National MPI, Aspirational Districts</small></span></a><a class="org" href="http://rchiips.org/nfhs/" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #4c9f38">NFHS</span><span><b>MoHFW and IIPS</b><small>National Family Health Survey district fact sheets</small></span></a><a class="org" href="https://github.com/datameet/maps" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #0a97d9">DM</span><span><b>DataMeet</b><small>State boundaries (CC BY 4.0)</small></span></a></div></div></section>
 <footer><div class="wrap"><p id="foot"></p><p><a href="paper.pdf" target="_blank" rel="noopener">Paper (PDF)</a> · <a id="foot-repo" href="https://github.com/sahiljangra12/sdg-explorer-india">Code and data on GitHub</a></p></div></footer>
 
 <script>
@@ -875,7 +889,7 @@ function drawNext(view, g) {
 function tilesHTML() {
   return S.goals.map(g => {
     const have = g.un_series_listed - g.un_series_no_india_data.length, pct = g.un_series_listed ? Math.round(100 * have / g.un_series_listed) : 0;
-    return `<a class="tile" href="#goal-${g.goal}" style="--gcol:${GC[g.goal]};--gtx:${GT[g.goal]};--ta:${ACC[g.goal]}"><span class="tn">${g.goal}</span>` +
+    return `<a class="tile" href="#goal-${g.goal}" style="--gcol:${GC[g.goal]};--gtx:${GT[g.goal]};--ta:${ACC[g.goal]}"><span class="ph" style="background-image:url(img/goals/goal_${pad(g.goal)}.jpg);background-position:${({13: "center 75%", 15: "center 90%", 10: "center 40%"})[g.goal] || "center"}" aria-hidden="true"></span><span class="tn">${g.goal}</span>` +
       `<span class="nm">${esc(g.name)}</span><span class="st">${g.series_un + g.series_mospi} data series</span>` +
       `<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span><span class="sub">${have} of ${g.un_series_listed} UN series have India data</span><span class="more">Explore ›</span></a>`;
   }).join("");
@@ -1385,6 +1399,11 @@ function drawOverview() {
 
 // ------------------------------------------------------------------ sources
 function initSources() {
+  fetch("img/goals/credits.json").then(r => r.json()).then(c => {
+    $("so-photos").innerHTML = Object.entries(c).map(([g, r]) => `<div class="credit"><img src="${esc(r.file)}" alt="" loading="lazy"><span><b style="color:var(--ink)">Goal ${g}</b><br>` +
+      `<a href="${esc(r.source)}" target="_blank" rel="noopener">${esc(r.title.replace(/\.(jpe?g)$/i, ""))}</a> by ${esc(r.artist)}, ` +
+      (r.license_url ? `<a href="${esc(r.license_url)}" target="_blank" rel="noopener">${esc(r.license)}</a>` : esc(r.license)) + `</span></div>`).join("");
+  }).catch(() => { $("so-photos").textContent = "Photo credits could not be loaded."; });
   const st = S.source_status;
   const rows = S.sources.map(s => [`<b>${esc(s.name)}</b><br><span class="cap">${esc(s.publisher)}</span>`,
     s.kind === "composite_index" ? '<span class="tag idx">Composite index</span>' : s.kind === "district_context" ? '<span class="tag">District grouping</span>' : s.kind === "reference" ? '<span class="tag">Reference</span>' : '<span class="tag ok">Observations</span>', esc(s.geography),
