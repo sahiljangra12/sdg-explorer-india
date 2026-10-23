@@ -56,9 +56,6 @@ Full, automatically generated figures are in [docs/COVERAGE.md](docs/COVERAGE.md
 | **NFHS-5 District Fact Sheets** (MoHFW / IIPS) | ✅ Verified against an independent digitisation | 43,359 rows: 34 SDG-linked indicators for 704 districts in 34 States/UTs, NFHS-5 (2019-21) and NFHS-4 (2015-16). Goals 2, 3, 4, 5, 6, 7, 16, 17. |
 | **NITI Aayog National MPI 2023, district tables** (district grouping) | ✅ Verified, kept separate | Headcount ratio, intensity and MPI for NFHS-4 and NFHS-5, 709 rows; all 704 NFHS districts matched. Used only to group and filter districts. |
 | **NITI Aayog Aspirational Districts list** (district grouping) | ✅ Loaded | 112 districts; 108 linked to NFHS districts (4 were created after NFHS-5). |
-| **Census 2011 population, area, urban share** | ❌ Not yet | The Census website refuses connections from outside India, so the official tables could not be downloaded. |
-| **State/UT raw indicator values** | ❌ Not yet | The NITI report is a 96-dpi scanned image, not reliable to read by OCR. NFHS-5 State/UT values need the official compendium PDFs (not reachable from the build machine). |
-| **Chandigarh and Lakshadweep districts** | ❌ Missing | Single-district UTs; their fact sheets are not in the copy of the 704 sheets used. |
 
 How the data were verified:
 - **UN data.** The API reported 14,594 records for India. All were received, across 15 complete pages. 1,181 were exact repeats: series filed under several indicators are returned once per indicator. These were merged only after checking that their content was identical. 944 records are the UN's own "NaN = Not Available" markers; they are kept for the missing-data analysis but not counted as observations. A test traces 300 random processed values back to the raw files byte for byte.
