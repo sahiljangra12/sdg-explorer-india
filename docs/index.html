@@ -4,7 +4,7 @@
 <title>SDG Explorer India</title>
 <meta name="description" content="India's progress on the 17 Sustainable Development Goals from official sources: UN SDG database, MoSPI, NITI Aayog and NFHS district fact sheets.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
 <style>
 :root{
@@ -256,6 +256,120 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
 .org b{display:block;font-size:14.5px;line-height:1.25}.org small{display:block;font-size:13px;color:var(--ink2);line-height:1.3}
 footer{border-top:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ================= clean, minimal visual layer (overrides) ================= */
+:root{--page:#f5f5f7;--panel:#ffffff;--soft:#f5f5f7;--ink:#1d1d1f;--ink2:#424245;--ink3:#6e6e73;--line:#d2d2d7;--focus:#0066cc;--blue:#0071e3;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,"Helvetica Neue",Arial,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,"Helvetica Neue",Arial,sans-serif}
+body{font-size:17px;line-height:1.47;letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:600;letter-spacing:-.022em}
+h1{font-size:clamp(40px,6vw,64px);line-height:1.06}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.1}
+h3{font-size:21px;line-height:1.2}
+a{color:var(--focus)}
+header.top{background:rgba(251,251,253,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+header.top .wrap{height:52px;gap:18px}
+.brand{font-family:var(--text);font-weight:600;font-size:17px;letter-spacing:-.02em;gap:8px}
+.brand svg{width:22px;height:22px}
+nav.menu a{font-size:14px;font-weight:400;color:var(--ink);opacity:.82;padding:6px 10px;border-radius:0}
+nav.menu a:hover{background:none;opacity:1}
+nav.menu a.on{background:none;color:var(--ink);opacity:1;font-weight:600;box-shadow:inset 0 -2px 0 var(--ink)}
+.paperbtn{font-size:13px;font-weight:500;color:#fff;background:var(--blue);border:0;padding:5px 13px}
+.paperbtn:hover{background:#0077ed;color:#fff}
+.btn{border-radius:980px;border:1px solid var(--blue);color:var(--blue);background:transparent;font-weight:500;padding:8px 18px}
+.btn:hover{background:rgba(0,113,227,.06);border-color:var(--blue)}
+.btn.dark{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.dark:hover{background:#0077ed}
+.panel{border:0;border-radius:22px;padding:34px 36px}
+@media (max-width:640px){.panel{padding:22px 18px;border-radius:18px}}
+.pagehead{padding:56px 0 8px}
+.lede{font-size:21px;line-height:1.38;color:var(--ink3);letter-spacing:-.016em}
+.how{color:var(--ink3)}
+.crumbs{font-size:13px;color:var(--ink3)}.crumbs a{font-weight:400;color:var(--focus)}
+.guide li{border:0;border-radius:18px;background:#fff;color:var(--ink3)}
+.guide li::before{background:var(--ink)}
+.tag{background:#f5f5f7;color:var(--ink2);font-weight:500}
+select,input[type=search]{border:1px solid var(--line);border-radius:12px}
+.seg{background:#e8e8ed}
+.kpi{background:#f5f5f7;border-radius:18px}
+.note{background:#f5f5f7;border-left:0;border-radius:14px}
+.note.warn{background:#fff5e6}
+.tablewrap{border-radius:14px}
+th{background:#fafafa}
+/* full-width sections */
+.sect{padding:72px 0}
+.sect-white{background:#fff}
+.sect-grey{background:var(--page)}
+@media (max-width:640px){.sect{padding:48px 0}}
+.hero2{text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero2 h1{max-width:20ch}
+.lede2{font-size:clamp(19px,2.2vw,24px);line-height:1.35;color:var(--ink3);max-width:34ch;margin-top:16px;letter-spacing:-.016em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.pill{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-size:17px;font-weight:400;border-radius:980px;padding:11px 22px}
+.pill:hover{background:#0077ed}
+.pill-ghost{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.pill-ghost:hover{background:rgba(0,113,227,.06)}
+.quick{display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;margin-top:22px}
+.quick a{font-size:17px;text-decoration:none}.quick a:hover{text-decoration:underline}
+.hero2 .ringbox{max-width:360px;margin-top:48px}
+.hero2 .facts{justify-content:center;gap:16px 48px;margin-top:36px}
+.fact{text-align:center}
+.fact b{font-family:var(--display);font-weight:600;font-size:34px;letter-spacing:-.02em}
+.fact span{color:var(--ink3);font-size:15px}
+.ringmid b{font-weight:600}
+.shead2{text-align:center;max-width:720px;margin:0 auto 36px}
+.shead2 p{color:var(--ink3);font-size:19px;line-height:1.4;margin-top:10px}
+/* goal tiles */
+.tiles{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.tile{background:#fff;color:var(--ink);border:0;border-top:0;border-radius:20px;padding:22px 20px 18px;min-height:0;transition:transform .2s,box-shadow .2s}
+.tile:hover{transform:scale(1.015);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.tile .tn{width:42px;height:42px;border-radius:50%;background:var(--gcol);color:var(--gtx);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:18px}
+.tile .nm{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.2;letter-spacing:-.018em;margin-top:16px}
+.tile .st{display:block;margin-top:auto;padding-top:12px;font-size:14px;font-weight:400;color:var(--ink3)}
+.tile .bar{height:4px;border-radius:2px;background:#e8e8ed;margin-top:12px}
+.tile .bar i{background:var(--gcol)}
+.tile .sub{display:block;font-size:13px;color:var(--ink3);margin-top:8px;line-height:1.3}
+.tile .more{display:block;margin-top:14px;font-size:15px;color:var(--focus)}
+@media (max-width:520px){.tiles{grid-template-columns:1fr 1fr;gap:10px}.tile{padding:16px 14px 14px}.tile .nm{font-size:16px}.tile .tn{width:34px;height:34px;font-size:15px}}
+/* explore cards and sources */
+.ways{gap:20px}
+.way{border:0;border-radius:22px;background:var(--page);padding:30px 28px 26px}
+.way:hover{border:0;box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.way .go{font-weight:400}
+.srcs{gap:28px}
+.src{border-top:0;padding-top:0;text-align:center}
+.src b{font-family:var(--display);font-weight:600;font-size:18px}
+.src p{color:var(--ink3)}
+.task{border:0;border-radius:18px;font-weight:600}
+.task:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.next h2{font-size:24px}
+/* goal page */
+.band{background:#fff;border-bottom:0;padding:48px 0 40px}
+.band .num{color:var(--gc);font-weight:600}
+.band .kick{color:var(--ink3);font-weight:500;opacity:1}
+.band h1{font-size:clamp(32px,4.6vw,52px);font-weight:600}
+.band .stats{color:var(--ink3);font-weight:400}
+.band .pn a{border:1px solid var(--blue);color:var(--blue);font-weight:500}
+.band .pn a:hover{background:rgba(0,113,227,.06);color:var(--blue)}
+.band .crumbs,.band .crumbs a{color:var(--ink3)}.band .crumbs a{color:var(--focus)}
+.goalstrip{padding-top:16px}
+.goalstrip a,.gpick button{background:#fff;color:var(--ink2);font-weight:500;box-shadow:inset 0 0 0 1px var(--line)}
+.goalstrip a:hover,.gpick button:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.goalstrip a.on,.gpick button.on{background:var(--ta);color:#fff;box-shadow:none}
+.scard{border:0;border-radius:20px}
+.scard:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.scard .code::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gc);margin-right:7px;vertical-align:1px}
+.scard.none .code::before{background:#c7c7cc}
+.scard .v b{font-weight:600}
+dialog.sheet{border-radius:24px}
+.sheet .shead{border-top:0;box-shadow:inset 0 5px 0 var(--gc)}
+.stepno,.jump a b{background:var(--ink)}
+.jump a{border:0;background:#fff}
+.datafrom{background:var(--page);border-top:0}
+.org{background:#fff;border:0;border-radius:16px}
+footer{background:var(--page);font-size:12.5px;color:var(--ink3);border-top:1px solid var(--line)}
+footer .wrap{padding-top:4px}
+@media (max-width:980px){header.top .wrap{height:auto;padding-top:8px;padding-bottom:4px}nav.menu a{padding:6px 8px}}
 </style>
 </head>
 <body>
@@ -277,47 +391,49 @@ footer{border-top:0}
 <main>
   <!-- ======================================================= home -->
   <section class="view" id="v-home" aria-labelledby="h-home">
-    <div class="wrap">
-      <div class="hero">
-        <div>
-          <h1 id="h-home">How is India doing on the 17 Global Goals?</h1>
-          <p class="lede">Official numbers on India's progress towards the UN Sustainable Development Goals, gathered from four government and UN sources and shown exactly as published. Where data is missing, the explorer says so instead of filling the gap.</p>
-          <h2 style="font-size:20px;margin-top:24px">What would you like to do?</h2>
-          <div class="tasks">
-            <a class="task" href="#goals"><span class="ic" style="background:var(--g3)">→</span><span>See one goal<small>India's numbers for any of the 17 goals</small></span></a>
-            <a class="task" href="#states"><span class="ic" style="background:var(--g17)">→</span><span>Compare States<small>SDG India Index for 36 States and UTs</small></span></a>
-            <a class="task" href="#districts"><span class="ic" style="background:var(--g10)">→</span><span>Compare districts<small>704 districts, with poverty filters</small></span></a>
-            <a class="task" href="#gaps"><span class="ic" style="background:var(--g11)">→</span><span>See what is missing<small>Goals and years without data</small></span></a>
-          </div>
-          <div class="heroactions"><a class="btn dark" href="paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a><a class="btn" href="#sources">How the data was checked</a></div>
-          <div class="facts" id="facts"></div>
-        </div>
+    <div class="sect sect-white">
+      <div class="wrap hero2">
+        <h1 id="h-home">India and the 17 Global Goals.</h1>
+        <p class="lede2">Every official number on India's progress towards the UN Sustainable Development Goals. From four government and UN sources, shown exactly as published.</p>
+        <div class="cta"><a class="pill" href="#goals">Explore the goals</a><a class="pill pill-ghost" href="paper.pdf" target="_blank" rel="noopener">Read the paper</a></div>
+        <div class="quick"><a href="#states">Compare States ›</a><a href="#districts">Compare districts ›</a><a href="#gaps">See what is missing ›</a><a href="#sources">How the data was checked ›</a></div>
         <div class="ringbox">
           <svg id="ring" viewBox="0 0 400 400" role="img" aria-label="Data series with India values, by goal"></svg>
           <div class="ringmid" id="ringmid"></div>
         </div>
+        <div class="facts" id="facts"></div>
       </div>
+    </div>
 
-      <div class="sectionhead">
-        <div><h2>Choose a goal</h2><p class="how" style="margin-bottom:0">Click a goal to open its page. The bar shows how many of the UN's data series for that goal have any value for India.</p></div>
+    <div class="sect sect-grey">
+      <div class="wrap">
+        <div class="shead2"><h2>Choose a goal.</h2><p>Each goal has its own page with every data series for India. The bar shows how many of the UN's series for that goal have any value for India.</p></div>
+        <div class="tiles" id="tiles"></div>
       </div>
-      <div class="tiles" id="tiles"></div>
+    </div>
 
-      <div class="sectionhead"><h2>Other ways to explore</h2></div>
-      <div class="ways">
-        <a class="way" href="#states"><div class="mini" id="mini-states" aria-hidden="true"></div><h3>Compare States and UTs</h3><p>NITI Aayog's SDG India Index 2023-24 on a map and as a ranking of all 36 States and Union Territories.</p><span class="go">Open the map</span></a>
-        <a class="way" href="#districts"><div class="mini" id="mini-districts" aria-hidden="true"></div><h3>Compare districts</h3><p>34 health and household indicators for 704 districts, with filters for State, poverty level and Aspirational Districts, and a side-by-side view.</p><span class="go">Compare districts</span></a>
-        <a class="way" href="#gaps"><div class="mini" id="mini-gaps" aria-hidden="true"></div><h3>See what is missing</h3><p>Which UN data series have no India values, which years are empty, and which report tables could not be read safely.</p><span class="go">Check the gaps</span></a>
+    <div class="sect sect-white">
+      <div class="wrap">
+        <div class="shead2"><h2>Explore more.</h2><p>Compare places, or see where the data runs out.</p></div>
+        <div class="ways">
+          <a class="way" href="#states"><div class="mini" id="mini-states" aria-hidden="true"></div><h3>Compare States and UTs</h3><p>NITI Aayog's SDG India Index 2023-24 for all 36 States and Union Territories, on a map and as a ranking.</p><span class="go">Open the map ›</span></a>
+          <a class="way" href="#districts"><div class="mini" id="mini-districts" aria-hidden="true"></div><h3>Compare districts</h3><p>34 health and household indicators for 704 districts, filtered by State, poverty level and Aspirational status.</p><span class="go">Compare districts ›</span></a>
+          <a class="way" href="#gaps"><div class="mini" id="mini-gaps" aria-hidden="true"></div><h3>See what is missing</h3><p>Which data series have no India values, which years are empty, and which report tables could not be read.</p><span class="go">Check the gaps ›</span></a>
+        </div>
       </div>
+    </div>
 
-      <div class="sectionhead"><h2>Where the numbers come from</h2></div>
-      <div class="srcs">
-        <div class="src" style="border-color:var(--g17)"><b>UN SDG Global Database</b><p>National series for every goal, from the UN Statistics Division's official API.</p></div>
-        <div class="src" style="border-color:var(--g4)"><b>MoSPI NIF Progress Report 2025</b><p>India's own national indicator framework, read table by table and checked twice.</p></div>
-        <div class="src" style="border-color:var(--g11)"><b>NITI Aayog SDG India Index</b><p>Composite 0–100 scores for States and UTs. Kept apart from measured values.</p></div>
-        <div class="src" style="border-color:var(--g3)"><b>NFHS district fact sheets</b><p>Survey estimates for 704 districts from the Ministry of Health and Family Welfare and IIPS.</p></div>
+    <div class="sect sect-grey">
+      <div class="wrap">
+        <div class="shead2"><h2>Where the numbers come from.</h2><p>Every value links back to the official file it came from.</p></div>
+        <div class="srcs">
+          <div class="src"><b>UN SDG Global Database</b><p>National series for every goal, from the UN Statistics Division's official API.</p></div>
+          <div class="src"><b>MoSPI NIF Progress Report 2025</b><p>India's own national indicator framework, read table by table and checked twice.</p></div>
+          <div class="src"><b>NITI Aayog SDG India Index</b><p>Composite 0–100 scores for States and UTs, kept apart from measured values.</p></div>
+          <div class="src"><b>NFHS district fact sheets</b><p>Survey estimates for 704 districts from the Ministry of Health and Family Welfare and IIPS.</p></div>
+        </div>
+        <div class="quick" style="margin-top:28px"><a href="#sources">Sources and downloads ›</a><a href="paper.pdf" target="_blank" rel="noopener">Read the paper ›</a></div>
       </div>
-      <p class="cap" style="margin-top:18px"><a href="#sources">How the data was checked, and full downloads</a> · <a href="paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a></p>
     </div>
   </section>
 
@@ -619,7 +735,7 @@ const SEQ_CSS = "linear-gradient(90deg," + SEQ.map(([p, c]) => `${c} ${p * 100}%
 const GOAL_NAMES = {};
 const SRC_NAME = {UN_SDG_API: "UN SDG database", MOSPI_NIF_2025: "MoSPI NIF report 2025", NFHS5_DISTRICTS: "NFHS district fact sheets", NITI_SDGII_2023_24: "NITI Aayog SDG India Index",
   NITI_MPI_2023: "NITI Aayog National MPI 2023", NITI_ASPIRATIONAL: "NITI Aayog Aspirational Districts"};
-const FONT = "'Source Sans 3',-apple-system,Segoe UI,Helvetica,Arial,sans-serif";
+const FONT = "-apple-system,BlinkMacSystemFont,'SF Pro Text',Inter,'Helvetica Neue',Arial,sans-serif";
 const AX = {gridcolor: "#e9ecf2", linecolor: "#c9cfdb", tickcolor: "#c9cfdb", zeroline: false};
 const LAYOUT = {paper_bgcolor: "#ffffff", plot_bgcolor: "#ffffff", font: {family: FONT, size: 14, color: INK},
   margin: {l: 60, r: 18, t: 18, b: 48}, hoverlabel: {font: {family: FONT, size: 14}, bgcolor: "#ffffff", bordercolor: "#c9cfdb"},
@@ -759,8 +875,9 @@ function drawNext(view, g) {
 function tilesHTML() {
   return S.goals.map(g => {
     const have = g.un_series_listed - g.un_series_no_india_data.length, pct = g.un_series_listed ? Math.round(100 * have / g.un_series_listed) : 0;
-    return `<a class="tile" href="#goal-${g.goal}" style="${goalVars(g.goal)}"${GT[g.goal] === INK ? " data-dark" : ""}><span class="n">${g.goal}</span><span class="nm">${esc(g.name)}</span>` +
-      `<span class="st">${g.series_un + g.series_mospi} data series<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span><small>${have} of ${g.un_series_listed} UN series have India data</small></span></a>`;
+    return `<a class="tile" href="#goal-${g.goal}" style="--gcol:${GC[g.goal]};--gtx:${GT[g.goal]};--ta:${ACC[g.goal]}"><span class="tn">${g.goal}</span>` +
+      `<span class="nm">${esc(g.name)}</span><span class="st">${g.series_un + g.series_mospi} data series</span>` +
+      `<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span><span class="sub">${have} of ${g.un_series_listed} UN series have India data</span><span class="more">Explore ›</span></a>`;
   }).join("");
 }
 function seqColor(x) {
