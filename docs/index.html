@@ -211,6 +211,14 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
 .prof .gh{grid-column:1/-1;margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
 @media (max-width:640px){.prof{grid-template-columns:1fr}.prof .lab{margin-top:8px}}
 .flag{display:inline-block;font-size:12.5px;font-weight:700;background:#fff0d6;color:#8a5300;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:1px}
+.paperbox{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start}
+.paperbox .cover{width:120px;aspect-ratio:1/1.414;border-radius:8px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 18px rgba(27,33,64,.12);padding:12px 10px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.paperbox .cover i{display:block;height:5px;border-radius:2px;background:#dfe3ea}
+.paperbox .cover i.t{height:8px;background:var(--ink);width:85%}
+.paperbox .cover .bars{display:flex;gap:2px;margin-top:6px;height:26px;align-items:flex-end}
+.paperbox .cover .bars b{flex:1;border-radius:1px}
+.paperbox .cite{font-size:14.5px;color:var(--ink2);background:var(--soft);border-radius:10px;padding:10px 14px;margin-top:12px;max-width:80ch}
+@media (max-width:640px){.paperbox{grid-template-columns:1fr}.paperbox .cover{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -264,7 +272,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <div class="src" style="border-color:var(--g11)"><b>NITI Aayog SDG India Index</b><p>Composite 0–100 scores for States and UTs. Kept apart from measured values.</p></div>
         <div class="src" style="border-color:var(--g3)"><b>NFHS district fact sheets</b><p>Survey estimates for 704 districts from the Ministry of Health and Family Welfare and IIPS.</p></div>
       </div>
-      <p class="cap" style="margin-top:18px"><a href="#sources">How the data was checked, and full downloads</a></p>
+      <p class="cap" style="margin-top:18px"><a href="#sources">How the data was checked, and full downloads</a> · <a href="paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a></p>
     </div>
   </section>
 
@@ -455,6 +463,17 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <h1 id="h-sources">Sources and downloads</h1>
         <p class="lede">Every value on this site links back to the official file it came from. Here is what was used, how it was checked, and where to download it.</p>
       </div>
+      <div class="panel" id="paper">
+        <div class="paperbox">
+          <div class="cover" aria-hidden="true"><i class="t"></i><i class="t" style="width:60%"></i><i></i><i></i><i style="width:70%"></i><div class="bars" id="paper-bars"></div><i></i><i style="width:80%"></i><i></i></div>
+          <div>
+            <h2>The paper behind this site</h2>
+            <p class="how" style="margin-top:8px"><b>SDG Explorer India: a verified open pipeline and interactive atlas of official Sustainable Development Goal data for India, from national series to 704 districts.</b> It describes every source, how each was read and checked, how much of India's SDG data is missing, and what the district data show about poverty. Every number in it is generated from the same data as this site.</p>
+            <div class="btnrow"><a class="btn dark" href="paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a><a class="btn" href="https://github.com/sahiljangra12/sdg-explorer-india/tree/main/paper" target="_blank" rel="noopener">LaTeX source and the script behind its numbers</a></div>
+            <p class="cite">Cite as: Sahil (2026). SDG Explorer India: a verified open pipeline and interactive atlas of official Sustainable Development Goal data for India, from national series to 704 districts. https://sahiljangra12.github.io/sdg-explorer-india/paper.pdf</p>
+          </div>
+        </div>
+      </div>
       <div class="panel">
         <h2>Sources</h2>
         <div class="tablewrap" id="so-table" style="max-height:none"></div>
@@ -485,7 +504,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
   </section>
 </main>
 
-<footer><div class="wrap"><p id="foot"></p><p><a id="foot-repo" href="https://github.com/sahiljangra12/sdg-explorer-india">Code and data on GitHub</a></p></div></footer>
+<footer><div class="wrap"><p id="foot"></p><p><a href="paper.pdf" target="_blank" rel="noopener">Paper (PDF)</a> · <a id="foot-repo" href="https://github.com/sahiljangra12/sdg-explorer-india">Code and data on GitHub</a></p></div></footer>
 
 <script>
 "use strict";
@@ -575,6 +594,7 @@ async function main() {
   $("foot").innerHTML = `Data built ${esc((S.built || "").slice(0, 10))}. Sources: UN Statistics Division; Ministry of Statistics and Programme Implementation; NITI Aayog; Ministry of Health and Family Welfare / IIPS. ` +
     `Map boundaries: DataMeet (CC BY 4.0). The data remain subject to each publisher's terms of use.`;
   $("foot-repo").href = S.repo;
+  $("paper-bars").innerHTML = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].map(g => `<b style="background:${GC[g]};height:${30 + (g * 37) % 70}%"></b>`).join("");
   $("goalstrip").innerHTML = S.goals.map(x => `<a href="#goal-${x.goal}" style="${goalVars(x.goal)}" title="Goal ${x.goal}: ${esc(x.name)}" aria-label="Goal ${x.goal}: ${esc(x.name)}">${x.goal}</a>`).join("");
   $("mi-pick").innerHTML = S.goals.map(x => `<button data-g="${x.goal}" style="${goalVars(x.goal)}" title="Goal ${x.goal}: ${esc(x.name)}" aria-label="Goal ${x.goal}: ${esc(x.name)}">${x.goal}</button>`).join("");
   $("mi-pick").onclick = e => { const b = e.target.closest("button"); if (b) location.hash = "gaps-" + b.dataset.g; };

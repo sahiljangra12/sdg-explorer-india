@@ -201,6 +201,9 @@ def build_site(proc: Path | None = None, out: Path | None = None) -> dict:
     _dump(dist, data / "districts.json")
     meta = summary(obs, indicators, scores, sources, not_parsed, manifest, set(nat))
     _dump(meta, data / "summary.json")
+    paper = config.ROOT / "paper" / "sdg_explorer_india.pdf"   # the paper, served next to the site
+    if paper.exists() and out == SITE:
+        shutil.copy(paper, out / "paper.pdf")
     geo_src = config.GEO / "india_states.geojson"
     if geo_src.exists():
         shutil.copy(geo_src, data / "india_states.geojson")

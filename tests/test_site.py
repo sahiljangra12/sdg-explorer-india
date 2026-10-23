@@ -54,3 +54,9 @@ def test_site_page_references_only_files_that_exist(built):
     for name in ("summary.json", "districts.json", "india_states.geojson"):
         assert name in page and (data / name).exists()
     assert len(list(data.glob("goal_*.json"))) == 17
+
+
+def test_paper_on_the_site_is_the_current_paper():
+    src, served = config.ROOT / "paper" / "sdg_explorer_india.pdf", config.ROOT / "docs" / "paper.pdf"
+    if src.exists():
+        assert served.exists() and served.read_bytes() == src.read_bytes(), "run `python -m sdg_india site`"
