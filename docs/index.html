@@ -11,7 +11,7 @@
   --page:#f5f6f8;--panel:#ffffff;--soft:#eef1f5;--ink:#1b2140;--ink2:#4a5170;--ink3:#727894;--line:#dce0e8;--focus:#0a6cc2;
   --g1:#e5243b;--g2:#dda63a;--g3:#4c9f38;--g4:#c5192d;--g5:#ff3a21;--g6:#26bde2;--g7:#fcc30b;--g8:#a21942;--g9:#fd6925;
   --g10:#dd1367;--g11:#fd9d24;--g12:#bf8b2e;--g13:#3f7e44;--g14:#0a97d9;--g15:#56c02b;--g16:#00689d;--g17:#19486a;
-  --gc:#19486a;--gt:#ffffff; /* current goal colour and its text colour */
+  --gc:#19486a;--gt:#ffffff;--gl:#d1dae1;--ga:#19486a; /* current goal: colour, text on colour, light tint, accent text */
   --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
   --text:"Source Sans 3",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
 }
@@ -68,16 +68,16 @@ main{padding-bottom:56px}
 .ringmid span{font-size:15px;color:var(--ink2);margin-top:6px;line-height:1.3}
 .sectionhead{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin:44px 0 16px}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:12px}
-.tile{display:flex;flex-direction:column;text-decoration:none;color:var(--tt);background:var(--tc);border-radius:16px;padding:16px 16px 14px;min-height:178px;position:relative;overflow:hidden;transition:transform .15s}
-.tile:hover{transform:translateY(-3px)}
+.tile{display:flex;flex-direction:column;text-decoration:none;color:var(--tt);background:var(--tc);border-top:6px solid var(--ta);border-radius:16px;padding:16px 16px 14px;min-height:178px;position:relative;overflow:hidden;transition:transform .15s}
+.tile:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(27,33,64,.12)}
 @media (max-width:520px){.tiles{grid-template-columns:1fr 1fr;gap:9px}.tile{min-height:150px;padding:13px 12px 12px}.tile .n{font-size:36px}.tile .nm{font-size:15.5px}.tile .st{font-size:13px}.tile .st small{font-size:12px}}
-.tile .n{font-family:var(--display);font-size:46px;font-weight:800;line-height:.9}
+.tile .n{font-family:var(--display);font-size:46px;font-weight:800;line-height:.9;color:var(--ta)}
 .tile .nm{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.15;margin-top:8px}
 .tile .st{display:block;margin-top:auto;padding-top:14px;font-size:14px;font-weight:600;line-height:1.3}
 .tile .st small{display:block;font-size:13.5px;font-weight:400;opacity:.92;margin-top:5px}
-.tile .bar{display:block;height:7px;border-radius:4px;background:rgba(255,255,255,.32);margin-top:6px;overflow:hidden}
+.tile .bar{display:block;height:7px;border-radius:4px;background:rgba(27,33,64,.12);margin-top:6px;overflow:hidden}
 .tile[data-dark] .bar{background:rgba(27,33,64,.18)}
-.tile .bar i{display:block;height:100%;background:var(--tt);border-radius:4px}
+.tile .bar i{display:block;height:100%;background:var(--ta);border-radius:4px}
 .ways{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media (max-width:900px){.ways{grid-template-columns:1fr}}
 .way{display:block;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;text-decoration:none;color:var(--ink)}
 .way:hover{border-color:var(--ink)}
@@ -91,19 +91,19 @@ main{padding-bottom:56px}
 .src p{font-size:15px;color:var(--ink2);margin-top:4px}
 
 /* goal page */
-.band{background:var(--gc);color:var(--gt);padding:34px 0 30px}
+.band{background:var(--gl);color:var(--ink);padding:34px 0 30px;border-bottom:4px solid var(--gc)}
 .band .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:8px 26px;align-items:center}
 @media (max-width:760px){.band .wrap{grid-template-columns:auto 1fr}.band .pn{grid-column:1/-1}}
-.band .num{font-family:var(--display);font-weight:800;font-size:clamp(76px,11vw,128px);line-height:.8}
+.band .num{font-family:var(--display);font-weight:800;font-size:clamp(76px,11vw,128px);line-height:.8;color:var(--ga)}
 .band .kick{font-size:16px;font-weight:600;opacity:.9}
 .band h1{font-size:clamp(30px,4.4vw,48px);margin-top:4px}
 .band .stats{display:flex;flex-wrap:wrap;gap:4px 22px;margin-top:12px;font-size:16px;font-weight:600}
 .band .pn{display:flex;gap:8px}
-.band .pn a{display:inline-flex;align-items:center;gap:6px;color:var(--gt);text-decoration:none;font-weight:700;border:2px solid currentColor;border-radius:999px;padding:7px 14px;font-size:15px;white-space:nowrap}
-.band .pn a:hover{background:color-mix(in srgb,var(--gt) 16%,transparent)}
+.band .pn a{display:inline-flex;align-items:center;gap:6px;color:var(--ink);background:#fff;text-decoration:none;font-weight:700;border:2px solid currentColor;border-radius:999px;padding:7px 14px;font-size:15px;white-space:nowrap}
+.band .pn a:hover{background:var(--ink);color:#fff}
 .goalstrip{display:flex;gap:4px;padding:12px 0 0;overflow-x:auto;scrollbar-width:none}
-.goalstrip a{flex:1 0 34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-decoration:none;color:var(--tt);background:var(--tc);opacity:.55}
-.goalstrip a:hover,.goalstrip a.on{opacity:1}
+.goalstrip a{flex:1 0 34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-decoration:none;color:var(--ta);background:var(--tc)}
+.goalstrip a:hover{box-shadow:inset 0 0 0 2px var(--ta)}.goalstrip a.on{background:var(--ta);color:#fff}
 .goalstrip a.on{box-shadow:0 0 0 2px var(--page),0 0 0 4px var(--ink)}
 
 /* controls */
@@ -147,11 +147,11 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 .kpi span{font-size:14.5px;color:var(--ink2)}
 .gpick{display:grid;grid-template-columns:repeat(17,1fr);gap:5px;margin:4px 0 18px}
 @media (max-width:760px){.gpick{grid-template-columns:repeat(9,1fr)}}
-.gpick button{font:inherit;font-family:var(--display);font-weight:800;font-size:17px;height:42px;border:0;border-radius:9px;background:var(--tc);color:var(--tt);cursor:pointer;opacity:.38}
-.gpick button:hover,.gpick button.on{opacity:1}
+.gpick button{font:inherit;font-family:var(--display);font-weight:800;font-size:17px;height:42px;border:0;border-radius:9px;background:var(--tc);color:var(--ta);cursor:pointer}
+.gpick button:hover{box-shadow:inset 0 0 0 2px var(--ta)}.gpick button.on{background:var(--ta);color:#fff}
 .gpick button.on{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
 .heat td.sc{text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
-.sw{display:inline-block;width:22px;height:22px;border-radius:6px;vertical-align:-6px;margin-right:8px;color:var(--tt);background:var(--tc);text-align:center;font-size:12px;font-weight:800;line-height:22px;font-family:var(--display)}
+.sw{display:inline-block;width:22px;height:22px;border-radius:6px;vertical-align:-6px;margin-right:8px;color:var(--ta);background:var(--tc);text-align:center;font-size:12px;font-weight:800;line-height:22px;font-family:var(--display)}
 .legendrow{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink3);margin-top:8px}
 .legendrow .scale{height:10px;width:180px;border-radius:5px}
 .rules{padding-left:20px;color:var(--ink2);margin:6px 0 0}.rules li{margin:4px 0}
@@ -223,7 +223,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
 .crumbs{font-size:14.5px;color:var(--ink3);margin-bottom:10px}
 .crumbs a{color:var(--ink2);text-decoration:none;font-weight:600}.crumbs a:hover{text-decoration:underline}
 .crumbs span{margin:0 6px}
-.band .crumbs,.band .crumbs a{color:var(--gt);opacity:.9}
+.band .crumbs,.band .crumbs a{color:var(--ink2)}
 .guide{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 6px;padding:0;list-style:none;counter-reset:st}
 .guide li{counter-increment:st;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 50px;position:relative;font-size:15.5px;line-height:1.35;color:var(--ink2)}
 .guide li b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
@@ -247,6 +247,14 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
 .next{margin-top:34px}
 .next h2{font-size:22px;margin-bottom:12px}
 .nextrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.datafrom{border-top:1px solid var(--line);background:#fff;padding:26px 0 8px}
+.datafrom h2{font-size:18px;margin-bottom:12px}
+.orgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.org{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--page)}
+.org:hover{border-color:var(--ink)}
+.org .mk{flex:none;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.02em;color:var(--ink);background:#fff;border:1px solid var(--line)}
+.org b{display:block;font-size:14.5px;line-height:1.25}.org small{display:block;font-size:13px;color:var(--ink2);line-height:1.3}
+footer{border-top:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -591,6 +599,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
   </section>
 </main>
 
+<section class="datafrom" aria-labelledby="h-datafrom"><div class="wrap"><h2 id="h-datafrom">Data from</h2><div class="orgs"><a class="org" href="https://unstats.un.org/sdgs/dataportal/database" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #19486a">UNSD</span><span><b>United Nations Statistics Division</b><small>Global SDG Indicators Database</small></span></a><a class="org" href="https://www.mospi.gov.in/" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #c5192d">MoSPI</span><span><b>Ministry of Statistics and Programme Implementation</b><small>NIF Progress Report 2025</small></span></a><a class="org" href="https://www.niti.gov.in/" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #fd9d24">NITI</span><span><b>NITI Aayog</b><small>SDG India Index, National MPI, Aspirational Districts</small></span></a><a class="org" href="http://rchiips.org/nfhs/" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #4c9f38">NFHS</span><span><b>MoHFW and IIPS</b><small>National Family Health Survey district fact sheets</small></span></a><a class="org" href="https://github.com/datameet/maps" target="_blank" rel="noopener"><span class="mk" style="border-bottom:4px solid #0a97d9">DM</span><span><b>DataMeet</b><small>State boundaries (CC BY 4.0)</small></span></a></div></div></section>
 <footer><div class="wrap"><p id="foot"></p><p><a href="paper.pdf" target="_blank" rel="noopener">Paper (PDF)</a> · <a id="foot-repo" href="https://github.com/sahiljangra12/sdg-explorer-india">Code and data on GitHub</a></p></div></footer>
 
 <script>
@@ -646,7 +655,8 @@ async function getJSON(name) {
   if (!cache[name]) cache[name] = fetch("data/" + name).then(r => { if (!r.ok) throw new Error(name + ": HTTP " + r.status); return r.json(); });
   return cache[name];
 }
-const goalVars = g => `--tc:${GC[g]};--tt:${GT[g]}`;
+const LT = GC.map(c => c && tone(c, 0.2));   // light tint of each goal colour for large surfaces
+const goalVars = g => `--tc:${LT[g]};--tt:${INK};--ta:${ACC[g]}`;
 
 // ------------------------------------------------------------------ routing
 // #home, #goal-3, #states, #districts, #gaps or #gaps-3, #sources (old links #explorer, #missing, #overview still work)
@@ -796,7 +806,7 @@ function spark(s, col) {
 
 async function showGoal(g) {
   const x = S.goals[g - 1], root = document.documentElement.style;
-  root.setProperty("--gc", GC[g]); root.setProperty("--gt", GT[g]);
+  root.setProperty("--gc", GC[g]); root.setProperty("--gt", GT[g]); root.setProperty("--gl", LT[g]); root.setProperty("--ga", ACC[g]);
   $("g-num").textContent = g; $("g-kick").textContent = `Goal ${g} of 17`; $("g-name").textContent = x.name;
   $("g-stats").innerHTML = `<span>${x.series_un} UN series with India data</span><span>${x.series_mospi} MoSPI series</span><span>${x.un_series_no_india_data.length} UN series with no India data</span>`;
   $("g-prev").href = `#goal-${g === 1 ? 17 : g - 1}`; $("g-prev").textContent = `Goal ${g === 1 ? 17 : g - 1}`;
