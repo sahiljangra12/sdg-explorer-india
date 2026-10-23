@@ -7,7 +7,7 @@
 
 How is India doing on the 17 UN Sustainable Development Goals, and where is data missing? This project brings together four official sources: the UN Global SDG Indicators Database, MoSPI's National Indicator Framework report, NITI Aayog's SDG India Index and the National Family Health Survey district fact sheets. A tested Python pipeline downloads, checks and cleans them, and a website lets anyone explore the result. Every value links back to the official file it came from, and missing data stays missing.
 
-**[Open the explorer →](https://sahiljangra12.github.io/sdg-explorer-india/)** · [Methods](docs/METHODS.md) · [Coverage report](docs/COVERAGE.md) · [Download the data](data/processed/)
+**[Open the explorer →](https://sahiljangra12.github.io/sdg-explorer-india/)** · [Paper (PDF)](paper/sdg_explorer_india.pdf) · [Methods](docs/METHODS.md) · [Coverage report](docs/COVERAGE.md) · [Download the data](data/processed/)
 
 <a href="https://sahiljangra12.github.io/sdg-explorer-india/"><img src="assets/cover.jpg" alt="NITI Aayog SDG India Index 2023-24 by State and Union Territory" width="100%"></a>
 

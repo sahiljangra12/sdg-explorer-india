@@ -12,3 +12,11 @@ data/raw/niti/*.pdf
 data/raw/nfhs5_districts/
 data/raw/niti_mpi/*.pdf
 data/raw/niti_aspirational/*.pdf
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
