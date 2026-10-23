@@ -39,7 +39,7 @@ nav.menu::-webkit-scrollbar{display:none}
 nav.menu a{font-size:15.5px;font-weight:600;color:var(--ink2);text-decoration:none;padding:8px 13px;border-radius:999px;white-space:nowrap}
 nav.menu a:hover{background:var(--soft);color:var(--ink)}
 nav.menu a.on{background:var(--ink);color:#fff}
-@media (max-width:820px){header.top .wrap{flex-direction:column;align-items:stretch;height:auto;gap:4px;padding-top:10px;padding-bottom:8px}nav.menu{margin-left:-6px}}
+@media (max-width:980px){header.top .wrap{flex-wrap:wrap;height:auto;gap:6px 12px;padding-top:10px;padding-bottom:8px}nav.menu{order:3;width:100%;margin-left:-6px;flex-wrap:wrap;overflow:visible}.paperbtn{margin-left:auto}}
 
 main{padding-bottom:56px}
 .view{display:none}.view.on{display:block}
@@ -219,6 +219,34 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
 .paperbox .cover .bars b{flex:1;border-radius:1px}
 .paperbox .cite{font-size:14.5px;color:var(--ink2);background:var(--soft);border-radius:10px;padding:10px 14px;margin-top:12px;max-width:80ch}
 @media (max-width:640px){.paperbox{grid-template-columns:1fr}.paperbox .cover{display:none}}
+/* guidance */
+.crumbs{font-size:14.5px;color:var(--ink3);margin-bottom:10px}
+.crumbs a{color:var(--ink2);text-decoration:none;font-weight:600}.crumbs a:hover{text-decoration:underline}
+.crumbs span{margin:0 6px}
+.band .crumbs,.band .crumbs a{color:var(--gt);opacity:.9}
+.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 6px;padding:0;list-style:none;counter-reset:st}
+.guide li{counter-increment:st;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px 12px 50px;position:relative;font-size:15.5px;line-height:1.35;color:var(--ink2)}
+.guide li b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+.guide li::before{content:counter(st);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:var(--display)}
+@media (max-width:760px){.guide{grid-template-columns:1fr}}
+.tasks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;max-width:620px}
+.task{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;text-decoration:none;color:var(--ink);font-weight:700;font-size:16px;line-height:1.25}
+.task:hover{border-color:var(--ink)}
+.task small{display:block;font-weight:400;color:var(--ink2);font-size:14px;margin-top:2px}
+.task .ic{flex:none;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:800}
+@media (max-width:520px){.tasks{grid-template-columns:1fr}}
+.paperbtn{flex:none;font-size:15px;font-weight:700;text-decoration:none;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:7px 14px;white-space:nowrap}
+.paperbtn:hover{background:var(--ink);color:#fff}
+.heroactions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:20px}
+#v-districts .panel{scroll-margin-top:200px}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.jump a{font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.jump a:hover{border-color:var(--ink);color:var(--ink)}
+.jump a b{display:inline-block;width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;text-align:center;line-height:20px;margin-right:6px}
+.stepno{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-size:16px;align-items:center;justify-content:center;margin-right:10px;vertical-align:3px;font-family:var(--display)}
+.next{margin-top:34px}
+.next h2{font-size:22px;margin-bottom:12px}
+.nextrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -228,12 +256,13 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
     <a class="brand" href="#home" aria-label="SDG Explorer India, home"><svg id="logo" width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"></svg>SDG Explorer India</a>
     <nav class="menu" id="menu" aria-label="Sections">
       <a href="#home" data-v="home">Home</a>
-      <a href="#goal-1" data-v="goal">Goals</a>
+      <a href="#goals" data-v="goals">Goals</a>
       <a href="#states" data-v="states">States &amp; UTs</a>
       <a href="#districts" data-v="districts">Districts</a>
       <a href="#gaps" data-v="gaps">Data gaps</a>
       <a href="#sources" data-v="sources">Sources</a>
     </nav>
+    <a class="paperbtn" href="paper.pdf" target="_blank" rel="noopener">Read the paper</a>
   </div>
 </header>
 
@@ -245,6 +274,14 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <div>
           <h1 id="h-home">How is India doing on the 17 Global Goals?</h1>
           <p class="lede">Official numbers on India's progress towards the UN Sustainable Development Goals, gathered from four government and UN sources and shown exactly as published. Where data is missing, the explorer says so instead of filling the gap.</p>
+          <h2 style="font-size:20px;margin-top:24px">What would you like to do?</h2>
+          <div class="tasks">
+            <a class="task" href="#goals"><span class="ic" style="background:var(--g3)">→</span><span>See one goal<small>India's numbers for any of the 17 goals</small></span></a>
+            <a class="task" href="#states"><span class="ic" style="background:var(--g17)">→</span><span>Compare States<small>SDG India Index for 36 States and UTs</small></span></a>
+            <a class="task" href="#districts"><span class="ic" style="background:var(--g10)">→</span><span>Compare districts<small>704 districts, with poverty filters</small></span></a>
+            <a class="task" href="#gaps"><span class="ic" style="background:var(--g11)">→</span><span>See what is missing<small>Goals and years without data</small></span></a>
+          </div>
+          <div class="heroactions"><a class="btn dark" href="paper.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a><a class="btn" href="#sources">How the data was checked</a></div>
           <div class="facts" id="facts"></div>
         </div>
         <div class="ringbox">
@@ -254,7 +291,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
       </div>
 
       <div class="sectionhead">
-        <div><h2>Choose a goal</h2><p class="how" style="margin-bottom:0">Each goal has its own page with charts, definitions and downloads. The bar shows how many of the UN's data series for that goal have any value for India.</p></div>
+        <div><h2>Choose a goal</h2><p class="how" style="margin-bottom:0">Click a goal to open its page. The bar shows how many of the UN's data series for that goal have any value for India.</p></div>
       </div>
       <div class="tiles" id="tiles"></div>
 
@@ -276,12 +313,31 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
     </div>
   </section>
 
+  <!-- ======================================================= goals list -->
+  <section class="view" id="v-goals" aria-labelledby="h-goals">
+    <div class="wrap">
+      <div class="pagehead">
+        <div class="crumbs"><a href="#home">Home</a><span>›</span>Goals</div>
+        <h1 id="h-goals">Choose a goal</h1>
+        <p class="lede">Each of the 17 goals has its own page with every official data series for India.</p>
+        <ol class="guide">
+          <li><b>Pick a goal</b>Click one of the coloured tiles below.</li>
+          <li><b>Open a data series</b>Each card shows India's latest value. Click it to see every year.</li>
+          <li><b>Read, plot or download</b>Values come as a table; plot them over time or download a CSV.</li>
+        </ol>
+      </div>
+      <div class="tiles" id="tiles2" style="margin-top:18px"></div>
+      <div class="next" data-next="states,districts,gaps"></div>
+    </div>
+  </section>
+
   <!-- ======================================================= goal -->
   <section class="view" id="v-goal" aria-labelledby="g-name">
     <div class="band">
       <div class="wrap">
         <div class="num" id="g-num" aria-hidden="true"></div>
         <div>
+          <div class="crumbs"><a href="#home">Home</a><span>›</span><a href="#goals">Goals</a><span>›</span><span id="g-crumb" style="margin:0"></span></div>
           <div class="kick" id="g-kick"></div>
           <h1 id="g-name"></h1>
           <div class="stats" id="g-stats"></div>
@@ -293,7 +349,11 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
       <nav class="goalstrip" id="goalstrip" aria-label="All goals"></nav>
       <div class="panel">
         <h2>Data series for this goal</h2>
-        <p class="how">Each card is one official data series with India's most recent published value. Open a card to see every value as a table, and plot it over time when there are enough years to show a trend.</p>
+        <ol class="guide" style="margin-top:12px">
+          <li><b>Find a series</b>Search a word, or narrow to one source.</li>
+          <li><b>Click a card</b>See every published value as a table.</li>
+          <li><b>Plot or download</b>Plot over time when there are 3 or more years; download a CSV.</li>
+        </ol>
         <div class="controls">
           <label class="field grow">Search this goal<input type="search" id="ex-q" placeholder="Try: poverty, women, electricity, school" autocomplete="off"></label>
           <div class="field">Source<div class="seg" id="ex-src" role="group" aria-label="Source"><button data-v="" class="on">All</button><button data-v="UN_SDG_API">UN database</button><button data-v="MOSPI_NIF_2025">MoSPI</button></div></div>
@@ -303,6 +363,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <div class="cards" id="ex-cards"></div>
         <div class="more"><button class="btn" id="ex-more" hidden>Show more series</button></div>
       </div>
+      <div class="next" data-next="goalnext,states,gaps"></div>
     </div>
   </section>
 
@@ -329,9 +390,15 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
   <section class="view" id="v-states" aria-labelledby="h-states">
     <div class="wrap">
       <div class="pagehead">
+        <div class="crumbs"><a href="#home">Home</a><span>›</span>States and UTs</div>
         <h1 id="h-states">States and Union Territories</h1>
         <p class="lede">NITI Aayog scores every State and UT from 0 to 100 by combining many indicators. Higher means closer to the 2030 targets.</p>
         <div class="note"><b>This is a composite index, not a measured value.</b> NITI Aayog normalises and weights indicators to build each score, so the index is kept separate from the indicator data. Scores were read from the report's pages 67–68 and checked against figures stated in its text.</div>
+        <ol class="guide">
+          <li><b>Find your State</b>Hover over the map, or find it in the ranking beside it.</li>
+          <li><b>Read its score</b>0 to 100; 65 or more is a "Front Runner" in NITI Aayog's terms.</li>
+          <li><b>See India over time</b>Scroll down for India's score in each edition and by goal.</li>
+        </ol>
       </div>
       <div class="panel">
         <h2>SDG India Index 2023-24</h2>
@@ -349,6 +416,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <div class="tablewrap heat" id="st-goals" style="max-height:none"></div>
         <p class="cap">A dash means the report gives no score for India on that goal in that edition.</p>
       </div>
+      <div class="next" data-next="districts,goals,gaps"></div>
     </div>
   </section>
 
@@ -356,10 +424,19 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
   <section class="view" id="v-districts" aria-labelledby="h-districts">
     <div class="wrap">
       <div class="pagehead">
+        <div class="crumbs"><a href="#home">Home</a><span>›</span>Districts</div>
         <h1 id="h-districts">Compare districts</h1>
         <p class="lede">704 districts, 34 health and household indicators from NFHS-5 (2019-21) and NFHS-4 (2015-16). Narrow the districts by State, poverty level or programme, then compare them side by side.</p>
+        <nav class="jump" aria-label="Steps on this page">
+          <a href="#di-step1"><b>1</b>Choose an indicator and filters</a>
+          <a href="#di-step2"><b>2</b>See the spread</a>
+          <a href="#di-step3"><b>3</b>Link with poverty</a>
+          <a href="#di-step4"><b>4</b>Compare groups</a>
+          <a href="#di-compare-panel"><b>5</b>Compare districts side by side</a>
+        </nav>
       </div>
-      <div class="filters">
+      <div class="filters" id="di-step1">
+        <div style="font-weight:700;font-size:16px;margin-bottom:8px;display:flex;align-items:center"><span class="stepno" style="width:24px;height:24px;font-size:13px;vertical-align:0">1</span>Choose an indicator and filters</div>
         <div class="controls">
           <label class="field grow">Indicator<select id="di-ind"></select></label>
           <label class="field" style="flex:0 1 230px">State / UT<select id="di-state"></select></label>
@@ -370,16 +447,16 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
       </div>
       <div id="di-rel" style="margin-top:14px"></div>
 
-      <div class="panel">
-        <h2>How districts are spread</h2>
+      <div class="panel" id="di-step2">
+        <h2><span class="stepno">2</span>How districts are spread</h2>
         <p class="how" id="di-spread-how"></p>
         <div id="di-chart" class="chart"></div>
         <div id="di-cap" class="cap"></div>
         <div id="di-extra"></div>
       </div>
 
-      <div class="panel">
-        <h2>Poverty and this indicator</h2>
+      <div class="panel" id="di-step3">
+        <h2><span class="stepno">3</span>Poverty and this indicator</h2>
         <p class="how">Each dot is a district. Across: the share of people who are multidimensionally poor (NITI Aayog, NFHS-5). Up: the indicator above. Districts outside your filters are shown in light grey. Click a dot to add that district to the comparison below.</p>
         <div id="di-mpi-note"></div>
         <div class="legend" id="di-sc-legend"></div>
@@ -387,8 +464,8 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <div id="di-sc-cap" class="cap"></div>
       </div>
 
-      <div class="panel">
-        <h2>By group</h2>
+      <div class="panel" id="di-step4">
+        <h2><span class="stepno">4</span>By group</h2>
         <p class="how">The indicator for the districts in your filters, grouped by poverty level and by Aspirational District status. The box covers the middle half of districts and the line inside it is the median district; every dot is one district.</p>
         <div class="seg viewseg" id="di-grp" role="group" aria-label="Group by"><button data-v="pov" class="on">By poverty level</button><button data-v="asp">Aspirational or not</button></div>
         <div id="di-box" class="chart"></div>
@@ -396,7 +473,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
       </div>
 
       <div class="panel" id="di-compare-panel">
-        <h2>Compare districts side by side</h2>
+        <h2><span class="stepno">5</span>Compare districts side by side</h2>
         <p class="how">Add up to four districts. Each row is one indicator: the grey bar shows where the middle half of all 704 districts lies (with a tick for the median), and the coloured dots show your districts. Hollow dots are the same districts in NFHS-4.</p>
         <div class="controls">
           <label class="field grow">Add a district<input type="search" id="cmp-q" list="cmp-list" placeholder="Type a district name" autocomplete="off"><datalist id="cmp-list"></datalist></label>
@@ -420,6 +497,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
           <li>Population, area and urban share (Census 2011) are not included yet: the Census website could not be reached to download the official tables.</li>
         </ul>
       </div>
+      <div class="next" data-next="states,goals,gaps"></div>
     </div>
   </section>
 
@@ -427,8 +505,14 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
   <section class="view" id="v-gaps" aria-labelledby="h-gaps">
     <div class="wrap">
       <div class="pagehead">
+        <div class="crumbs"><a href="#home">Home</a><span>›</span>Data gaps</div>
         <h1 id="h-gaps">What data exists, and what is missing</h1>
-        <p class="lede">Knowing where data is thin matters as much as the numbers themselves. Choose a goal to see its gaps.</p>
+        <p class="lede">Knowing where data is thin matters as much as the numbers themselves.</p>
+        <ol class="guide">
+          <li><b>Pick a goal</b>Use the numbered buttons below.</li>
+          <li><b>See which years have data</b>Each row is a series; filled cells are years with a value.</li>
+          <li><b>Open the lists</b>Series with no India data, and tables that could not be read.</li>
+        </ol>
       </div>
       <div class="panel">
         <div class="gpick" id="mi-pick" role="group" aria-label="Choose a goal"></div>
@@ -453,6 +537,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <div id="ov-heat" class="chart" style="height:540px"></div>
         <p class="cap" id="ov-cap"></p>
       </div>
+      <div class="next" data-next="goals,sources,districts"></div>
     </div>
   </section>
 
@@ -460,6 +545,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
   <section class="view" id="v-sources" aria-labelledby="h-sources">
     <div class="wrap">
       <div class="pagehead">
+        <div class="crumbs"><a href="#home">Home</a><span>›</span>Sources</div>
         <h1 id="h-sources">Sources and downloads</h1>
         <p class="lede">Every value on this site links back to the official file it came from. Here is what was used, how it was checked, and where to download it.</p>
       </div>
@@ -500,6 +586,7 @@ dialog.sheet::backdrop{background:rgba(27,33,64,.5)}
         <div id="so-val"></div>
         <p class="how">Full methods in <a id="so-methods" href="#">METHODS.md</a>, coverage figures in <a id="so-cov" href="#">COVERAGE.md</a>, and all code in the <a id="so-repo" href="#">GitHub repository</a>.</p>
       </div>
+      <div class="next" data-next="goals,states,districts"></div>
     </div>
   </section>
 </main>
@@ -563,7 +650,7 @@ const goalVars = g => `--tc:${GC[g]};--tt:${GT[g]}`;
 
 // ------------------------------------------------------------------ routing
 // #home, #goal-3, #states, #districts, #gaps or #gaps-3, #sources (old links #explorer, #missing, #overview still work)
-const VIEWS = ["home", "goal", "states", "districts", "gaps", "sources"];
+const VIEWS = ["home", "goals", "goal", "states", "districts", "gaps", "sources"];
 const OLD = {explorer: "goal-1", missing: "gaps", overview: "gaps"};
 const inited = {};
 let S;
@@ -576,15 +663,22 @@ function parseHash() {
 async function route() {
   const [view, g] = parseHash();
   document.querySelectorAll(".view").forEach(s => s.classList.toggle("on", s.id === "v-" + view));
-  document.querySelectorAll("#menu a").forEach(a => { const on = a.dataset.v === view; a.classList.toggle("on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
+  document.querySelectorAll("#menu a").forEach(a => { const on = a.dataset.v === view || (a.dataset.v === "goals" && view === "goal"); a.classList.toggle("on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
   document.title = (view === "home" ? "" : (view === "goal" ? `Goal ${g || 1}: ${GOAL_NAMES[g || 1]}` : document.querySelector(`#v-${view} h1`).textContent) + " · ") + "SDG Explorer India";
   window.scrollTo(0, 0);
-  const init = {home: initHome, goal: showGoal, states: initStates, districts: initDistricts, gaps: showGaps, sources: initSources}[view];
+  drawNext(view, g);
+  const init = {home: initHome, goals: initGoals, goal: showGoal, states: initStates, districts: initDistricts, gaps: showGaps, sources: initSources}[view];
   if (view === "goal" || view === "gaps") await init(g || (view === "gaps" ? (GAPS.g || 1) : 1));
   else if (!inited[view]) { inited[view] = true; await init(); }
   document.querySelectorAll(`#v-${view} .js-plotly-plot`).forEach(p => Plotly.Plots.resize(p));
 }
 window.addEventListener("hashchange", () => route().catch(fail));
+// in-page step links scroll without changing the page address (the address picks the page)
+document.addEventListener("click", e => {
+  const a = e.target.closest(".jump a"); if (!a) return;
+  e.preventDefault(); const t = document.querySelector(a.getAttribute("href"));
+  if (t) t.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+});
 
 async function main() {
   S = await getJSON("summary.json");
@@ -630,16 +724,34 @@ function initHome() {
     p.onmouseenter = () => mid.innerHTML = `<b style="color:${g === 7 ? "#b58a00" : GC[g]}">${x.series_un + x.series_mospi}</b><span>series for Goal ${g}: ${esc(x.name)}</span>`;
     p.onmouseleave = () => mid.innerHTML = base;
   });
-  $("tiles").innerHTML = S.goals.map(g => {
+  $("tiles").innerHTML = tilesHTML();
+  // small decorative previews on the three cards, drawn from the real data
+  const sc = S.scores.filter(r => r.goal === 0 && r.geo_level !== "national" && r.edition === "2023-24").map(r => r.score).sort((a, b) => a - b);
+  const lo = Math.min(...sc), hi = Math.max(...sc);
+  $("mini-states").innerHTML = sc.map(v => `<i style="height:${Math.round(8 + 38 * (v - lo) / ((hi - lo) || 1))}px;background:${seqColor((v - 50) / 30)}"></i>`).join("");
+  const gp = [3, 2, 5, 6, 4, 7, 16, 17]; $("mini-districts").innerHTML = [30, 44, 22, 38, 46, 28, 40, 34, 18, 42, 26, 36].map((h, i) => `<i style="height:${h}px;background:${GC[gp[i % gp.length]]}"></i>`).join("");
+  $("mini-gaps").innerHTML = S.goals.map(g => { const p = (g.un_series_listed - g.un_series_no_india_data.length) / g.un_series_listed; return `<i style="height:${8 + 38 * p}px;background:${GC[g.goal]};opacity:${0.35 + 0.65 * p}"></i>`; }).join("");
+}
+function initGoals() { $("tiles2").innerHTML = tilesHTML(); }
+const NEXT = {
+  goals: ["#goals", "Choose another goal", "All 17 goals on one page", 3],
+  states: ["#states", "Compare States and UTs", "SDG India Index 2023-24 map and ranking", 17],
+  districts: ["#districts", "Compare districts", "704 districts, with poverty filters", 10],
+  gaps: ["#gaps", "See what is missing", "Goals and years without data", 11],
+  sources: ["#sources", "Sources and downloads", "Where every number comes from", 16],
+};
+function drawNext(view, g) {
+  document.querySelectorAll(`#v-${view} .next`).forEach(el => {
+    const items = el.dataset.next.split(",").map(k => k === "goalnext" ? [`#goal-${(g || 1) % 17 + 1}`, `Next: Goal ${(g || 1) % 17 + 1}`, GOAL_NAMES[(g || 1) % 17 + 1], (g || 1) % 17 + 1] : k === "gaps" && view === "goal" ? [`#gaps-${g || 1}`, "What is missing for this goal", "Series and years without data", 11] : NEXT[k]);
+    el.innerHTML = `<h2>Where to next?</h2><div class="nextrow">${items.map(([href, t, sub, c]) => `<a class="task" href="${href}"><span class="ic" style="background:${GC[c]}">→</span><span>${esc(t)}<small>${esc(sub)}</small></span></a>`).join("")}</div>`;
+  });
+}
+function tilesHTML() {
+  return S.goals.map(g => {
     const have = g.un_series_listed - g.un_series_no_india_data.length, pct = g.un_series_listed ? Math.round(100 * have / g.un_series_listed) : 0;
     return `<a class="tile" href="#goal-${g.goal}" style="${goalVars(g.goal)}"${GT[g.goal] === INK ? " data-dark" : ""}><span class="n">${g.goal}</span><span class="nm">${esc(g.name)}</span>` +
       `<span class="st">${g.series_un + g.series_mospi} data series<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span><small>${have} of ${g.un_series_listed} UN series have India data</small></span></a>`;
   }).join("");
-  // small decorative previews on the three cards, drawn from the real data
-  const sc = S.scores.filter(r => r.goal === 0 && r.geo_level !== "national" && r.edition === "2023-24").map(r => r.score).sort((a, b) => a - b);
-  $("mini-states").innerHTML = sc.map(v => `<i style="height:${Math.max(8, (v - 45) * 2.6)}px;background:${seqColor((v - 50) / 30)}"></i>`).join("");
-  const gp = [3, 2, 5, 6, 4, 7, 16, 17]; $("mini-districts").innerHTML = [30, 44, 22, 38, 46, 28, 40, 34, 18, 42, 26, 36].map((h, i) => `<i style="height:${h}px;background:${GC[gp[i % gp.length]]}"></i>`).join("");
-  $("mini-gaps").innerHTML = S.goals.map(g => { const p = (g.un_series_listed - g.un_series_no_india_data.length) / g.un_series_listed; return `<i style="height:${8 + 38 * p}px;background:${GC[g.goal]};opacity:${0.35 + 0.65 * p}"></i>`; }).join("");
 }
 function seqColor(x) {
   x = Math.max(0, Math.min(1, x));
@@ -691,7 +803,7 @@ async function showGoal(g) {
   $("g-next").href = `#goal-${g === 17 ? 1 : g + 1}`; $("g-next").textContent = `Goal ${g === 17 ? 1 : g + 1}`;
   $("g-prev").setAttribute("aria-label", "Previous goal"); $("g-next").setAttribute("aria-label", "Next goal");
   $("goalstrip").querySelectorAll("a").forEach((a, i) => a.classList.toggle("on", i + 1 === g));
-  document.querySelector('#menu a[data-v="goal"]').href = `#goal-${g}`;
+  $("g-crumb").textContent = `Goal ${g}`;
   if (!exWired) {
     exWired = true;
     $("ex-q").oninput = () => { EX.shown = PAGE; renderCards(); };
