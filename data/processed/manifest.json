@@ -1,10 +1,10 @@
 {
-  "built_at": "2026-10-23T00:59:15+00:00",
+  "built_at": "2026-10-26T11:32:31+00:00",
   "totals": {
     "records": 58658,
     "observations": 51700,
-    "numeric_observations": 51694,
-    "text_observations": 6,
+    "numeric_observations": 51695,
+    "text_observations": 5,
     "not_available_markers": 6958,
     "goals_covered": [
       1,
@@ -25,7 +25,7 @@
       16,
       17
     ],
-    "indicators": 312,
+    "indicators": 301,
     "series": 751,
     "geographies": 705,
     "earliest_year": 1977,
@@ -36,8 +36,8 @@
     "MOSPI_NIF_2025": {
       "records": 1886,
       "observations": 1834,
-      "numeric_observations": 1828,
-      "text_observations": 6,
+      "numeric_observations": 1829,
+      "text_observations": 5,
       "not_available_markers": 52,
       "goals_covered": [
         1,
@@ -81,7 +81,7 @@
         16,
         17
       ],
-      "indicators": 24,
+      "indicators": 13,
       "series": 34,
       "geographies": 704,
       "earliest_year": 2015,
@@ -200,7 +200,7 @@
     "errors": [],
     "warnings": [
       "6958 records are the publisher's own 'not available' markers (e.g. 'NaN = Not Available'). They are kept for the missing-data analysis and are not counted as observations.",
-      "6 values are published as text and kept as text, not converted (most common: {'(-)73.8': 1, 'Yes': 1, '6678/1243': 1, '3976/1212': 1, '2937.20/15697.94': 1}).",
+      "5 values are published as text and kept as text, not converted (most common: {'Yes': 1, '6678/1243': 1, '3976/1212': 1, '2937.20/15697.94': 1, '156.41/1289': 1}).",
       "116 percentage values fall outside 0-100 (series: ['BN_CAB_XOKA_GD_ZS', 'EN_HAZ_TRTDISR', 'EN_LKRV_PWAC', 'EN_LKRV_SWAC', 'EN_RSRV_MNWAC', 'EN_RVR_MNRVFLC', 'EN_RVR_MXRVFLC', 'EN_WBE_MANGC']); check the series definitions."
     ]
   },

@@ -69,7 +69,7 @@ def parse(*pages):
     ("18.32", (18.32, "numeric", "")), ("1,09,085", (109085.0, "numeric", "")),
     ("277 .0865", (277.0865, "numeric", "")), ("66.6614*", (66.6614, "numeric", "*")),
     ("-", (None, "not_available", "")), ("NA", (None, "not_available", "")),
-    ("(-)73.8", (None, "text", "")), ("Yes", (None, "text", "")),
+    ("(-)73.8", (-73.8, "numeric", "")), ("( - ) 5", (-5.0, "numeric", "")), ("Yes", (None, "text", "")),
 ])
 def test_cell_values(token, expected):
     assert mospi.clean_number(token) == expected

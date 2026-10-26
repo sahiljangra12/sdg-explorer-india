@@ -24,6 +24,7 @@ import pandas as pd
 
 from .. import config
 from ..http import sha256
+from . import nfhs
 
 SOURCE_ID = "NITI_MPI_2023"
 URL = "https://www.niti.gov.in/sites/default/files/2023-08/India-National-Multidimentional-Poverty-Index-2023.pdf"
@@ -263,7 +264,8 @@ def load(districts: pd.DataFrame) -> dict:
         raise ValueError(f"MPI: several rows matched to one district: {dup[['state', 'district', 'geo_id']].values}")
     unmatched = df[df["geo_id"].isna()]
     skipped += [{"page": r.page, "state": r.state, "district": r.district,
-                 "reason": "no matching NFHS-5 district (new, split, renamed or not in the NFHS fact sheets)"}
+                 "reason": nfhs.unlinked_reason(r.district, "no matching NFHS-5 district (the district was split, "
+                                                "renamed or formed after NFHS-5)")}
                 for r in unmatched.itertuples()]
     return {"data": df, "skipped": skipped,
             "status": {"status": "loaded", "rows_in_report": int(len(df)), "matched_districts": int(len(matched)),

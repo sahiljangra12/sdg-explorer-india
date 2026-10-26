@@ -570,7 +570,7 @@ footer a{color:var(--ink2)}
         </div>
         <div>
           <h2>Seventeen goals.<br>One dataset.</h2>
-          <p class="xp">The ring shows how many official data series exist for each goal. Hover over a segment to see the goal; click it to open the goal's page.</p>
+          <p class="xp">The ring shows how many official data series with India values exist for each goal; a series filed under two goals counts in both, so the segments add up to more than the total in the centre. Hover over a segment to see the goal; click it to open the goal's page.</p>
           <a class="xbtn" href="#goals">See all goals</a>
         </div>
       </div>
@@ -752,7 +752,7 @@ footer a{color:var(--ink2)}
 
       <div class="panel" id="di-step3">
         <h2><span class="stepno">3</span>Poverty and this indicator</h2>
-        <p class="how">Each dot is a district. Across: the share of people who are multidimensionally poor (NITI Aayog, NFHS-5). Up: the indicator above. Districts outside your filters are shown in light grey. Click a dot to add that district to the comparison below.</p>
+        <p class="how">Each dot is a district. Across: the share of people who are multidimensionally poor (NITI Aayog, NFHS-5). Up: the indicator above. Districts outside your filters are shown in dark grey. Click a dot to add that district to the comparison below.</p>
         <div id="di-mpi-note"></div>
         <div class="legend" id="di-sc-legend"></div>
         <div id="di-scatter" class="chart"></div>
@@ -783,11 +783,11 @@ footer a{color:var(--ink2)}
       <div class="panel">
         <h2>About the district data</h2>
         <ul class="rules">
-          <li>Indicators come from the National Family Health Survey district fact sheets (Ministry of Health and Family Welfare / IIPS). District estimates come from a sample survey and have sampling error, so small differences between districts or rounds may not be meaningful.</li>
-          <li>Values in brackets in the fact sheets are based on 25–49 cases; "na" and "*" mean no estimate was published. Districts formed after 2015-16 have no NFHS-4 value.</li>
-          <li>Poverty level is NITI Aayog's district headcount ratio from the National Multidimensional Poverty Index 2023 (NFHS-5 round). Districts are split into five equal-sized groups by that figure; the ranges are shown in the filter.</li>
+          <li>Indicators come from the National Family Health Survey district fact sheets (Ministry of Health and Family Welfare / IIPS). NFHS-5 published 707 district fact sheets; three (Chandigarh, Lakshadweep and Vidisha) are missing from the copy used here, so 704 districts are shown. District estimates come from a sample survey and have sampling error, so small differences between districts or rounds may not be meaningful.</li>
+          <li>Values in brackets in the fact sheets are based on 25–49 cases; "na" and "*" mean no estimate was published. Districts formed after 2015-16, or whose boundaries changed, have no NFHS-4 value.</li>
+          <li>Poverty level is NITI Aayog's district headcount ratio from the National Multidimensional Poverty Index 2023 (NFHS-5 round). Districts are split into five equal-sized groups by that figure; the ranges are shown in the filter. Where NFHS publishes no NFHS-4 value because a district's boundary changed, NITI Aayog's NFHS-4 poverty figure refers to the old district, so it is not shown or compared.</li>
           <li>The multidimensional poverty index is itself built from NFHS data, including nutrition, child mortality, schooling, cooking fuel, sanitation, drinking water, electricity, housing, assets, bank accounts and maternal health. For indicators that measure one of these, a strong link with poverty is partly built in; those indicators are marked.</li>
-          <li>Aspirational Districts are the 112 districts on NITI Aayog's list; 4 districts created after NFHS-5 cannot be linked to fact sheet data.</li>
+          <li>Aspirational Districts are the 112 districts on NITI Aayog's list; 4 cannot be linked to fact sheet data: 3 were formed after NFHS-5, and Vidisha's fact sheet is missing from the copy used.</li>
           <li>Group summaries are medians across districts, not population totals. Districts differ greatly in population, so they are not State or national figures.</li>
           <li>Population, area and urban share (Census 2011) are not included yet: the Census website could not be reached to download the official tables.</li>
         </ul>
@@ -828,7 +828,7 @@ footer a{color:var(--ink2)}
       </div>
       <div class="panel">
         <h2>How many series have data in each year</h2>
-        <p class="how">Darker cells mean more series with a published value that year. Most SDG monitoring starts around 2000.</p>
+        <p class="how">Brighter cells mean more series with a published value that year. Most SDG monitoring starts around 2000.</p>
         <div id="ov-heat" class="chart" style="height:540px"></div>
         <p class="cap" id="ov-cap"></p>
       </div>
@@ -869,7 +869,7 @@ footer a{color:var(--ink2)}
           <h2>Data rules</h2>
           <ul class="rules">
             <li>Nothing is invented, imputed or interpolated. Missing years stay missing.</li>
-            <li>Values are kept as published. Values published as text (such as <code>&lt;0.1</code>) stay text.</li>
+            <li>Values are kept as published. Values published as text (such as <code>6678/1243</code> or <code>Yes</code>) stay text; the report's <code>(-)73.8</code> notation is read as the number −73.8, with the published form kept.</li>
             <li>Composite index scores (NITI Aayog) never mix with measured indicator data.</li>
             <li>Observation years are kept separate from publication dates.</li>
             <li>UN and MoSPI series for the same indicator stay separate.</li>
@@ -948,6 +948,7 @@ async function getJSON(name) {
   return cache[name];
 }
 const LT = GC.map(c => c && tone(c, 0.2));   // light tint of each goal colour for large surfaces
+const naOnly = g => Math.max(0, g.un_series_listed - g.un_series_no_india_data.length - g.series_un);   // UN series with only "not available" entries for India
 const goalVars = g => `--tc:${LT[g]};--tt:#f5f5f7;--ta:${ACC[g]}`;
 
 // ------------------------------------------------------------------ routing
@@ -1011,7 +1012,7 @@ function ringPaths(cx, cy, R, r, gapFrac, weights) {
 }
 function initHome() {
   const t = S.totals, d = S.source_status.NFHS5_DISTRICTS || {};
-  $("facts").innerHTML = [[t.observations.toLocaleString("en-IN"), "published values"], [t.indicators, "SDG indicators"], [d.districts || 704, "districts"], [`${t.earliest_year}–${t.latest_year}`, "years covered"]]
+  $("facts").innerHTML = [[t.observations.toLocaleString("en-IN"), "published values"], [t.series.toLocaleString("en-IN"), "data series"], [d.districts || 704, "districts"], [`${t.earliest_year}–${t.latest_year}`, "years covered"]]
     .map(([v, l]) => `<div class="fact"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
   const w = S.goals.map(g => g.series_un + g.series_mospi);
   // the ring is sized by series per goal; a series linked to two goals counts in both, so the centre shows the de-duplicated total
@@ -1023,7 +1024,7 @@ function initHome() {
   }).join("");
   $("ring").querySelectorAll("path").forEach(p => {
     const g = +p.dataset.g, x = S.goals[g - 1];
-    p.onmouseenter = () => mid.innerHTML = `<b style="color:${g === 7 ? "#b58a00" : GC[g]}">${x.series_un + x.series_mospi}</b><span>series for Goal ${g}: ${esc(x.name)}</span>`;
+    p.onmouseenter = () => mid.innerHTML = `<b style="color:${GC[g]}">${x.series_un + x.series_mospi}</b><span>series for Goal ${g}: ${esc(x.name)}</span>`;
     p.onmouseleave = () => mid.innerHTML = base;
   });
   $("tiles").innerHTML = tilesHTML();
@@ -1032,7 +1033,7 @@ function initHome() {
   const lo = Math.min(...sc), hi = Math.max(...sc);
   $("mini-states").innerHTML = sc.map(v => `<i style="height:${Math.round(8 + 38 * (v - lo) / ((hi - lo) || 1))}px;background:${seqColor((v - 50) / 30)}"></i>`).join("");
   const gp = [3, 2, 5, 6, 4, 7, 16, 17]; $("mini-districts").innerHTML = [30, 44, 22, 38, 46, 28, 40, 34, 18, 42, 26, 36].map((h, i) => `<i style="height:${h}px;background:${GC[gp[i % gp.length]]}"></i>`).join("");
-  $("mini-gaps").innerHTML = S.goals.map(g => { const p = (g.un_series_listed - g.un_series_no_india_data.length) / g.un_series_listed; return `<i style="height:${8 + 38 * p}px;background:${GC[g.goal]};opacity:${0.35 + 0.65 * p}"></i>`; }).join("");
+  $("mini-gaps").innerHTML = S.goals.map(g => { const p = g.series_un / g.un_series_listed; return `<i style="height:${8 + 38 * p}px;background:${GC[g.goal]};opacity:${0.35 + 0.65 * p}"></i>`; }).join("");
 }
 function initGoals() { $("tiles2").innerHTML = tilesHTML(); }
 const NEXT = {
@@ -1050,10 +1051,10 @@ function drawNext(view, g) {
 }
 function tilesHTML() {
   return S.goals.map(g => {
-    const have = g.un_series_listed - g.un_series_no_india_data.length, pct = g.un_series_listed ? Math.round(100 * have / g.un_series_listed) : 0;
+    const have = g.series_un, pct = g.un_series_listed ? Math.round(100 * have / g.un_series_listed) : 0;
     return `<a class="tile" href="#goal-${g.goal}" style="--gcol:${GC[g.goal]};--gtx:${GT[g.goal]};--ta:${ACC[g.goal]}"><span class="ph" style="background-image:url(img/goals/goal_${pad(g.goal)}.jpg);background-position:${({13: "center 75%", 15: "center 90%", 10: "center 40%"})[g.goal] || "center"}" aria-hidden="true"></span><span class="tn">${g.goal}</span>` +
       `<span class="nm">${esc(g.name)}</span><span class="st">${g.series_un + g.series_mospi} data series</span>` +
-      `<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span><span class="sub">${have} of ${g.un_series_listed} UN series have India data</span><span class="more">Explore ›</span></a>`;
+      `<span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span><span class="sub">${have} of ${g.un_series_listed} UN series have India values</span><span class="more">Explore ›</span></a>`;
   }).join("");
 }
 function seqColor(x) {
@@ -1101,7 +1102,8 @@ async function showGoal(g) {
   const x = S.goals[g - 1], root = document.documentElement.style;
   root.setProperty("--gc", GC[g]); root.setProperty("--gt", GT[g]); root.setProperty("--gl", LT[g]); root.setProperty("--ga", ACC[g]);
   $("g-num").textContent = g; $("g-kick").textContent = `Goal ${g} of 17`; $("g-name").textContent = x.name;
-  $("g-stats").innerHTML = `<span>${x.series_un} UN series with India data</span><span>${x.series_mospi} MoSPI series</span><span>${x.un_series_no_india_data.length} UN series with no India data</span>`;
+  $("g-stats").innerHTML = `<span>${x.series_un} of ${x.un_series_listed} UN series with India values</span><span>${x.series_mospi} MoSPI series</span>` +
+    (naOnly(x) ? `<span>${naOnly(x)} UN series marked "not available"</span>` : "") + `<span>${x.un_series_no_india_data.length} UN series with no India data</span>`;
   $("g-prev").href = `#goal-${g === 1 ? 17 : g - 1}`; $("g-prev").textContent = `Goal ${g === 1 ? 17 : g - 1}`;
   $("g-next").href = `#goal-${g === 17 ? 1 : g + 1}`; $("g-next").textContent = `Goal ${g === 17 ? 1 : g + 1}`;
   $("g-prev").setAttribute("aria-label", "Previous goal"); $("g-next").setAttribute("aria-label", "Next goal");
@@ -1413,7 +1415,7 @@ function drawSpread(s, idx) {
     lay({height: Math.max(340, 28 * order.length + 110), margin: {l: 160, r: 18, t: 40, b: 52}, legend: {orientation: "h", y: 1.0, yanchor: "bottom", x: 0},
       xaxis: {title: AXT(`${s.label} (${s.unit})`)}, yaxis: {type: "category", tickfont: {size: 13}, automargin: true}}));
   const new5 = order.filter(i => s.r4[i] == null).length;
-  $("di-cap").textContent = `${order.length} districts.` + (new5 ? ` ${new5} have no NFHS-4 value (formed after 2015-16).` : "") +
+  $("di-cap").textContent = `${order.length} districts.` + (new5 ? ` ${new5} have no NFHS-4 value (formed after 2015-16 or boundary changed).` : "") +
     ` Districts with "na" or "*" have no dot for that round. Survey estimates have sampling error, so small changes may not be meaningful.`;
 }
 function drawScatter() {
@@ -1435,7 +1437,7 @@ function drawScatter() {
     el.removeAllListeners && el.removeAllListeners("plotly_click");
     el.on("plotly_click", ev => { const p = ev.points[0]; if (p && p.customdata != null) addPick(+p.customdata); });
   });
-  $("di-sc-legend").innerHTML = `<span><i style="background:${col}"></i>In your filters (${fin.length})</span>` + (fout.length ? `<span><i style="background:#d5dae3"></i>Other districts (${fout.length})</span>` : "") +
+  $("di-sc-legend").innerHTML = `<span><i style="background:${col}"></i>In your filters (${fin.length})</span>` + (fout.length ? `<span><i style="background:#3a3a42"></i>Other districts (${fout.length})</span>` : "") +
     DI.sel.map((i, k) => `<span><i style="background:${PCOL[k]}"></i>${esc(D.districts[i][1])}</span>`).join("");
   if (fin.length >= 10) {
     const rho = spearman(fin.map(i => C.mpi5[i]), fin.map(i => s.v5[i]));
@@ -1513,9 +1515,9 @@ async function showGaps(g) {
   const info = S.goals[g - 1];
   $("mi-title").innerHTML = `<span class="sw" style="${goalVars(g)};width:30px;height:30px;line-height:30px;font-size:16px;vertical-align:-4px">${g}</span>${esc(info.name)}`;
   const file = await getJSON(`goal_${pad(g)}.json`);
-  const withData = info.un_series_listed - info.un_series_no_india_data.length;
-  $("mi-kpis").innerHTML = [[`${withData} of ${info.un_series_listed}`, "UN global series with any India data"], [info.series_mospi, "MoSPI national series with values"],
-    [info.un_series_no_india_data.length, "UN series with no India data"]].map(([v, l]) => `<div class="kpi"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
+  const withData = info.series_un, nao = naOnly(info);
+  $("mi-kpis").innerHTML = [[`${withData} of ${info.un_series_listed}`, "UN global series with India values"], [info.series_mospi, "MoSPI national series with values"],
+    [info.un_series_no_india_data.length + nao, nao ? `UN series without India values (${nao} of them only marked "not available")` : "UN series with no India data"]].map(([v, l]) => `<div class="kpi"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("");
   const ser = file.series.filter(s => s.n > 0);
   const years = [...new Set(ser.flatMap(s => s.groups.flatMap(gr => gr.pts.filter(p => p[4] === "numeric").map(p => p[0]))))].sort((a, b) => a - b);
   if (years.length) {

@@ -188,6 +188,8 @@ for k, m in prov.items():
         mac(f"mb{k}", f"{m['bytes'] / 1e6:.1f}", m["bytes"])
 
 # ------------------------------------------------------------------ UN coverage (unique series)
+mac("unDiscontinued", str(int((~ind.drop_duplicates("series_code")["in_use"].astype(bool)).sum())))
+ind = ind[ind["in_use"].astype(bool)]  # series marked "(Not In Use)" in every UN listing are not counted
 un_list = ind.drop_duplicates("series_code")
 num = obs[obs["value_status"] == "numeric"]
 un_num_series = set(num.loc[num["source_id"] == "UN_SDG_API", "series_code"])
@@ -366,7 +368,12 @@ aliases = pd.read_csv(R / "niti_mpi_district_aliases.csv")
 mac("mpiAliases", str(len(aliases)))
 mac("mpiUnmatched", str(len(mpi_x) - int(ctx["h5"].notna().sum())))
 mac("hMedFive", f(ctx["h5"].median(), 2), ctx["h5"].median())
-pair = ctx.dropna(subset=["h4", "h5"])
+# NFHS publishes no NFHS-4 value for districts whose boundary changed; NITI's NFHS-4 figure for
+# them refers to the old district, so they are left out of every comparison between rounds
+no4 = {d[0] for i, d in enumerate(dist["districts"]) if all(s["r4"][i] is None for s in dist["series"])}
+boundary = ctx["geo_id"].isin(no4) & ctx["h4"].notna()
+mac("hOtherBoundary", str(int(boundary.sum())))
+pair = ctx[~boundary].dropna(subset=["h4", "h5"])
 mac("hPairN", str(len(pair)))
 mac("hMedFourPair", f(pair["h4"].median(), 2), pair["h4"].median())
 mac("hMedFivePair", f(pair["h5"].median(), 2), pair["h5"].median())

@@ -14,6 +14,7 @@ import pandas as pd
 
 from .. import config
 from ..http import sha256
+from . import nfhs
 from .mpi import match_districts
 
 SOURCE_ID = "NITI_ASPIRATIONAL"
@@ -71,7 +72,7 @@ def load(districts: pd.DataFrame) -> dict:
     df["geo_id"] = [g or ALIASES.get((s, d)) for g, s, d in zip(geo, df["state"], df["district"], strict=True)]
     un = df[df["geo_id"].isna()]
     skipped = [{"state": r.state, "district": r.district,
-                "reason": "district created after NFHS-5 or not in the NFHS fact sheets; not linked to any district"}
+                "reason": nfhs.unlinked_reason(r.district, "district formed after NFHS-5; not linked to any district")}
                for r in un.itertuples()]
     return {"data": df, "skipped": skipped,
             "status": {"status": "loaded", "listed": int(len(df)), "matched_districts": int(df["geo_id"].notna().sum()),

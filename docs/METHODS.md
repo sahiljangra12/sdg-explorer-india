@@ -50,11 +50,11 @@ The MoSPI NIF Progress Report 2025 has one small table per national indicator in
 
 Each NFHS-5 District Fact Sheet is a two- or three-page PDF with about 104 numbered indicators and two columns: NFHS-5 (2019-21) and NFHS-4 (2015-16). Districts formed after 2015-16 have only the NFHS-5 column; their NFHS-4 values are absent, not empty.
 
-- **Which indicators.** 34 indicators with a clear SDG counterpart are kept (`SDG_MAP` in `sdg_india/sources/nfhs.py`). Each is marked either "same" (the same measure as a national NIF indicator, for example stunting = NIF 2.2.1) or "related" (relevant to the SDG target, not the official indicator).
+- **Which indicators.** 34 indicators with a clear SDG counterpart are kept (`SDG_MAP` in `sdg_india/sources/nfhs.py`). Each is marked either "same" (the same measure as a national NIF indicator, for example stunting = NIF 2.2.1) or "related" (relevant to the SDG target, not the official indicator). An indicator linked only to a target is filed under that target (for example 2.2) and is not given an indicator number of its own.
 - **District and State.** The district name is taken from the cover page and must match the sentence "In <district>, information was gathered ..." later in the same document. The State comes from the title line.
 - **Indicators are matched by name.** The standard name of each number is the name printed most often against it across all 704 sheets. Each sheet's rows are then matched to those names. Two official sheets (Mahisagar, Wardha) skip a number in their list, so their printed numbers are shifted; matching by name corrects this, and the correction is recorded.
 - **Values.** Values in brackets are based on 25–49 unweighted cases; they are kept, with a note. `*` (fewer than 25 cases) and `na` are kept as "not available". Values whose numbers were split across lines out of column order are left out and listed, never guessed.
-- **Cross-check.** The extract was compared with an independent digitisation of the same fact sheets (pratapvardhan/NFHS-5): 20,409 of 20,413 shared values are identical, and the 4 differences are a column shift in that copy.
+- **Cross-check.** The extract was compared with an independent digitisation of the same fact sheets (pratapvardhan/NFHS-5): matched exactly on State, district name, indicator number and survey round, 17,658 of 17,661 shared values in 340 districts are identical. The 3 differences (Dhule, three adjacent tobacco and alcohol indicators) are a row shift in that copy.
 - **District identifiers** are `<State id>.<district slug>`, for example `IN.UP.lucknow`. District boundaries are not mapped.
 - **No aggregation.** State or national values are never computed from district values; survey weights differ.
 

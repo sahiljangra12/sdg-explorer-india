@@ -303,4 +303,15 @@ def parse_metadata(raw_dir: Path = RAW_DIR) -> pd.DataFrame:
                         "metadata_url": f"https://unstats.un.org/sdgs/metadata/?Text=&Goal={g.get('code')}"
                                         f"&Target={t.get('code')}",
                     })
-    return pd.DataFrame(rows).drop_duplicates()
+    df = pd.DataFrame(rows).drop_duplicates()
+    if df.empty:
+        return df
+    # The Goal List repeats a series once per historical release, sometimes under an old
+    # "(Not In Use)" description. Keep one row per goal/target/indicator/series, preferring the
+    # current description, and mark series that are discontinued in every listing.
+    niu = df["series_description"].fillna("").str.upper().str.startswith("(NOT IN USE)")
+    discontinued = niu.groupby(df["series_code"]).all()
+    df = (df.assign(_niu=niu).sort_values(["_niu", "release"], ascending=[True, False], kind="stable")
+          .drop_duplicates(["goal", "target", "indicator_code", "series_code"]).drop(columns="_niu"))
+    df["in_use"] = ~df["series_code"].map(discontinued).fillna(False).astype(bool)
+    return df.sort_values(["goal", "target", "indicator_code", "series_code"], kind="stable").reset_index(drop=True)

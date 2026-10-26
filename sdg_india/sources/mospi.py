@@ -84,6 +84,10 @@ def clean_number(token: str) -> tuple[float | None, str, str]:
         t, marker = m.group(1).strip(), m.group(2)
     if t in NOT_AVAILABLE:
         return None, "not_available", marker
+    neg = re.match(r"^\(\s*-\s*\)\s*(.+)$", t)            # "(-)73.8": the report's notation for -73.8
+    if neg:
+        v, status, _ = clean_number(neg.group(1))
+        return (-v if v is not None else None), status, marker
     t2 = re.sub(r"(?<=\d)\s+(?=\.\d)", "", t)           # "277 .0865" -> "277.0865"
     if NUMBER.match(t2):
         return float(t2.replace(",", "")), "numeric", marker
@@ -367,12 +371,24 @@ def pdf_dates(pdf: Path) -> dict:
     return {"pdf_created": iso(meta.get("CreationDate", "")), "pdf_modified": iso(meta.get("ModDate", ""))}
 
 
+def reclassify(df: pd.DataFrame) -> pd.DataFrame:
+    """Re-read cells kept as text with the current number rules (e.g. '(-)73.8'), keeping value_raw as published."""
+    if df.empty:
+        return df
+    df = df.copy()
+    for i in df.index[df["value_status"] == "text"]:
+        v, status, _ = clean_number(str(df.at[i, "value_raw"]))
+        if status == "numeric":
+            df.at[i, "value"], df.at[i, "value_status"] = v, status
+    return df
+
+
 def load_extract(reason: str) -> dict:
     """Fall back to the verified extract saved from the last successful parse of the PDF."""
     if not EXTRACT.exists():
         return {SOURCE_ID: {"status": {"status": "not available", "detail": reason}, "data": None, "skipped": []}}
     from ..io import read_observations
-    df = read_observations(EXTRACT)
+    df = reclassify(read_observations(EXTRACT))
     skipped = pd.read_csv(EXTRACT_SKIPPED).to_dict("records") if EXTRACT_SKIPPED.exists() else []
     status = json.loads(EXTRACT_STATUS.read_text()) if EXTRACT_STATUS.exists() else {}
     status.update({"status": "loaded from verified extract", "detail": f"{reason}; using {EXTRACT.name}, parsed "

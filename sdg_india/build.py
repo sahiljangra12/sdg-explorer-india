@@ -66,7 +66,8 @@ def summarise(obs: pd.DataFrame) -> dict:
         "text_observations": int((status == "text").sum()),
         "not_available_markers": int((status == "not_available").sum()),
         "goals_covered": sorted(int(x) for x in ex["goal"].dropna().unique()),
-        "indicators": int(ex["indicator_code"].replace("", pd.NA).nunique()),
+        # full indicator codes only (goal.target.number); rows linked only to a target are not counted
+        "indicators": int(ex.loc[ex["indicator_code"].fillna("").str.count(r"\.") == 2, "indicator_code"].nunique()),
         "series": int(real["series_code"].nunique()),
         "geographies": int(real["geo_id"].nunique()),
         "earliest_year": int(real["year"].min()),
@@ -211,7 +212,7 @@ def write_coverage_report(obs: pd.DataFrame, indicators: pd.DataFrame, scores: p
                   f"| Indicators with India data | {t['indicators']} |",
                   f"| Data series with India data | {t['series']} |",
                   f"| Goals with data | {len(t['goals_covered'])} of 17 |",
-                  f"| Geographies | {t['geographies']} (India, national) |",
+                  f"| Geographies | {t['geographies']} (India and {t['geographies'] - 1} districts) |",
                   f"| Earliest / latest observation year | {t['earliest_year']} / {t['latest_year']} |",
                   f"| Observations before 2015 | {t['observations_before_2015']:,} |", ""]
         lines += ["## By source", "", "| Source | Observations | Indicators | Series | Years | Before 2015 |",

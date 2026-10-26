@@ -38,7 +38,7 @@ SDG_MAP = {
     4: (5, "5.1", "related", "5.1.3", "Sex ratio at birth (females per 1,000 males)", "per 1,000 males"),
     5: (16, "16.9", "related", "", "Children under 5 whose birth was registered", "%"),
     6: (17, "17.19", "related", "", "Deaths in the last 3 years registered", "%"),
-    7: (7, "7.1", "same", "7.1.1", "Population living in households with electricity", "%"),
+    7: (7, "7.1", "related", "7.1.1", "Population living in households with electricity", "%"),
     8: (6, "6.1", "related", "", "Population with an improved drinking-water source", "%"),
     9: (6, "6.2", "related", "", "Population using an improved sanitation facility", "%"),
     10: (7, "7.1", "related", "7.1.2", "Households using clean fuel for cooking", "%"),
@@ -63,8 +63,8 @@ SDG_MAP = {
     81: (2, "2.2", "related", "", "Children 6-59 months who are anaemic", "%"),
     83: (2, "2.2", "related", "2.2.3", "Pregnant women age 15-49 who are anaemic", "%"),
     84: (2, "2.2", "related", "2.2.3", "All women age 15-49 who are anaemic", "%"),
-    94: (3, "3.4", "related", "3.8.4", "Women 15+ with elevated blood pressure or taking medicine", "%"),
-    97: (3, "3.4", "related", "3.8.4", "Men 15+ with elevated blood pressure or taking medicine", "%"),
+    94: (3, "3.8", "related", "3.8.4", "Women 15+ with elevated blood pressure or taking medicine", "%"),
+    97: (3, "3.8", "related", "3.8.4", "Men 15+ with elevated blood pressure or taking medicine", "%"),
     101: (3, "3.a", "related", "3.a.1", "Women age 15+ who use any kind of tobacco", "%"),
     102: (3, "3.a", "related", "3.a.1", "Men age 15+ who use any kind of tobacco", "%"),
     103: (3, "3.5", "related", "3.5.3", "Women age 15+ who consume alcohol", "%"),
@@ -185,6 +185,54 @@ def state_geo(folder: str, printed: str | None) -> str | None:
     return geography.resolve(printed or "") or geography.resolve(special.get(folder, folder.replace("_", " ")))
 
 
+# NFHS-5 has 707 district fact sheets; these three are not in the mirror the 704 PDFs came from.
+MISSING_SHEETS = {"vidisha", "chandigarh", "lakshadweep"}
+
+
+def unlinked_reason(district: str, default: str) -> str:
+    if str(district).strip().lower() in MISSING_SHEETS:
+        return "NFHS-5 fact sheet not in the copy of the fact sheets used (3 of 707 are missing); not linked"
+    return default
+
+FOOTNOTE_MARK = re.compile(r"(?<=[A-Za-z)])\s?\d{1,2}(?= \(%\)$)")
+
+
+def clean_indicator_name(name: str) -> str:
+    """Drop the fact sheet's footnote number printed after an indicator name ('stunted (height-for-age)18 (%)')."""
+    return FOOTNOTE_MARK.sub("", re.sub(r"\s+", " ", name).strip())
+
+
+def apply_map(df: pd.DataFrame) -> pd.DataFrame:
+    """Set goal, target, indicator codes and the SDG relation note of every row from SDG_MAP.
+
+    Applied to freshly parsed rows and to the verified extract alike, so a mapping correction never
+    requires re-reading the 704 PDFs. A row linked only to a target carries the target itself as its
+    code (for example '2.2'); it is never given an invented indicator number.
+    """
+    if df is None or df.empty:
+        return df
+    df = df.copy()
+    num = df["series_code"].str.extract(r"NFHS_D(\d+)")[0].astype(int)
+    m = num.map(SDG_MAP)
+    df["goal"] = m.str[0]
+    df["target"] = m.str[1]
+    df["indicator_code"] = [nif or t for _, t, _, nif, _, _ in m]
+    df["indicator_codes_all"] = df["indicator_code"]
+    df["goals_all"] = df["goal"].astype(str)
+
+    def note(fn: str, spec) -> str:
+        _, target, relation, nif, _, _ = spec
+        parts = str(fn).split(" | ")
+        head = re.match(r"^(NFHS indicator \d+: )(.*)$", parts[0])
+        if head:
+            parts[0] = head.group(1) + clean_indicator_name(head.group(2))
+        rel = f"Relation to SDG: {relation}" + (f" (NIF {nif})" if nif else f" (target {target})")
+        return " | ".join([parts[0], rel, *parts[2:]])
+
+    df["footnotes"] = [note(fn, spec) for fn, spec in zip(df["footnotes"], m, strict=True)]
+    return df
+
+
 def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
@@ -195,7 +243,7 @@ def load_all() -> dict:
         reason = "fact sheets not downloaded" if not pdfs else "pdftotext (Poppler) not installed"
         if EXTRACT.exists():
             from ..io import read_observations
-            df = read_observations(EXTRACT)
+            df = apply_map(read_observations(EXTRACT))
             parsed = json.loads(EXTRACT_STATUS.read_text()) if EXTRACT_STATUS.exists() else {}
             status = {**parsed, "status": "loaded from verified extract", "detail": reason, "rows": int(len(df))}
             return {SOURCE_ID: {"status": status, "data": df, "districts": None}}
@@ -243,14 +291,14 @@ def load_all() -> dict:
             for k, (rnd, raw) in enumerate(zip(sheet["rounds"], vals, strict=True)):
                 v, status, note = cell(raw)
                 survey = "NFHS-5" if k == 0 else "NFHS-4"
-                clean_name = re.sub(r"\s+", " ", name)
+                clean_name = clean_indicator_name(name)
                 notes = [f"NFHS indicator {n}: {clean_name}",
                          f"Relation to SDG: {relation}" + (f" (NIF {nif})" if nif else f" (target {target})")]
                 if note:
                     notes.append(note)
                 out.append({
                     "source_id": SOURCE_ID, "goal": goal, "target": target,
-                    "indicator_code": nif or target, "indicator_codes_all": nif or f"{target}.0",
+                    "indicator_code": nif or target, "indicator_codes_all": nif or target,
                     "goals_all": str(goal), "series_code": f"NFHS_D{n:03d}",
                     "series_description": f"[NFHS district] {label}",
                     "geo_id": geo_id, "geography": sheet["district"], "geo_level": "district",
@@ -263,7 +311,7 @@ def load_all() -> dict:
                     "source_url": OFFICIAL, "raw_file": f"nfhs5_districts/{pdf.parent.name}/{pdf.name}",
                     "raw_sha256": digest, "retrieved_at": "", "report_page": None, "headline": True,
                 })
-    df = pd.DataFrame(out)
+    df = apply_map(pd.DataFrame(out))
     if not df.empty:
         key = df[["source_id", "series_code", "geo_id", "time_period"]].astype(str).agg("|".join, axis=1)
         df.insert(0, "obs_id", key.map(lambda k: hashlib.sha1(k.encode()).hexdigest()[:16]))

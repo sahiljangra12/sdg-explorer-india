@@ -111,6 +111,23 @@ def context(ctx: pd.DataFrame, ids: list[str]) -> dict:
             "asp": col("aspirational", lambda v: bool(v) if not pd.isna(v) else False)}
 
 
+def comparable_nfhs4(dist: dict) -> None:
+    """Hide NITI's NFHS-4 poverty figure where NFHS publishes no NFHS-4 value for the district.
+
+    NFHS leaves the NFHS-4 column empty when a district's boundary changed after 2015-16. NITI's
+    report still prints an NFHS-4 headcount ratio for such districts, but it refers to the old,
+    undivided district, so it is not comparable with the NFHS-5 figure. The value stays in
+    district_context.csv; the site neither shows it nor compares it.
+    """
+    c = dist.get("context") or {}
+    if not c or not dist.get("series"):
+        return
+    no4 = [all(s["r4"][i] is None for s in dist["series"]) for i in range(len(dist["districts"]))]
+    c["mpi4_other_boundary"] = [bool(n and v is not None) for n, v in zip(no4, c["mpi4"], strict=True)]
+    for key in ("mpi4", "mpi4_raw"):
+        c[key] = [None if n else v for n, v in zip(no4, c[key], strict=True)]
+
+
 def districts(obs: pd.DataFrame, geos: pd.DataFrame) -> dict:
     """District values as columns aligned to one district list; absent rounds stay null (never filled)."""
     d = obs[obs["geo_level"] == "district"].drop_duplicates("obs_id")
@@ -147,6 +164,8 @@ def summary(obs, indicators, scores, sources, not_parsed, manifest, nat_files) -
     for g in range(1, 18):
         ng = numeric[numeric["goal"] == g]
         ind = indicators[indicators["goal"] == g] if not indicators.empty else indicators
+        if len(ind) and "in_use" in ind:
+            ind = ind[ind["in_use"].astype(str).str.lower() != "false"]   # discontinued UN series are not counted
         no_data = ind[~ind["has_india_data"].astype(bool)] if len(ind) else ind
         years = ng.groupby("year")["series_code"].nunique()
         goals.append({
@@ -198,6 +217,7 @@ def build_site(proc: Path | None = None, out: Path | None = None) -> dict:
         _dump(payload, data / f"goal_{g:02d}.json")
     dist = districts(obs, geos)
     dist["context"] = context(ctx, [d[0] for d in dist["districts"]])
+    comparable_nfhs4(dist)
     _dump(dist, data / "districts.json")
     meta = summary(obs, indicators, scores, sources, not_parsed, manifest, set(nat))
     _dump(meta, data / "summary.json")
