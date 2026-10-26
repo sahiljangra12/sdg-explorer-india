@@ -1,0 +1,18 @@
+{
+ "space": {
+  "file": "img/home/space.jpg",
+  "title": "ISS-45 Indian subcontinent.jpg",
+  "artist": "NASA",
+  "license": "Public domain",
+  "license_url": "",
+  "source": "https://commons.wikimedia.org/wiki/File:ISS-45_Indian_subcontinent.jpg"
+ },
+ "flag": {
+  "file": "img/home/flag.jpg",
+  "title": "Flag of India, New Delhi.jpg",
+  "artist": "Yann Forget",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Flag_of_India,_New_Delhi.jpg"
+ }
+}

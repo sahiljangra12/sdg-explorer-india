@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
 <title>SDG Explorer India</title>
 <meta name="description" content="India's progress on the 17 Sustainable Development Goals from official sources: UN SDG database, MoSPI, NITI Aayog and NFHS district fact sheets.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/home/space.jpg" media="(min-width: 900px)">
 <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
 <style>
 :root{
@@ -380,6 +381,146 @@ footer .wrap{padding-top:4px}
 .credit{display:flex;gap:12px;align-items:center;font-size:13.5px;color:var(--ink3);line-height:1.35}
 .credit img{width:72px;height:48px;object-fit:cover;border-radius:8px;flex:none}
 .credit a{color:var(--focus)}
+
+/* ================= high-end dark layer (SpaceX-like) ================= */
+:root{--page:#000;--panel:#0d0d0f;--soft:#141417;--ink:#f5f5f7;--ink2:#d1d1d6;--ink3:#9a9aa1;--line:#2a2a2f;--focus:#ffffff;--blue:#ffffff;
+  --display:"Barlow Semi Condensed",Barlow,"Helvetica Neue",Arial,sans-serif;--text:Barlow,"Helvetica Neue",Arial,sans-serif}
+html{background:#000}
+body{background:#000;color:var(--ink);font-size:17px;letter-spacing:.005em}
+::selection{background:#fff;color:#000}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+h1{font-size:clamp(40px,6.2vw,76px);line-height:1}
+h2{font-size:clamp(28px,3.6vw,44px);line-height:1.04}
+h3{font-size:20px;letter-spacing:.04em}
+a{color:#fff}
+p,li{color:var(--ink2)}
+.lede,.how,.shead2 p,.src p,.way p{color:var(--ink3)}
+/* header */
+header.top{background:rgba(0,0,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+header.top .wrap{height:64px}
+.brand{color:#fff;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:15px}
+nav.menu a{color:#fff;opacity:.72;text-transform:uppercase;letter-spacing:.12em;font-size:12.5px;font-weight:600}
+nav.menu a:hover{opacity:1}
+nav.menu a.on{color:#fff;opacity:1;box-shadow:inset 0 -2px 0 #fff;font-weight:600}
+.paperbtn{background:transparent;color:#fff;border:1.5px solid #fff;border-radius:0;text-transform:uppercase;letter-spacing:.14em;font-size:11.5px;font-weight:600;padding:7px 14px}
+.paperbtn:hover{background:#fff;color:#000}
+@media (max-width:980px){header.top .wrap{height:auto}}
+/* buttons */
+.xbtn,.pill,.btn,.band .pn a{display:inline-block;font-family:var(--text);text-transform:uppercase;letter-spacing:.16em;font-size:13px;font-weight:600;color:#fff;background:transparent;border:2px solid #fff;border-radius:0;padding:14px 30px;text-decoration:none;transition:background .25s,color .25s;box-shadow:none}
+.xbtn:hover,.pill:hover,.btn:hover,.band .pn a:hover{background:#fff;color:#000;border-color:#fff}
+.btn{padding:9px 18px;font-size:12px}
+.btn.dark{background:#fff;color:#000;border-color:#fff}.btn.dark:hover{background:transparent;color:#fff}
+.xbtn-ghost,.pill-ghost{border-color:rgba(255,255,255,.45)}
+/* sections */
+.sect{padding:110px 0}
+.sect-black,.sect-white{background:#000}
+.sect-dark,.sect-grey{background:#0a0a0c}
+@media (max-width:640px){.sect{padding:64px 0}}
+.shead2{text-align:left;margin:0 0 44px;max-width:760px}
+.shead2 p{font-size:18px}
+/* hero */
+.xhero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;
+  background:#000 url(img/home/space-1280.jpg) center 40%/cover no-repeat;margin-top:-64px}
+@media (min-width:900px){.xhero{background-image:url(img/home/space.jpg)}}
+.xhero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 100%),linear-gradient(0deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,0) 45%)}
+.xhero-in{position:relative;padding-bottom:13vh;padding-top:120px}
+.xkick{text-transform:uppercase;letter-spacing:.24em;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.75);margin:0 0 18px}
+.xhero h1{max-width:14ch;text-shadow:0 2px 30px rgba(0,0,0,.4)}
+.xlede{max-width:46ch;font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:rgba(255,255,255,.82);margin-top:20px}
+.xcta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.xcredit{position:absolute;right:18px;bottom:14px;z-index:2;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.5);text-decoration:none}
+.xcredit:hover{color:#fff}
+.xscroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.3em;font-size:10.5px;text-decoration:none;padding-bottom:30px}
+.xscroll::after{content:"";position:absolute;left:50%;bottom:0;width:1px;height:24px;background:rgba(255,255,255,.6);animation:xs 2s infinite}
+@keyframes xs{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:700px){.xscroll{display:none}.xcredit{left:18px;right:auto}}
+@media (prefers-reduced-motion:reduce){.xscroll::after{animation:none}}
+/* flag */
+.xflag{position:relative;min-height:92vh;display:flex;align-items:center;background:#000 url(img/home/flag-1280.jpg) 62% center/cover no-repeat;color:#fff}
+@media (min-width:900px){.xflag{background:#000 url(img/home/flag.jpg) right center/auto 100% no-repeat}}
+.xflag::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000 0%,#000 30%,rgba(0,0,0,.75) 44%,rgba(0,0,0,0) 66%)}
+@media (max-width:899px){.xflag::before{background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.7) 55%,rgba(0,0,0,.35) 100%)}}
+.xflag-in,.xhero-in{width:100%;box-sizing:border-box}
+.xflag-in{position:relative;padding-top:110px;padding-bottom:110px}
+.xflag h2{margin-bottom:40px}
+.xflag .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 40px;max-width:500px}
+.xflag .quick,.sect .quick{justify-content:flex-start}
+.fact{text-align:left;border-left:2px solid rgba(255,255,255,.55);padding-left:16px}
+.fact b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(38px,4.4vw,58px);line-height:1;color:#fff;letter-spacing:.01em}
+.fact span{display:block;margin-top:8px;color:rgba(255,255,255,.72);font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+.quick{margin-top:44px;gap:10px 30px}
+.quick a{color:#fff;text-transform:uppercase;letter-spacing:.14em;font-size:13px;font-weight:600}
+/* ring */
+.xring{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:70px;align-items:center}
+.xring .ringbox{max-width:420px;margin:0}
+.xp{font-size:18px;color:var(--ink3);max-width:44ch;margin:18px 0 30px}
+@media (max-width:820px){.xring{grid-template-columns:1fr;gap:36px}.xring .ringbox{max-width:320px}}
+.ringmid b{color:#fff}.ringmid{color:var(--ink3)}
+/* goal tiles: photo cards */
+.tiles{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:4px}
+.tile{background:#111;color:#fff;border-radius:0;min-height:300px;padding:22px 20px 20px;display:flex;flex-direction:column;overflow:hidden}
+.tile:hover{transform:none;box-shadow:none}
+.tile>.ph{border-radius:0;transition:transform .8s cubic-bezier(.2,.7,.2,1);filter:saturate(.9)}
+.tile:hover>.ph{transform:scale(1.06)}
+.tile>.ph::after{border-radius:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.35) 35%,rgba(0,0,0,.86) 72%,#000 100%)}
+.tile .tn{box-shadow:none;border-radius:0;width:40px;height:40px;font-family:var(--display)}
+.tile .nm{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:20px;margin-top:auto;padding-top:60px;color:#fff}
+.tile .st{color:rgba(255,255,255,.72);margin-top:10px;padding-top:0}
+.tile .sub{color:rgba(255,255,255,.55)}
+.tile .bar{background:rgba(255,255,255,.18);border-radius:0;height:3px}
+.tile .more{color:#fff;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600}
+@media (max-width:520px){.tile{min-height:230px}.tile .nm{font-size:16px;padding-top:40px}}
+/* cards and panels */
+.panel,.way,.task,.scard,.kpi,.note,.guide li,.jump a,.org,.src,.paperbox .cover{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:0;box-shadow:none}
+.way{padding:30px 28px 26px;transition:border-color .25s}
+.way:hover,.task:hover,.scard:hover{border-color:#fff;box-shadow:none}
+.way h3{color:#fff}.way .go{color:#fff;text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;font-weight:600}
+.src{padding:24px;text-align:left}
+.src b{color:#fff;font-family:var(--display);text-transform:uppercase;letter-spacing:.04em}
+.note.warn{background:#1f1708;border-color:#4a3510}
+.tag{background:#1c1c20;color:var(--ink2)}
+.tag.ok{background:#0f2a17;color:#7fdc9a}.tag.idx{background:#2b1f08;color:#ffc56b}
+.flag{background:#2b1f08;color:#ffc56b}
+.guide li::before,.stepno,.jump a b{background:#fff;color:#000}
+.tablewrap{border-radius:0;border-color:var(--line)}
+th{background:#141417;color:var(--ink2)}
+td,th{border-color:var(--line)!important}
+tr:hover td{background:#111114}
+select,input[type=search]{background:#0d0d0f;color:#fff;border:1px solid #3a3a40;border-radius:0}
+select option{background:#0d0d0f;color:#fff}
+.seg{background:#141417;border-radius:0}
+.seg button{color:var(--ink3);border-radius:0}
+.seg button.on{background:#fff;color:#000;box-shadow:none}
+.chip{background:transparent;color:var(--ink2);border-color:#3a3a40}
+.chip.on{color:#fff}
+/* goal page */
+.band{background:linear-gradient(180deg,var(--tc,#0d0d0f) 0%,#000 100%);border-bottom:1px solid var(--line);padding:64px 0 44px}
+.band h1{color:#fff}
+.band .num{color:var(--ga)}
+.band .kick,.band .stats,.band .crumbs,.band .crumbs a{color:var(--ink3)}
+.band .crumbs a{color:#fff}
+.goalstrip a,.gpick button{background:#0d0d0f;color:var(--ink2);border-radius:0;box-shadow:inset 0 0 0 1px var(--line)}
+.goalstrip a:hover,.gpick button:hover{box-shadow:inset 0 0 0 1px #fff}
+.goalstrip a.on,.gpick button.on{background:var(--gc);color:var(--gt)}
+.scard .v b{color:#fff}
+.scard.none{opacity:.7}
+dialog.sheet{background:#0b0b0d;color:var(--ink);border:1px solid var(--line);border-radius:0}
+dialog.sheet::backdrop{background:rgba(0,0,0,.75);backdrop-filter:blur(4px)}
+.sheet .shead{background:#0b0b0d;border-color:var(--line)}
+.sheet .x{background:transparent;color:#fff;border:1.5px solid #fff;border-radius:0}
+.pagehead{padding:96px 0 8px}
+.crumbs a{color:#fff}
+.datafrom,footer{background:#000;border-top:1px solid var(--line);color:var(--ink3)}
+footer a{color:var(--ink2)}
+.credit a{color:#fff}
+.mini svg text{fill:var(--ink3)}
+.empty{color:var(--ink3)}
+:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.filters{background:rgba(0,0,0,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.filters label,.filters .lab,.filters small,.filters p{color:var(--ink3)}
+.filters h2,.filters h3,.filters b,.filters strong{color:#fff}
+.pick{background:#0d0d0f;color:#fff;border-radius:0}
+.pick button{background:#26262b;color:#fff;border-radius:0}
 </style>
 </head>
 <body>
@@ -401,30 +542,50 @@ footer .wrap{padding-top:4px}
 <main>
   <!-- ======================================================= home -->
   <section class="view" id="v-home" aria-labelledby="h-home">
-    <div class="sect sect-white">
-      <div class="wrap hero2">
-        <h1 id="h-home">India and the 17 Global Goals.</h1>
-        <p class="lede2">Every official number on India's progress towards the UN Sustainable Development Goals. From four government and UN sources, shown exactly as published.</p>
-        <div class="cta"><a class="pill" href="#goals">Explore the goals</a><a class="pill pill-ghost" href="paper.pdf" target="_blank" rel="noopener">Read the paper</a></div>
-        <div class="quick"><a href="#states">Compare States ›</a><a href="#districts">Compare districts ›</a><a href="#gaps">See what is missing ›</a><a href="#sources">How the data was checked ›</a></div>
+    <div class="xhero" role="img" aria-label="India at night, photographed from the International Space Station">
+      <div class="xhero-in wrap">
+        <p class="xkick">Official data · 17 goals · 704 districts</p>
+        <h1 id="h-home">India and the<br>17 Global Goals</h1>
+        <p class="xlede">Every official number on India's progress towards the UN Sustainable Development Goals, from four government and UN sources, shown exactly as published.</p>
+        <div class="xcta"><a class="xbtn" href="#goals">Explore the goals</a><a class="xbtn xbtn-ghost" href="paper.pdf" target="_blank" rel="noopener">Read the paper</a></div>
+      </div>
+      <a class="xcredit" href="#sources">Image: NASA, India at night from the International Space Station</a>
+      <a class="xscroll" href="#goals" aria-label="Go to the goals">Scroll</a>
+    </div>
+
+    <div class="xflag">
+      <div class="xflag-in wrap">
+        <h2>For India,<br>by the numbers</h2>
+        <div class="facts" id="facts"></div>
+        <div class="quick"><a href="#states">Compare States ›</a><a href="#districts">Compare districts ›</a><a href="#gaps">See what is missing ›</a></div>
+      </div>
+      <a class="xcredit" href="#sources">Photo: Yann Forget, Flag of India, New Delhi (CC BY-SA 4.0)</a>
+    </div>
+
+    <div class="sect sect-black">
+      <div class="wrap xring">
         <div class="ringbox">
           <svg id="ring" viewBox="0 0 400 400" role="img" aria-label="Data series with India values, by goal"></svg>
           <div class="ringmid" id="ringmid"></div>
         </div>
-        <div class="facts" id="facts"></div>
+        <div>
+          <h2>Seventeen goals.<br>One dataset.</h2>
+          <p class="xp">The ring shows how many official data series exist for each goal. Hover over a segment to see the goal; click it to open the goal's page.</p>
+          <a class="xbtn" href="#goals">See all goals</a>
+        </div>
       </div>
     </div>
 
-    <div class="sect sect-grey">
+    <div class="sect sect-dark">
       <div class="wrap">
-        <div class="shead2"><h2>Choose a goal.</h2><p>Each goal has its own page with every data series for India. The bar shows how many of the UN's series for that goal have any value for India.</p></div>
+        <div class="shead2"><h2>Choose a goal</h2><p>Each goal has its own page with every data series for India. The bar shows how many of the UN's series for that goal have any value for India.</p></div>
         <div class="tiles" id="tiles"></div>
       </div>
     </div>
 
-    <div class="sect sect-white">
+    <div class="sect sect-black">
       <div class="wrap">
-        <div class="shead2"><h2>Explore more.</h2><p>Compare places, or see where the data runs out.</p></div>
+        <div class="shead2"><h2>Explore more</h2><p>Compare places, or see where the data runs out.</p></div>
         <div class="ways">
           <a class="way" href="#states"><div class="mini" id="mini-states" aria-hidden="true"></div><h3>Compare States and UTs</h3><p>NITI Aayog's SDG India Index 2023-24 for all 36 States and Union Territories, on a map and as a ranking.</p><span class="go">Open the map ›</span></a>
           <a class="way" href="#districts"><div class="mini" id="mini-districts" aria-hidden="true"></div><h3>Compare districts</h3><p>34 health and household indicators for 704 districts, filtered by State, poverty level and Aspirational status.</p><span class="go">Compare districts ›</span></a>
@@ -433,16 +594,16 @@ footer .wrap{padding-top:4px}
       </div>
     </div>
 
-    <div class="sect sect-grey">
+    <div class="sect sect-dark">
       <div class="wrap">
-        <div class="shead2"><h2>Where the numbers come from.</h2><p>Every value links back to the official file it came from.</p></div>
+        <div class="shead2"><h2>Where the numbers come from</h2><p>Every value links back to the official file it came from.</p></div>
         <div class="srcs">
           <div class="src"><b>UN SDG Global Database</b><p>National series for every goal, from the UN Statistics Division's official API.</p></div>
           <div class="src"><b>MoSPI NIF Progress Report 2025</b><p>India's own national indicator framework, read table by table and checked twice.</p></div>
           <div class="src"><b>NITI Aayog SDG India Index</b><p>Composite 0–100 scores for States and UTs, kept apart from measured values.</p></div>
           <div class="src"><b>NFHS district fact sheets</b><p>Survey estimates for 704 districts from the Ministry of Health and Family Welfare and IIPS.</p></div>
         </div>
-        <div class="quick" style="margin-top:28px"><a href="#sources">Sources and downloads ›</a><a href="paper.pdf" target="_blank" rel="noopener">Read the paper ›</a></div>
+        <div class="quick" style="margin-top:34px"><a href="#sources">Sources and downloads ›</a><a href="paper.pdf" target="_blank" rel="noopener">Read the paper ›</a></div>
       </div>
     </div>
   </section>
@@ -717,7 +878,7 @@ footer .wrap{padding-top:4px}
       </div>
       <div class="panel" id="photo-credits">
         <h2>Photo credits</h2>
-        <p class="how">The pictures on the goal tiles are from Wikimedia Commons, used under their open licences and resized for this site. They illustrate the goals; they are not data.</p>
+        <p class="how">The pictures on the home page and the goal tiles are from Wikimedia Commons, used under their open licences and resized for this site. They illustrate the site; they are not data.</p>
         <div class="credits" id="so-photos"></div>
       </div>
       <div class="panel">
@@ -741,21 +902,22 @@ const INK = "#1b2140";
 function lum(hex) { const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; }
 const GT = GC.map(c => c && (1.05 / (lum(c) + 0.05) >= 3 ? "#ffffff" : INK));
 const darken = (hex, f) => { const n = parseInt(hex.slice(1), 16); return "#" + [n >> 16, (n >> 8) & 255, n & 255].map(v => Math.round(v * f).toString(16).padStart(2, "0")).join(""); };
-const ACC = GC.map((c, i) => c && (GT[i] === INK ? darken(c, lum(c) > 0.45 ? 0.62 : 0.78) : c));
-const tone = (hex, a) => { const n = parseInt(hex.slice(1), 16); const m = v => Math.round(v + (255 - v) * (1 - a)); return `rgb(${m(n >> 16)},${m((n >> 8) & 255)},${m(n & 255)})`; };
-const LINE_COLORS = g => [ACC[g], INK, "#7a8099", ...[17, 10, 14, 11, 3, 8].filter(x => x !== g).map(x => GC[x])].slice(0, 8);
-const SEQ = [[0, "#f3f0c2"], [0.2, "#c7e6a3"], [0.4, "#80c995"], [0.6, "#3ea59a"], [0.8, "#1f748b"], [1, "#19486a"]];
+const lighten = (hex, f) => { const n = parseInt(hex.slice(1), 16); return "#" + [n >> 16, (n >> 8) & 255, n & 255].map(v => Math.round(v + (255 - v) * f).toString(16).padStart(2, "0")).join(""); };
+const ACC = GC.map(c => c && (lum(c) < 0.12 ? lighten(c, 0.38) : lum(c) < 0.2 ? lighten(c, 0.18) : c));   // readable on black
+const tone = (hex, a) => { const n = parseInt(hex.slice(1), 16); const m = v => Math.round(v * a + 12 * (1 - a)); return `rgb(${m(n >> 16)},${m((n >> 8) & 255)},${m(n & 255)})`; };   // mix with near-black
+const LINE_COLORS = g => [GC[g], "#f2f2f2", "#9aa0b4", ...[17, 10, 14, 11, 3, 8].filter(x => x !== g).map(x => GC[x])].slice(0, 8);
+const SEQ = [[0, "#1a2a44"], [0.2, "#1f5a7a"], [0.4, "#2a8a8f"], [0.6, "#4fb38a"], [0.8, "#a6d96a"], [1, "#f3f0a0"]];
 const SEQ_CSS = "linear-gradient(90deg," + SEQ.map(([p, c]) => `${c} ${p * 100}%`).join(",") + ")";
 const GOAL_NAMES = {};
 const SRC_NAME = {UN_SDG_API: "UN SDG database", MOSPI_NIF_2025: "MoSPI NIF report 2025", NFHS5_DISTRICTS: "NFHS district fact sheets", NITI_SDGII_2023_24: "NITI Aayog SDG India Index",
   NITI_MPI_2023: "NITI Aayog National MPI 2023", NITI_ASPIRATIONAL: "NITI Aayog Aspirational Districts"};
-const FONT = "-apple-system,BlinkMacSystemFont,'SF Pro Text',Inter,'Helvetica Neue',Arial,sans-serif";
-const AX = {gridcolor: "#e9ecf2", linecolor: "#c9cfdb", tickcolor: "#c9cfdb", zeroline: false};
-const LAYOUT = {paper_bgcolor: "#ffffff", plot_bgcolor: "#ffffff", font: {family: FONT, size: 14, color: INK},
-  margin: {l: 60, r: 18, t: 18, b: 48}, hoverlabel: {font: {family: FONT, size: 14}, bgcolor: "#ffffff", bordercolor: "#c9cfdb"},
+const FONT = "Barlow,'Helvetica Neue',Arial,sans-serif";
+const AX = {gridcolor: "#232327", linecolor: "#3a3a40", tickcolor: "#3a3a40", zeroline: false};
+const LAYOUT = {paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)", font: {family: FONT, size: 14, color: "#e6e6e9"},
+  margin: {l: 60, r: 18, t: 18, b: 48}, hoverlabel: {font: {family: FONT, size: 14, color: "#f5f5f7"}, bgcolor: "#1c1c1f", bordercolor: "#3a3a40"},
   xaxis: {...AX}, yaxis: {...AX}};
 const CFG = {displayModeBar: false, responsive: true};
-const AXT = t => ({text: t, font: {size: 13.5, color: "#4a5170"}});
+const AXT = t => ({text: t, font: {size: 13.5, color: "#a1a1a6"}});
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const fmt = v => v == null ? "" : Math.abs(v) >= 1000 ? v.toLocaleString("en-IN", {maximumFractionDigits: 2}) : String(+v.toFixed(4));
@@ -786,7 +948,7 @@ async function getJSON(name) {
   return cache[name];
 }
 const LT = GC.map(c => c && tone(c, 0.2));   // light tint of each goal colour for large surfaces
-const goalVars = g => `--tc:${LT[g]};--tt:${INK};--ta:${ACC[g]}`;
+const goalVars = g => `--tc:${LT[g]};--tt:#f5f5f7;--ta:${ACC[g]}`;
 
 // ------------------------------------------------------------------ routing
 // #home, #goal-3, #states, #districts, #gaps or #gaps-3, #sources (old links #explorer, #missing, #overview still work)
@@ -1026,7 +1188,7 @@ function drawChips() {
   $("sh-chips-label").textContent = s.groups.length > 1 ? `Breakdowns: ${EX.picked.size} of ${s.groups.length} shown. Tap to add or remove (up to 8).` : "";
   $("sh-chips").innerHTML = s.groups.length > 1 ? s.groups.map((g, i) => {
     const on = EX.picked.has(g.label), col = on ? cols[EX.picked.get(g.label)] : "transparent";
-    return `<button class="chip ${on ? "on" : ""}" data-i="${i}" aria-pressed="${on}" ${!on && full ? "disabled" : ""}><span class="dot" style="background:${col};border-color:${on ? col : "#c9cfdb"}"></span>${esc(g.label)}</button>`;
+    return `<button class="chip ${on ? "on" : ""}" data-i="${i}" aria-pressed="${on}" ${!on && full ? "disabled" : ""}><span class="dot" style="background:${col};border-color:${on ? col : "#55555c"}"></span>${esc(g.label)}</button>`;
   }).join("") : "";
   $("sh-chips").querySelectorAll("button").forEach(b => b.onclick = () => {
     const g = s.groups[+b.dataset.i];
@@ -1065,7 +1227,7 @@ function drawSheet() {
       const col = cols[EX.picked.get(g.label)], [xs, ys, txt, up, down] = lineXY(g.pts);
       const hasCI = up.some(v => v != null) || down.some(v => v != null);
       return {x: xs, y: ys, text: txt, type: "scatter", mode: "lines+markers", name: g.label, connectgaps: false,
-        line: {color: col, width: 3}, marker: {color: col, size: 9, line: {color: "#ffffff", width: 2}},
+        line: {color: col, width: 3}, marker: {color: col, size: 9, line: {color: "#000000", width: 2}},
         hovertemplate: `%{text}: <b>%{y}</b> ${esc(s.unit)}<extra>${esc(g.label)}</extra>`,
         error_y: hasCI ? {type: "data", symmetric: false, array: up, arrayminus: down, color: col, thickness: 1.2, width: 3} : undefined};
     });
@@ -1111,8 +1273,8 @@ async function initStates() {
   const sc = S.scores.filter(r => r.goal === 0 && r.geo_level !== "national" && r.edition === "2023-24");
   draw("st-map", [{type: "choropleth", geojson: geo, featureidkey: "properties.geo_id", locations: sc.map(r => r.geo_id),
     z: sc.map(r => r.score), text: sc.map(r => r.geography), colorscale: SEQ, zmin: 50, zmax: 80, showscale: false,
-    marker: {line: {color: "#ffffff", width: 0.8}}, hovertemplate: "%{text}: <b>%{z}</b><extra></extra>"}],
-    lay({height: 580, margin: {l: 0, r: 0, t: 0, b: 0}, geo: {fitbounds: "locations", visible: false, projection: {type: "mercator"}, bgcolor: "#ffffff"}}));
+    marker: {line: {color: "#000000", width: 0.8}}, hovertemplate: "%{text}: <b>%{z}</b><extra></extra>"}],
+    lay({height: 580, margin: {l: 0, r: 0, t: 0, b: 0}, geo: {fitbounds: "locations", visible: false, projection: {type: "mercator"}, bgcolor: "rgba(0,0,0,0)"}}));
   const ranked = [...sc].sort((a, b) => a.score - b.score || b.geography.localeCompare(a.geography));
   draw("st-rank", [{type: "bar", orientation: "h", y: ranked.map(r => r.geo_level === "state" ? `<b>${r.geography}</b>` : r.geography), x: ranked.map(r => r.score),
     marker: {color: ranked.map(r => seqColor((r.score - 50) / 30))}, text: ranked.map(r => r.score), textposition: "outside",
@@ -1136,12 +1298,12 @@ async function initStates() {
 
 // ------------------------------------------------------------------ districts: filters, spread, poverty link, groups, side-by-side
 const DI = {D: null, sel: [], grp: "pov", bands: null};
-const PCOL = ["#2b59c3", "#d1495b", "#00968f", "#c98a0b"];
+const PCOL = ["#5b8cff", "#ff6b7d", "#2fd3c4", "#ffc145"];
 // NFHS indicators that measure an ingredient of NITI Aayog's MPI (nutrition, maternal health, cooking fuel,
 // sanitation, drinking water, electricity): their link with the poverty headcount is partly built in
 const MPI_PARTS = new Set(["NFHS_D007", "NFHS_D008", "NFHS_D009", "NFHS_D010", "NFHS_D033", "NFHS_D045", "NFHS_D073", "NFHS_D076", "NFHS_D078"]);
 const BAND_NAMES = ["Least poor fifth", "Second fifth", "Middle fifth", "Fourth fifth", "Poorest fifth"];
-const BAND_COLS = ["#bfe3c0", "#8fcf9a", "#4fa98c", "#2a7c86", "#19486a"];
+const BAND_COLS = ["#c9ecc4", "#8fd19e", "#4fb39a", "#3a8fb0", "#6f7fe0"];
 
 function quantileBands(vals) {
   // five equal-sized groups of districts by MPI headcount; ties at a cut stay together in the higher group
@@ -1220,7 +1382,7 @@ function drawSpread(s, idx) {
     const allV = D.districts.map((d, i) => s.v5[i]).filter(v => v != null), vals = idx.filter(i => s.v5[i] != null);
     const lo = Math.min(...allV), hi = Math.max(...allV), size = (hi - lo) / 36 || 1, bins = {start: lo, end: hi + size, size};
     const subset = vals.length < D.districts.length;
-    const tr = [{type: "histogram", name: "All districts", x: allV, xbins: bins, marker: {color: "#d5dae3"}, hovertemplate: "%{x}: <b>%{y}</b> districts<extra>All districts</extra>"}];
+    const tr = [{type: "histogram", name: "All districts", x: allV, xbins: bins, marker: {color: "#3a3a42"}, hovertemplate: "%{x}: <b>%{y}</b> districts<extra>All districts</extra>"}];
     if (subset) tr.push({type: "histogram", name: "Your filters", x: vals.map(i => s.v5[i]), xbins: bins, marker: {color: col}, hovertemplate: "%{x}: <b>%{y}</b> districts<extra>Your filters</extra>"});
     else tr[0] = {...tr[0], name: "All districts", marker: {color: col}};
     draw("di-chart", tr, lay({height: 360, barmode: "overlay", bargap: 0.05, showlegend: subset, legend: {orientation: "h", y: 1.04, yanchor: "bottom", x: 0},
@@ -1245,9 +1407,9 @@ function drawSpread(s, idx) {
   draw("di-chart", [
     {type: "scatter", mode: "lines", x: lx, y: ly, line: {color: tone(col, 0.35), width: 4}, hoverinfo: "skip", showlegend: false},
     {type: "scatter", mode: "markers", name: "NFHS-4 (2015-16)", x: order.map(i => s.v4[i]), y: names, text: order.map(i => s.r4[i]),
-      marker: {size: 10, color: "#ffffff", line: {color: col, width: 2.5}}, hovertemplate: "%{y}<br>NFHS-4: <b>%{text}</b><extra></extra>"},
+      marker: {size: 10, color: "#000000", line: {color: col, width: 2.5}}, hovertemplate: "%{y}<br>NFHS-4: <b>%{text}</b><extra></extra>"},
     {type: "scatter", mode: "markers", name: "NFHS-5 (2019-21)", x: order.map(i => s.v5[i]), y: names, text: order.map(i => s.r5[i]),
-      marker: {size: 11, color: col, line: {color: "#ffffff", width: 1}}, hovertemplate: "%{y}<br>NFHS-5: <b>%{text}</b><extra></extra>"}],
+      marker: {size: 11, color: col, line: {color: "#000000", width: 1}}, hovertemplate: "%{y}<br>NFHS-5: <b>%{text}</b><extra></extra>"}],
     lay({height: Math.max(340, 28 * order.length + 110), margin: {l: 160, r: 18, t: 40, b: 52}, legend: {orientation: "h", y: 1.0, yanchor: "bottom", x: 0},
       xaxis: {title: AXT(`${s.label} (${s.unit})`)}, yaxis: {type: "category", tickfont: {size: 13}, automargin: true}}));
   const new5 = order.filter(i => s.r4[i] == null).length;
@@ -1264,9 +1426,9 @@ function drawScatter() {
     text: ids.map(i => `${D.districts[i][1]}, ${D.states[D.districts[i][2]]}`), marker,
     hovertemplate: `%{text}<br>Poor: <b>%{x}%</b><br>${esc(s.label)}: <b>%{y}</b> ${esc(s.unit)}<extra></extra>`});
   const tr = [];
-  if (fout.length) tr.push(pt(fout, "Outside your filters", {color: "#d5dae3", size: 6}));
-  tr.push(pt(fin, "In your filters", {color: col, size: 7, opacity: 0.85, line: {color: "#ffffff", width: 0.5}}));
-  DI.sel.forEach((i, k) => { if (has(i)) tr.push({...pt([i], D.districts[i][1], {color: PCOL[k], size: 15, line: {color: "#ffffff", width: 2}}), type: "scatter", mode: "markers+text", cliponaxis: false, textposition: C.mpi5[i] < 8 ? "top right" : C.mpi5[i] > 45 ? "top left" : "top center", texttemplate: D.districts[i][1], textfont: {size: 13, color: PCOL[k]}}); });
+  if (fout.length) tr.push(pt(fout, "Outside your filters", {color: "#3a3a42", size: 6}));
+  tr.push(pt(fin, "In your filters", {color: col, size: 7, opacity: 0.85, line: {color: "#000000", width: 0.5}}));
+  DI.sel.forEach((i, k) => { if (has(i)) tr.push({...pt([i], D.districts[i][1], {color: PCOL[k], size: 15, line: {color: "#000000", width: 2}}), type: "scatter", mode: "markers+text", cliponaxis: false, textposition: C.mpi5[i] < 8 ? "top right" : C.mpi5[i] > 45 ? "top left" : "top center", texttemplate: D.districts[i][1], textfont: {size: 13, color: PCOL[k]}}); });
   draw("di-scatter", tr, lay({height: 460, showlegend: false, margin: {l: 70, r: 18, t: 18, b: 56},
     xaxis: {title: AXT("Multidimensionally poor, % of population (NITI Aayog MPI, NFHS-5)"), rangemode: "tozero"},
     yaxis: {title: AXT(`${s.label}, NFHS-5 (${s.unit})`), rangemode: "tozero"}, hovermode: "closest"})).then(el => {
@@ -1287,12 +1449,12 @@ function drawBox() {
   const idx = filtered().filter(i => s.v5[i] != null);
   let groups;
   if (DI.grp === "pov") groups = [0, 1, 2, 3, 4].map(b => ({name: BAND_NAMES[b], c: BAND_COLS[b], ids: idx.filter(i => DI.bands.band(C.mpi5?.[i]) === b)}));
-  else groups = [{name: "Aspirational Districts", c: "#c98a0b", ids: idx.filter(i => C.asp?.[i])}, {name: "Other districts", c: "#7a8099", ids: idx.filter(i => !C.asp?.[i])}];
+  else groups = [{name: "Aspirational Districts", c: "#c98a0b", ids: idx.filter(i => C.asp?.[i])}, {name: "Other districts", c: "#c7c7cc", ids: idx.filter(i => !C.asp?.[i])}];
   groups = groups.filter(g => g.ids.length);
   if (!groups.length) { message("di-box", '<div class="empty">No district matches these filters.</div>'); $("di-box-cap").textContent = ""; return; }
   draw("di-box", groups.map(g => ({type: "box", name: `${g.name}<br><span style="font-size:12px">${g.ids.length} districts</span>`, y: g.ids.map(i => s.v5[i]),
     text: g.ids.map(i => D.districts[i][1]), boxpoints: "all", jitter: 0.45, pointpos: 0, marker: {color: g.c, size: 4, opacity: 0.55},
-    line: {color: g.c === "#bfe3c0" ? "#6fae7a" : g.c, width: 2}, fillcolor: tone(g.c === "#bfe3c0" ? "#6fae7a" : g.c, 0.18),
+    line: {color: g.c, width: 2}, fillcolor: tone(g.c, 0.18),
     hovertemplate: "%{text}: <b>%{y}</b><extra></extra>", boxmean: false})),
     lay({height: 420, showlegend: false, margin: {l: 70, r: 18, t: 16, b: 70}, yaxis: {title: AXT(`${s.label}, NFHS-5 (${s.unit})`), rangemode: "tozero"}, xaxis: {tickfont: {size: 13}}}));
   const small = groups.filter(g => g.ids.length < 10).map(g => g.name);
@@ -1320,19 +1482,19 @@ function drawProfiles() {
     const lo = Math.min(all[0], ...extra), hi = Math.max(all[all.length - 1], ...extra), X = v => 12 + (W - 24) * (hi === lo ? 0.5 : (v - lo) / (hi - lo));
     const q1 = quant(all, 0.25), md = quant(all, 0.5), q3 = quant(all, 0.75);
     let svg = `<svg viewBox="0 0 ${W} 46" preserveAspectRatio="none" role="img" aria-label="${esc(s.label)}: middle half of districts ${fmt(q1)} to ${fmt(q3)} ${esc(s.unit)}">` +
-      `<line x1="${X(all[0])}" x2="${X(all[all.length - 1])}" y1="20" y2="20" stroke="#d5dae3" stroke-width="2"/>` +
-      `<rect x="${X(q1)}" y="13" width="${Math.max(2, X(q3) - X(q1))}" height="14" rx="4" fill="#dfe3ea"/>` +
-      `<line x1="${X(md)}" x2="${X(md)}" y1="10" y2="30" stroke="#7a8099" stroke-width="2.5"/>`;
+      `<line x1="${X(all[0])}" x2="${X(all[all.length - 1])}" y1="20" y2="20" stroke="#3a3a42" stroke-width="2"/>` +
+      `<rect x="${X(q1)}" y="13" width="${Math.max(2, X(q3) - X(q1))}" height="14" rx="4" fill="#2c2c33"/>` +
+      `<line x1="${X(md)}" x2="${X(md)}" y1="10" y2="30" stroke="#c7c7cc" stroke-width="2.5"/>`;
     DI.sel.forEach((i, k) => {
       const n = D.districts[i][1];
-      if (s.v4[i] != null) svg += `<circle cx="${X(s.v4[i])}" cy="20" r="6.5" fill="#fff" stroke="${PCOL[k]}" stroke-width="2.5"><title>${esc(n)}, NFHS-4: ${esc(s.r4[i])}</title></circle>`;
+      if (s.v4[i] != null) svg += `<circle cx="${X(s.v4[i])}" cy="20" r="6.5" fill="#000" stroke="${PCOL[k]}" stroke-width="2.5"><title>${esc(n)}, NFHS-4: ${esc(s.r4[i])}</title></circle>`;
     });
     DI.sel.forEach((i, k) => {
       const n = D.districts[i][1];
-      if (s.v5[i] != null) svg += `<circle cx="${X(s.v5[i])}" cy="20" r="8" fill="${PCOL[k]}" stroke="#fff" stroke-width="2"><title>${esc(n)}, NFHS-5: ${esc(s.r5[i])}</title></circle>`;
+      if (s.v5[i] != null) svg += `<circle cx="${X(s.v5[i])}" cy="20" r="8" fill="${PCOL[k]}" stroke="#000" stroke-width="2"><title>${esc(n)}, NFHS-5: ${esc(s.r5[i])}</title></circle>`;
     });
-    svg += `<text x="12" y="44" font-size="13" fill="#727894">${esc(fmt(all[0]))}</text><text x="${W - 12}" y="44" font-size="13" fill="#727894" text-anchor="end">${esc(fmt(all[all.length - 1]))}</text>` +
-      `<text x="${X(md)}" y="44" font-size="13" fill="#4a5170" text-anchor="middle">median ${esc(fmt(md))}</text></svg>`;
+    svg += `<text x="12" y="44" font-size="13" fill="#8e8e93">${esc(fmt(all[0]))}</text><text x="${W - 12}" y="44" font-size="13" fill="#8e8e93" text-anchor="end">${esc(fmt(all[all.length - 1]))}</text>` +
+      `<text x="${X(md)}" y="44" font-size="13" fill="#c7c7cc" text-anchor="middle">median ${esc(fmt(md))}</text></svg>`;
     html += `<div class="lab">${esc(s.label)}${MPI_PARTS.has(s.code) ? '<span class="flag">in poverty index</span>' : ""}<small>${esc(s.unit)}${s.note ? " · " + esc(s.note) : ""}</small></div><div>${svg}</div>`;
   });
   $("cmp-prof").innerHTML = html + "</div>";
@@ -1362,7 +1524,7 @@ async function showGaps(g) {
     const labels = ser.map(s => `${s.indicators[0] || ""} ${s.code}`.trim());
     draw("mi-grid", [{type: "heatmap", x: years.map(String), y: labels, z, colorscale: [[0, GC[g]], [1, GC[g]]], showscale: false, xgap: 1.5, ygap: 1.5,
       text: ser.map(s => years.map(() => s.desc)), hovertemplate: "%{y}, %{x}<br>%{text}<extra></extra>"}],
-      lay({height: Math.max(260, 15 * ser.length + 90), plot_bgcolor: "#f3f5f8", margin: {l: 180, r: 10, t: 10, b: 44}, xaxis: {type: "category", tickangle: -45, tickfont: {size: 11.5}, gridcolor: "rgba(0,0,0,0)"},
+      lay({height: Math.max(260, 15 * ser.length + 90), plot_bgcolor: "#111114", margin: {l: 180, r: 10, t: 10, b: 44}, xaxis: {type: "category", tickangle: -45, tickfont: {size: 11.5}, gridcolor: "rgba(0,0,0,0)"},
         yaxis: {autorange: "reversed", tickfont: {size: 11}, gridcolor: "rgba(0,0,0,0)"}}));
   } else message("mi-grid", '<div class="empty">No series with values for this goal.</div>');
   const un = info.un_series_no_india_data;
@@ -1384,23 +1546,25 @@ async function showGaps(g) {
 function drawOverview() {
   const gs = [...S.goals].reverse(), y = gs.map(g => `${g.goal}  ${g.name}`);
   draw("ov-bars", [
-    {type: "bar", orientation: "h", name: "UN SDG database", y, x: gs.map(g => g.series_un), marker: {color: gs.map(g => GC[g.goal]), line: {color: "#ffffff", width: 1.5}}, hovertemplate: "%{y}<br>UN series: <b>%{x}</b><extra></extra>"},
-    {type: "bar", orientation: "h", name: "MoSPI NIF report", y, x: gs.map(g => g.series_mospi), marker: {color: gs.map(g => tone(GC[g.goal], 0.4)), line: {color: "#ffffff", width: 1.5}}, hovertemplate: "%{y}<br>MoSPI series: <b>%{x}</b><extra></extra>"}],
+    {type: "bar", orientation: "h", name: "UN SDG database", y, x: gs.map(g => g.series_un), marker: {color: gs.map(g => GC[g.goal]), line: {color: "#000000", width: 1.5}}, hovertemplate: "%{y}<br>UN series: <b>%{x}</b><extra></extra>"},
+    {type: "bar", orientation: "h", name: "MoSPI NIF report", y, x: gs.map(g => g.series_mospi), marker: {color: gs.map(g => tone(GC[g.goal], 0.4)), line: {color: "#000000", width: 1.5}}, hovertemplate: "%{y}<br>MoSPI series: <b>%{x}</b><extra></extra>"}],
     lay({barmode: "stack", height: 600, showlegend: false, margin: {l: 300, r: 18, t: 10, b: 48}, bargap: 0.28,
       xaxis: {title: AXT("Series with at least one value")}, yaxis: {tickfont: {size: 13.5}, gridcolor: "rgba(0,0,0,0)", automargin: true}}));
   const years = [...new Set(S.goals.flatMap(g => Object.keys(g.series_by_year).map(Number)))].sort((a, b) => a - b).filter(yr => yr >= 1990);
   const z = S.goals.map(g => years.map(yr => g.series_by_year[yr] || null));
   draw("ov-heat", [{type: "heatmap", x: years.map(String), y: S.goals.map(g => `Goal ${g.goal}`), z, colorscale: SEQ, xgap: 1.5, ygap: 1.5,
     colorbar: {title: {text: "Series", side: "top"}, thickness: 10, outlinewidth: 0}, hovertemplate: "%{y}, %{x}: <b>%{z}</b> series with values<extra></extra>"}],
-    lay({height: 540, plot_bgcolor: "#f3f5f8", margin: {l: 70, r: 10, t: 10, b: 54}, xaxis: {type: "category", tickangle: -45, tickfont: {size: 12}, gridcolor: "rgba(0,0,0,0)"}, yaxis: {autorange: "reversed", gridcolor: "rgba(0,0,0,0)"}}));
+    lay({height: 540, plot_bgcolor: "#111114", margin: {l: 70, r: 10, t: 10, b: 54}, xaxis: {type: "category", tickangle: -45, tickfont: {size: 12}, gridcolor: "rgba(0,0,0,0)"}, yaxis: {autorange: "reversed", gridcolor: "rgba(0,0,0,0)"}}));
   const early = S.totals.observations_before_2015;
   $("ov-cap").textContent = `Shown from 1990. Empty cells: no series with a published value.${early ? " " + early.toLocaleString("en-IN") + " national values are from before 2015." : ""}`;
 }
 
 // ------------------------------------------------------------------ sources
 function initSources() {
-  fetch("img/goals/credits.json").then(r => r.json()).then(c => {
-    $("so-photos").innerHTML = Object.entries(c).map(([g, r]) => `<div class="credit"><img src="${esc(r.file)}" alt="" loading="lazy"><span><b style="color:var(--ink)">Goal ${g}</b><br>` +
+  Promise.all(["img/home/credits.json", "img/goals/credits.json"].map(u => fetch(u).then(r => r.json()))).then(([h, gc]) => {
+    const c = {"Home page, space": h.space, "Home page, flag": h.flag};
+    Object.entries(gc).forEach(([g, r]) => { c["Goal " + g] = r; });
+    $("so-photos").innerHTML = Object.entries(c).map(([g, r]) => `<div class="credit"><img src="${esc(r.file.replace("space.jpg", "space-1280.jpg").replace("flag.jpg", "flag-1280.jpg"))}" alt="" loading="lazy"><span><b style="color:var(--ink)">${esc(g)}</b><br>` +
       `<a href="${esc(r.source)}" target="_blank" rel="noopener">${esc(r.title.replace(/\.(jpe?g)$/i, ""))}</a> by ${esc(r.artist)}, ` +
       (r.license_url ? `<a href="${esc(r.license_url)}" target="_blank" rel="noopener">${esc(r.license)}</a>` : esc(r.license)) + `</span></div>`).join("");
   }).catch(() => { $("so-photos").textContent = "Photo credits could not be loaded."; });
